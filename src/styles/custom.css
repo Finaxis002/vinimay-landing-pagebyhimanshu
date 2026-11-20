@@ -1,0 +1,610 @@
+/* ==========================================================================
+   VINIMAY ANIMATED WEBSITE - STYLESHEET (style.css)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE & RESET STYLES
+   -------------------------------------------------------------------------- */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip !important;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Reduced motion accessibility support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. LOADING SCREEN STYLES
+   -------------------------------------------------------------------------- */
+/* Progress bar dynamic gradient fill */
+.bar-fill {
+  background: linear-gradient(90deg, #e028f0, #7c4dde, #1fb6e8);
+}
+
+/* --------------------------------------------------------------------------
+   3. GRADIENTS & ACCENT PILLS
+   -------------------------------------------------------------------------- */
+/* Custom background mesh */
+.bg-mesh {
+  background-color: white;
+}
+
+/* Gradient border pill around "Zero Cost" badge in hero */
+.gradient-pill-border {
+  position: relative;
+  background: white;
+  border-radius: 9999px;
+  padding: 3px 18px;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 4px;
+}
+
+.gradient-pill-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(135deg, #ec4899, #8077EC, #3b82f6, #06b6d4);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Colorful CTA Button Gradient with glow hover */
+.btn-gradient-cta {
+  background: linear-gradient(
+    135deg,
+    #ff512f 0%,
+    #dd2476 50%,
+    #7928ca 100%
+  );
+  box-shadow: 0 10px 25px -5px rgba(221, 36, 118, 0.45);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -5px rgba(221, 36, 118, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   4. RADIANT SILK HERO BACKGROUND & GRID PATTERNS
+   -------------------------------------------------------------------------- */
+.hero-gradient-card {
+  background: linear-gradient(
+    135deg,
+    #8279ec 0%,
+    #938bf8 0%,
+    #7d74ea 45%,
+    #7166e5 100%
+  );
+  position: relative;
+}
+
+.bg-hero-purple {
+  background: linear-gradient(
+    135deg,
+    #8279ec 0%,
+    #7d74ea 45%,
+    #7166e5 100%
+  );
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitCounterRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbitRotate 45s linear infinite;
+}
+
+.animate-counter-orbit {
+  animation: orbitCounterRotate 45s linear infinite;
+}
+
+.pause-orbit:hover .animate-orbit,
+.pause-orbit:hover .animate-counter-orbit {
+  animation-play-state: paused;
+}
+
+/* Subtle architectural grid pattern overlay */
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    );
+  background-size: 32px 32px;
+  mask-image: radial-gradient(
+    ellipse 90% 75% at 50% 25%,
+    black 40%,
+    transparent 85%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 75% at 50% 25%,
+    black 40%,
+    transparent 85%
+  );
+}
+
+/* Radiant silk sheen diagonal highlights */
+.hero-silk-sheen {
+  background:
+    radial-gradient(
+      ellipse 60% 45% at 30% 20%,
+      rgba(255, 255, 255, 0.22) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 75% 35%,
+      rgba(196, 181, 253, 0.25) 0%,
+      transparent 50%
+    );
+}
+
+/* --------------------------------------------------------------------------
+   5. 3D LAPTOP & HARDWARE PERSPECTIVE CHASSIS
+   -------------------------------------------------------------------------- */
+/* 3D Dashboard Perspective Container for Scroll-Up Effect */
+.dashboard-perspective-wrapper {
+  position: relative;
+}
+
+.dashboard-panel-3d {
+  position: relative;
+}
+
+/* Ambient glow ring beneath software laptop */
+.ambient-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 70%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(147, 51, 234, 0.28) 0%,
+    rgba(79, 70, 229, 0.18) 40%,
+    transparent 70%
+  );
+  filter: blur(50px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. CARDS, BENTO GRID & INTERACTIVE ANIMATIONS
+   -------------------------------------------------------------------------- */
+/* Laser Scan Animation for Barcode Card (Retail) */
+@keyframes laserScan {
+  0%, 100% {
+    top: 0%;
+    opacity: 0.9;
+  }
+  50% {
+    top: 92%;
+    opacity: 0.9;
+  }
+}
+
+.animate-laser {
+  animation: laserScan 2.4s ease-in-out infinite;
+}
+
+/* 3D Float for Gym Card (Turnstile access) */
+@keyframes floatSlight {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+}
+
+.animate-float-subtle {
+  animation: floatSlight 4s ease-in-out infinite;
+}
+
+/* Highway dash line animation for Transport & Logistics */
+@keyframes highwayDash {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-highway {
+  stroke-dasharray: 6 6;
+  animation: highwayDash 1.2s linear infinite;
+}
+
+/* Bar wave chart animation */
+@keyframes barWave {
+  0%, 100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-bar-1 { animation: barWave 1.8s ease-in-out infinite; transform-origin: bottom; }
+.animate-bar-2 { animation: barWave 1.8s ease-in-out infinite 0.3s; transform-origin: bottom; }
+.animate-bar-3 { animation: barWave 1.8s ease-in-out infinite 0.6s; transform-origin: bottom; }
+.animate-bar-4 { animation: barWave 1.8s ease-in-out infinite 0.9s; transform-origin: bottom; }
+
+/* Shimmer gradient effect for badges & indicators */
+@keyframes shimmerWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerWave 2.8s infinite;
+}
+
+/* --------------------------------------------------------------------------
+   7. NAVIGATION ACTIVE PILL INDICATOR & HEADER STACKING
+   -------------------------------------------------------------------------- */
+#navbar {
+  z-index: 100 !important;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: #9333ea;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link.active {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   8. CUSTOM SCROLLBAR UTILITIES
+   -------------------------------------------------------------------------- */
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.scrollbar-none,
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.step-tab-btn,
+.feature-tab-btn {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. HANDWRITTEN ANNOTATION FONT
+   -------------------------------------------------------------------------- */
+.font-handwritten {
+  font-family: 'Caveat', cursive, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   10. PURE CINEMA VIDEO - HIDE ALL BROWSER CONTROLS & LIVE CAPTIONS
+   -------------------------------------------------------------------------- */
+video {
+  pointer-events: none;
+}
+
+video::-webkit-media-controls,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Hide Google Chrome Live Caption speech-to-text overlay cues */
+video::cue,
+video::-webkit-media-text-track-container,
+video::-webkit-media-text-track-display {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. THE FEATURES - FULL-WIDTH ORBITAL CAROUSEL & DRAG CURSOR
+   -------------------------------------------------------------------------- */
+.orbital-card,
+.step-card {
+  will-change: transform, opacity;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.drag-cursor {
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  transform: translate(-50%, -50%);
+}
+
+/* --------------------------------------------------------------------------
+   12. INFINITE LOGO MARQUEE & HERO PHONE FLOATING DYNAMICS
+   -------------------------------------------------------------------------- */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marqueeScroll 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes heroPhoneFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(-1.2deg);
+  }
+}
+
+.hero-phone-floating {
+  /* animation disabled */
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   13. OSMO ROLLING TEXT & TACTILE CLICK INTERACTION ENGINE
+   -------------------------------------------------------------------------- */
+/* Universal interactive cursor & tactile click response */
+a,
+button,
+.dashboard-tab-btn,
+.step-tab-btn,
+.feature-tab-btn,
+.product-interest-btn {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+/* Tactile haptic compression on click */
+a:active,
+button:active,
+.dashboard-tab-btn:active,
+.step-tab-btn:active,
+.feature-tab-btn:active,
+.product-interest-btn:active,
+.step-card button:active,
+.step-card a:active,
+.orbital-card button:active,
+.orbital-card a:active {
+  transform: scale(0.96) !important;
+  transition: transform 0.08s ease !important;
+}
+
+/* Osmo Horizontal Rolling Text Container (Standard / Compact) */
+.osmo-roll {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  line-height: inherit;
+  pointer-events: none;
+  max-width: 100%;
+}
+
+.osmo-roll-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.44s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.osmo-roll-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  transition: transform 0.44s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.osmo-roll-item.clone {
+  position: absolute;
+  left: calc(100% + 1.25rem);
+  top: 0;
+  bottom: 0;
+}
+
+/* Standard roll on hover (nav, compact buttons, tabs) */
+a:not(.w-full):hover .osmo-roll:not(.osmo-roll-full) .osmo-roll-track,
+button:not(.w-full):hover .osmo-roll:not(.osmo-roll-full) .osmo-roll-track,
+.osmo-roll:not(.osmo-roll-full):hover .osmo-roll-track,
+.group:hover .osmo-roll:not(.osmo-roll-full) .osmo-roll-track,
+.dashboard-tab-btn:hover .osmo-roll-track,
+.step-tab-btn:hover .osmo-roll-track,
+.feature-tab-btn:hover .osmo-roll-track {
+  transform: translate3d(calc(-100% - 1.25rem), 0, 0);
+}
+
+a:not(.w-full):hover .osmo-roll:not(.osmo-roll-full) .osmo-roll-item,
+button:not(.w-full):hover .osmo-roll:not(.osmo-roll-full) .osmo-roll-item,
+.osmo-roll:not(.osmo-roll-full):hover .osmo-roll-item,
+.group:hover .osmo-roll:not(.osmo-roll-full) .osmo-roll-item,
+.dashboard-tab-btn:hover .osmo-roll-item,
+.step-tab-btn:hover .osmo-roll-item,
+.feature-tab-btn:hover .osmo-roll-item {
+  transform: skewX(-5deg);
+}
+
+/* --------------------------------------------------------------------------
+   FULL-WIDTH BUTTON ROLLING MARQUEE (Card Buttons, Full Width CTAs)
+   Spans the entire width of the button surface
+   -------------------------------------------------------------------------- */
+.osmo-roll.osmo-roll-full,
+button.w-full .osmo-roll,
+a.w-full .osmo-roll,
+.step-card button .osmo-roll,
+.step-card a .osmo-roll,
+.orbital-card button .osmo-roll,
+.orbital-card a .osmo-roll {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.osmo-roll.osmo-roll-full .osmo-roll-track,
+button.w-full .osmo-roll-track,
+a.w-full .osmo-roll-track,
+.step-card .osmo-roll-track,
+.orbital-card .osmo-roll-track {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+.osmo-roll.osmo-roll-full .osmo-roll-item,
+button.w-full .osmo-roll-item,
+a.w-full .osmo-roll-item,
+.step-card .osmo-roll-item,
+.orbital-card .osmo-roll-item {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.osmo-roll.osmo-roll-full .osmo-roll-item.clone,
+button.w-full .osmo-roll-item.clone,
+a.w-full .osmo-roll-item.clone,
+.step-card .osmo-roll-item.clone,
+.orbital-card .osmo-roll-item.clone {
+  position: absolute !important;
+  left: 100% !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Full-width hover trigger: glides 100% across the full button width */
+button.w-full:hover .osmo-roll-track,
+a.w-full:hover .osmo-roll-track,
+.osmo-roll.osmo-roll-full:hover .osmo-roll-track,
+.step-card button:hover .osmo-roll-track,
+.step-card a:hover .osmo-roll-track,
+.orbital-card button:hover .osmo-roll-track,
+.orbital-card a:hover .osmo-roll-track {
+  transform: translate3d(-100%, 0, 0) !important;
+}
+
+button.w-full:hover .osmo-roll-item,
+a.w-full:hover .osmo-roll-item,
+.osmo-roll.osmo-roll-full:hover .osmo-roll-item,
+.step-card button:hover .osmo-roll-item,
+.step-card a:hover .osmo-roll-item,
+.orbital-card button:hover .osmo-roll-item,
+.orbital-card a:hover .osmo-roll-item {
+  transform: skewX(-5deg) !important;
+}
