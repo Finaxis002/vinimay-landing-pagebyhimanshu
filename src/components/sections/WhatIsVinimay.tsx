@@ -123,7 +123,7 @@ export default function WhatIsVinimay() {
   return (
     <section
       id="what-is-vinimay"
-      className="relative py-20 sm:py-28 lg:py-32 px-4 sm:px-6 md:px-8 bg-[radial-gradient(ellipse_70%_60%_at_50%_20%,rgba(255,255,255,0.28),transparent_70%),linear-gradient(165deg,#8E86E8,#584FB2)] text-white overflow-hidden border-t border-purple-400/20"
+      className="relative py-20 sm:py-28 lg:py-28 px-4 sm:px-6 md:px-8 bg-[radial-gradient(ellipse_70%_60%_at_50%_20%,rgba(255,255,255,0.28),transparent_70%),linear-gradient(165deg,#8E86E8,#584FB2)] text-white overflow-hidden border-t border-purple-400/20"
       aria-label="What is Vinimay dashboard overview"
     >
       {/* Bottom ambient vignette */}
@@ -137,7 +137,7 @@ export default function WhatIsVinimay() {
             <span>ALL-IN-ONE PLATFORM</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4 drop-shadow-sm">
+          <h2 className="text-5xl sm:text-7xl lg:text-8xl  text-white tracking-tight leading-tight mb-4 drop-shadow-sm">
             What is Vinimay?
           </h2>
 
@@ -158,7 +158,7 @@ export default function WhatIsVinimay() {
           </div>
 
           {/* Scaled Dashboard Window (Front) */}
-          <div className="relative z-10 w-full max-w-[920px] rounded-2xl overflow-hidden bg-white text-[#1d1640] shadow-[0_40px_90px_-20px_rgba(25,15,90,0.75),0_0_0_1px_rgba(255,255,255,0.4)]">
+          <div className="relative z-10 w-full max-w-[680px] rounded-2xl overflow-hidden bg-white text-[#1d1640] shadow-[0_40px_90px_-20px_rgba(25,15,90,0.75),0_0_0_1px_rgba(255,255,255,0.4)]">
             {/* Top Window Bar */}
             <div className="flex items-center gap-3 h-10 px-4 bg-[#1d1640] text-white font-bold text-xs sm:text-sm">
               <Image
@@ -177,7 +177,7 @@ export default function WhatIsVinimay() {
             </div>
 
             {/* Window Body */}
-            <div className="grid grid-cols-[135px_1fr] sm:grid-cols-[176px_1fr] min-h-[480px] sm:min-h-[560px]">
+            <div className="grid grid-cols-[135px_1fr] sm:grid-cols-[176px_1fr] min-h-[480px]">
               {/* Sidebar Navigation */}
               <div className="bg-[#f4f2fb] p-3 text-xs font-semibold space-y-1">
                 <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-white text-[#1d1640] shadow-sm">

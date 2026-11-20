@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Phone, Mail, ChevronDown } from "lucide-react";
 
 export default function Footer() {
@@ -107,37 +106,37 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-slate-400 text-center">
-            <Link href="#privacy" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Privacy
-            </Link>
+            </a>
             <span>•</span>
-            <Link href="#compliance" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Compliance
-            </Link>
+            </a>
             <span>•</span>
-            <Link href="#terms" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Terms
-            </Link>
+            </a>
             <span>•</span>
-            <Link href="#refund" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Cancellation &amp; Refund
-            </Link>
+            </a>
             <span>•</span>
-            <Link href="#corporate" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Corporate Information
-            </Link>
+            </a>
             <span>•</span>
-            <Link href="#escalation" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Escalation Matrix
-            </Link>
+            </a>
             <span>•</span>
-            <Link href="#security" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Security
-            </Link>
+            </a>
             <span>•</span>
-            <Link href="#cookies" className="hover:text-white transition-colors">
+            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Cookie settings
-            </Link>
+            </a>
           </div>
 
           <div className="shrink-0">

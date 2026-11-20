@@ -375,7 +375,7 @@ export default function FeaturesOrbital() {
                 </div>
               </div>
               <a
-                href="#hero"
+                href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer"
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all text-center block"
               >
                 <OsmoRoll fullWidth>Discover</OsmoRoll>
@@ -413,7 +413,7 @@ export default function FeaturesOrbital() {
                 </div>
               </div>
               <a
-                href="#industries"
+                href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer"
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all text-center block"
               >
                 <OsmoRoll fullWidth>Discover</OsmoRoll>
@@ -451,7 +451,7 @@ export default function FeaturesOrbital() {
                 </div>
               </div>
               <a
-                href="#hero"
+                href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer"
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all text-center block"
               >
                 <OsmoRoll fullWidth>Discover</OsmoRoll>
@@ -489,7 +489,7 @@ export default function FeaturesOrbital() {
                 </div>
               </div>
               <a
-                href="#accounting-solutions"
+                href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer"
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all text-center block"
               >
                 <OsmoRoll fullWidth>Discover</OsmoRoll>
@@ -527,7 +527,7 @@ export default function FeaturesOrbital() {
                 </div>
               </div>
               <a
-                href="#industries"
+                href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer"
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all text-center block"
               >
                 <OsmoRoll fullWidth>Discover</OsmoRoll>
@@ -565,7 +565,7 @@ export default function FeaturesOrbital() {
                 </div>
               </div>
               <a
-                href="#accounting-solutions"
+                href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer"
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all text-center block"
               >
                 <OsmoRoll fullWidth>Discover</OsmoRoll>
@@ -603,7 +603,7 @@ export default function FeaturesOrbital() {
                 </div>
               </div>
               <a
-                href="#industries"
+                href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer"
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all text-center block"
               >
                 <OsmoRoll fullWidth>Discover</OsmoRoll>

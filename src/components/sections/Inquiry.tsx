@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 
 export default function Inquiry() {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -196,9 +195,14 @@ export default function Inquiry() {
                 {/* Disclaimer */}
                 <p className="text-[11px] text-slate-500 text-center pt-1 leading-relaxed">
                   By submitting this form, you agree to receive updates from Vinimay and accept our{" "}
-                  <Link href="#privacy" className="underline hover:text-slate-800">
+                  <a
+                    href="https://vinimay.sharda.co.in/knowledge-base"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-slate-800"
+                  >
                     Privacy Policy
-                  </Link>
+                  </a>
                   .
                 </p>
               </form>

@@ -8,6 +8,7 @@ import { DASHBOARD_TABS, type DashboardTab } from "@/content/dashboard-tabs";
 import { ArrowUpRight, Play, Check, ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 export default function Hero() {
   const [activeTabKey, setActiveTabKey] = useState<string>("poss");
@@ -121,7 +122,7 @@ export default function Hero() {
           GST &amp; VAT-ready invoicing, full accounting, POS and WhatsApp
           billing in one free app.
           <span className="text-purple-200/80 hidden sm:block mt-1"
-            >Built for restaurants, gyms, transporters and manufacturers and
+            >Built for restaurants, gyms, transporters , manufacturers and
             many more.</span
           >
         </p>
@@ -131,19 +132,21 @@ export default function Hero() {
             className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 z-10 w-full sm:w-auto px-4 sm:px-0"
           >
             {/* Primary White Pill Button with Arrow Icon */}
-            <a
-              href="#inquiry"
+            <Link
+              href="https://vinimay.sharda.co.in/client-signup"
+              target="_blank"
               className="w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-900 font-bold text-sm sm:text-base px-7 py-3 sm:py-3.5 rounded-full shadow-xl shadow-purple-950/30 flex items-center justify-center gap-3 transition-all hover:scale-105 group"
             >
               <span>Create Free Account</span>
               <div className="w-6 h-6 rounded-full bg-[#8077EC] text-white flex items-center justify-center text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </div>
-            </a>
+            </Link>
 
             {/* Secondary Frosted Pill Button (Hidden on mobile for clean aesthetic) */}
             <a
-              href="#solutions"
+              href="#the-features"
+              rel="noopener noreferrer"
               className="hidden sm:flex text-white hover:text-white/90 bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md font-semibold text-sm sm:text-base px-6 py-3.5 rounded-full items-center gap-2.5 transition-all"
             >
               <Play className="w-3.5 h-3.5 fill-white text-white" />
@@ -1005,7 +1008,9 @@ export default function Hero() {
               {activeTab.desc}
             </p>
             <a
-              href="#inquiry"
+              href="https://vinimay.sharda.co.in/knowledge-base"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-rose-600 hover:text-rose-700 font-bold text-sm sm:text-base border-b-2 border-rose-500 pb-0.5 group transition-colors"
             >
               <OsmoRoll>{activeTab.ctaText}</OsmoRoll>

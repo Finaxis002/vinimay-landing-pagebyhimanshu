@@ -191,7 +191,9 @@ export default function AccountingSolutions() {
                       {item.description}
                     </p>
                     <a
-                      href="#inquiry"
+                      href="https://vinimay.sharda.co.in/knowledge-base"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-rose-600 hover:text-rose-700 font-bold text-sm mt-3 group"
                     >
                       <OsmoRoll>Explore</OsmoRoll>

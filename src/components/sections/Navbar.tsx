@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { OsmoRoll } from "../common/OsmoRoll";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -159,18 +160,20 @@ export default function Navbar() {
 
         {/* Right Action CTAs */}
         <div className="flex items-center gap-3">
-          <a
-            href="#inquiry"
+          <Link
+            href="https://vinimay.sharda.co.in/client-login"
+            target="_blank"
             className="text-xs sm:text-sm font-semibold text-white/90 hover:text-white transition-colors px-2.5 sm:px-3 py-1.5"
           >
             <OsmoRoll>Log in</OsmoRoll>
-          </a>
-          <a
-            href="#inquiry"
+          </Link>
+          <Link
+            href="https://vinimay.sharda.co.in/client-signup"
+               target="_blank"
             className="inline-flex bg-slate-950 hover:bg-black text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-full border border-white/20 shadow-md hover:scale-105 transition-all"
           >
             <OsmoRoll>Sign Up</OsmoRoll>
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -203,14 +206,18 @@ export default function Navbar() {
           </a>
           <div className="mt-3 pt-3 border-t border-white/15 flex items-center justify-between gap-2.5">
             <a
-              href="#inquiry"
+              href="https://vinimay.sharda.co.in/client-login"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex-1 bg-white/15 hover:bg-white/25 border border-white/20 text-white text-center py-2.5 rounded-xl font-bold backdrop-blur-md transition-all active:scale-95"
             >
               Log In
             </a>
             <a
-              href="#inquiry"
+              href="https://vinimay.sharda.co.in/client-signup"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex-1 bg-slate-950 hover:bg-black text-white text-center py-2.5 rounded-xl font-bold shadow-lg transition-all active:scale-95"
             >
