@@ -115,7 +115,7 @@ export default function Hero() {
 
           {/* Subheading */}
         
-        <p
+        {/* <p
           id="hero-subtitle"
           className="mt-4 sm:mt-6 text-sm sm:text-lg md:text-xl text-purple-100/90 max-w-3xl mx-auto leading-relaxed z-10"
         >
@@ -125,7 +125,7 @@ export default function Hero() {
             >Built for restaurants, gyms, transporters , manufacturers and
             many more.</span
           >
-        </p>
+        </p> */}
           {/* Split CTAs: Clean single white button on mobile, dual buttons on sm+ */}
           <div
             id="hero-ctas"
