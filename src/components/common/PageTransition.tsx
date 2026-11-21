@@ -68,20 +68,27 @@ export default function PageTransition({
 
     if (isTransitioningRef.current) return;
 
+    const targetPath = href.split("?")[0].split("#")[0];
+    const isSamePage = targetPath === pathname;
+
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     if (prefersReducedMotion) {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      router.push(href, { scroll: true });
+      if (!isSamePage) {
+        router.push(href, { scroll: true });
+      }
       return;
     }
 
     const wipe = wipeRef.current;
     if (!wipe) {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      router.push(href, { scroll: true });
+      if (!isSamePage) {
+        router.push(href, { scroll: true });
+      }
       return;
     }
 
@@ -97,10 +104,48 @@ export default function PageTransition({
         ease: "power3.inOut",
         onComplete: () => {
           window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-          router.push(href, { scroll: true });
+
+          if (isSamePage) {
+            // User is already on this page: Next.js will NOT fire a pathname change.
+            // Immediately slide the curtain off to top (-100%) so it never gets stuck!
+            gsap.fromTo(
+              wipe,
+              { yPercent: 0 },
+              {
+                yPercent: -100,
+                duration: 0.55,
+                ease: "power4.inOut",
+                onComplete: () => {
+                  if (wipe) {
+                    wipe.style.display = "none";
+                  }
+                  isTransitioningRef.current = false;
+                },
+              }
+            );
+          } else {
+            router.push(href, { scroll: true });
+          }
         },
       }
     );
+
+    // Fail-safe timeout: guarantees curtain never gets stuck if router stalls
+    setTimeout(() => {
+      if (isTransitioningRef.current && wipeRef.current) {
+        gsap.to(wipeRef.current, {
+          yPercent: -100,
+          duration: 0.4,
+          ease: "power3.out",
+          onComplete: () => {
+            if (wipeRef.current) {
+              wipeRef.current.style.display = "none";
+            }
+            isTransitioningRef.current = false;
+          },
+        });
+      }
+    }, 1500);
   };
 
   return (
