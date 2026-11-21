@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import ScrollToTop from "@/components/common/ScrollToTop";
+import PageTransition from "@/components/common/PageTransition";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -32,13 +34,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${caveat.variable} scroll-smooth`}
+      className={`${plusJakartaSans.variable} ${caveat.variable}`}
     >
       <body
         suppressHydrationWarning
-        className="bg-mesh text-slate-800 font-sans antialiased selection:bg-[#6B62D2] selection:text-white min-h-screen overflow-x-hidden"
+        className="bg-mesh text-slate-800 font-sans antialiased selection:bg-[#6B62D2] selection:text-white min-h-screen overflow-x-clip"
       >
-        {children}
+        <ScrollToTop />
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

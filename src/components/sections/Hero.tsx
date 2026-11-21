@@ -30,7 +30,6 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.from("#hero-badge", { scale: 0.8, opacity: 0, duration: 0.5 })
         .from("#hero-title", { y: 40, opacity: 0, duration: 0.9 }, "-=0.2")
-        .from("#hero-subtitle", { y: 25, opacity: 0, duration: 0.7 }, "-=0.5")
         .from("#hero-ctas", { y: 20, opacity: 0, duration: 0.6 }, "-=0.4")
         .from("#hero-trust", { opacity: 0, duration: 0.6 }, "-=0.3");
 
@@ -252,6 +251,7 @@ export default function Hero() {
                             width={20}
                             height={20}
                             className="h-5 w-auto object-contain"
+                            style={{ width: "auto" }}
                           />
                           <span className="font-bold text-xs sm:text-sm">Vinimay POS Terminal</span>
                           <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30">
@@ -366,6 +366,7 @@ export default function Hero() {
                             width={20}
                             height={20}
                             className="h-5 w-auto object-contain"
+                            style={{ width: "auto" }}
                           />
                           <span className="font-bold text-xs sm:text-sm">Attendo Access &amp; Staff Sync</span>
                           <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">
@@ -453,6 +454,7 @@ export default function Hero() {
                             width={20}
                             height={20}
                             className="h-5 w-auto object-contain"
+                            style={{ width: "auto" }}
                           />
                           <span className="font-bold text-xs sm:text-sm">Tax Invoice #0842</span>
                           <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">
@@ -563,6 +565,7 @@ export default function Hero() {
                             width={20}
                             height={20}
                             className="h-5 w-auto object-contain"
+                            style={{ width: "auto" }}
                           />
                           <span className="font-bold text-xs sm:text-sm">Inventory &amp; Warehousing</span>
                           <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30">
@@ -650,6 +653,7 @@ export default function Hero() {
                             width={20}
                             height={20}
                             className="h-5 w-auto object-contain"
+                            style={{ width: "auto" }}
                           />
                           <span className="font-bold text-xs sm:text-sm">Property &amp; Lease Manager</span>
                           <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">

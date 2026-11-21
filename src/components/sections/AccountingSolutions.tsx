@@ -14,7 +14,7 @@ export default function AccountingSolutions() {
     switch (idx) {
       case 0:
         return (
-          <div className="bg-white/95 rounded-2xl p-5 border border-rose-100/80 shadow-md space-y-3">
+          <div className="bg-white/95 rounded-2xl p-5 border border-purple-100/80 shadow-md space-y-3">
             <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
               <span className="font-bold text-slate-800 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -42,7 +42,7 @@ export default function AccountingSolutions() {
         );
       case 1:
         return (
-          <div className="bg-white/95 rounded-2xl p-5 border border-rose-100/80 shadow-md space-y-3">
+          <div className="bg-white/95 rounded-2xl p-5 border border-purple-100/80 shadow-md space-y-3">
             <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
               <span className="font-bold text-slate-800 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
@@ -67,7 +67,7 @@ export default function AccountingSolutions() {
         );
       case 2:
         return (
-          <div className="bg-white/95 rounded-2xl p-5 border border-rose-100/80 shadow-md space-y-3">
+          <div className="bg-white/95 rounded-2xl p-5 border border-purple-100/80 shadow-md space-y-3">
             <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
               <span className="font-bold text-slate-800 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -96,7 +96,7 @@ export default function AccountingSolutions() {
       case 3:
       default:
         return (
-          <div className="bg-white/95 rounded-2xl p-5 border border-rose-100/80 shadow-md space-y-2.5">
+          <div className="bg-white/95 rounded-2xl p-5 border border-purple-100/80 shadow-md space-y-2.5">
             <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
               <span className="font-bold text-slate-800">Role-Based Access Permissions</span>
               <span className="text-[10px] font-mono text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">
@@ -171,14 +171,14 @@ export default function AccountingSolutions() {
                 <div className="flex items-center justify-between">
                   <h3
                     className={`text-xl sm:text-2xl font-bold transition-colors ${
-                      isOpen ? "text-rose-600" : "text-slate-900"
+                      isOpen ? "text-purple-600" : "text-slate-900"
                     }`}
                   >
                     {item.title}
                   </h3>
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform ${
-                      isOpen ? "rotate-180 bg-rose-50 text-rose-600" : "bg-slate-100 text-slate-600"
+                      isOpen ? "rotate-180 bg-purple-50 text-purple-600" : "bg-slate-100 text-slate-600"
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -194,7 +194,7 @@ export default function AccountingSolutions() {
                       href="https://vinimay.sharda.co.in/knowledge-base"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-rose-600 hover:text-rose-700 font-bold text-sm mt-3 group"
+                      className="inline-flex items-center gap-1.5 text-purple-600 hover:text-purple-700 font-bold text-sm mt-3 group"
                     >
                       <OsmoRoll>Explore</OsmoRoll>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -208,16 +208,16 @@ export default function AccountingSolutions() {
 
         {/* Right Column: Visual Feature Illustration Card */}
         <div className="lg:col-span-6 w-full">
-          <div className="relative bg-gradient-to-br from-[#fff1f2] via-[#fdf2f8] to-[#f5f3ff] rounded-3xl p-6 sm:p-9 border border-rose-100/90 shadow-xl overflow-hidden min-h-[380px] sm:min-h-[440px] flex flex-col justify-between">
-            <div className="absolute -top-12 -right-12 w-48 h-48 bg-rose-400/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative bg-gradient-to-br from-[#fff1f2] via-[#fdf2f8] to-[#f5f3ff] rounded-3xl p-6 sm:p-9 border border-purple-100/90 shadow-xl overflow-hidden min-h-[380px] sm:min-h-[440px] flex flex-col justify-between">
+            <div className="absolute -top-12 -right-12 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl pointer-events-none" />
 
             {/* Header Badge & Status */}
             <div className="flex items-center justify-between z-10 mb-6">
               <div className="flex items-center gap-2">
-                <span className="w-8 h-8 rounded-xl bg-rose-500 text-white flex items-center justify-center shadow-xs">
+                <span className="w-8 h-8 rounded-xl bg-purple-500 text-white flex items-center justify-center shadow-xs">
                   {renderBadgeIcon(activeItem.icon)}
                 </span>
-                <span className="text-xs font-extrabold uppercase tracking-wider text-rose-600 bg-white/90 border border-rose-200 px-3 py-1 rounded-full shadow-xs">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-purple-600 bg-white/90 border border-purple-200 px-3 py-1 rounded-full shadow-xs">
                   {activeItem.badge}
                 </span>
               </div>
@@ -232,12 +232,12 @@ export default function AccountingSolutions() {
             </div>
 
             {/* Bottom Meta Note */}
-            <div className="pt-6 border-t border-rose-100/80 flex items-center justify-between text-xs z-10">
+            <div className="pt-6 border-t border-purple-100/80 flex items-center justify-between text-xs z-10">
               <span className="text-slate-500 font-medium flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-500" />
                 <span>Audit-Ready &amp; CA Friendly</span>
               </span>
-              <span className="font-bold text-rose-600 font-mono">100% Free Forever</span>
+              <span className="font-bold text-purple-600 font-mono">100% Free Forever</span>
             </div>
           </div>
         </div>

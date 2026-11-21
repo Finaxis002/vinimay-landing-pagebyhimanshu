@@ -13,7 +13,7 @@ export default function Inquiry() {
   const [businessName, setBusinessName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const productOptions = ["POS", "Invoice", "Payroll", "Inventory", "Purchase"];
+  const productOptions = ["POS", "Invoice",  "Inventory", "Purchase", "Gym"];
 
   const toggleProduct = (prod: string) => {
     setSelectedProducts((prev) =>
@@ -170,7 +170,7 @@ export default function Inquiry() {
                           onClick={() => toggleProduct(prod)}
                           className={`product-interest-btn px-4 py-1.5 rounded-full text-xs sm:text-sm transition-all ${
                             isSelected
-                              ? "active border border-rose-500 font-bold text-rose-600 bg-rose-50"
+                              ? "active border border-violet-500 font-bold text-violet-600 bg-violet-50"
                               : "border border-slate-300 font-medium text-slate-700 bg-white hover:border-slate-400"
                           }`}
                         >
@@ -186,7 +186,7 @@ export default function Inquiry() {
                   <button
                     type="submit"
                     disabled={submitted}
-                    className="w-full bg-[#c9222a] hover:bg-[#b01d24] text-white font-bold py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all text-sm tracking-wide"
+                    className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 hover:from-purple-700 hover:to-indigo-800 text-white font-bold py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all text-sm tracking-wide"
                   >
                     {submitted ? "Submitting..." : "Submit"}
                   </button>
