@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
+import { CheckCircle2, Sparkles, ArrowRight, ShieldCheck, FileText } from "lucide-react";
 import { OsmoRoll } from "./OsmoRoll";
 import gsap from "gsap";
 
@@ -29,7 +29,7 @@ const GST_TABS_DATA: GSTTabItem[] = [
     description:
       "Design professional bills that match your brand. Customize company logos, typography, accent color palettes, and seamlessly switch between multi-format layouts (A4, A5, and thermal) with instant real-time preview.",
     bullets: [
-      "Upload high-resolution business logo and define custom brand accent colors (e.g. Teal, Indigo, emerald)",
+      "Upload high-resolution business logo and define custom brand accent colors (e.g. Teal, Indigo, Rose)",
       "1-click A4 / A5 template switcher with instant live preview and zero formatting distortion",
       "Professional layout complete with authorized signatory, bank details, and customizable terms",
     ],
@@ -57,24 +57,24 @@ const GST_TABS_DATA: GSTTabItem[] = [
     imageAlt: "Dhurandhar Fitness Full GST Tax Invoice with Tax Breakdown",
     imageCaption: "Verified Tax Invoice • CGST & SGST Slabs with HSN Table",
   },
-  // {
-  //   id: "conversion",
-  //   label: "1-Click Conversion",
-  //   badge: "ZERO RE-TYPING",
-  //   title: "Convert Quotations & Session Packs to Invoices in 1 Click",
-  //   description:
-  //     "Transform customer plans, estimates, and session packs into final tax invoices with sequential serial numbers without re-entering client details or repeating line item entries.",
-  //   bullets: [
-  //     "Instant conversion from gym session packs and service plans to official invoices",
-  //     "Automatic sequential financial-year numbering (e.g. DFDS26110018) with branch prefix",
-  //     "Sub-second PDF generation, direct thermal print dispatch, and cloud ledger recording",
-  //   ],
-  //   ctaText: "Try 1-Click Invoicing",
-  //   ctaHref: "https://vinimay.sharda.co.in/client-signup",
-  //   imageSrc: "/features/gst/template-preview.png",
-  //   imageAlt: "Invoice Preview and Template Selection Interface",
-  //   imageCaption: "1-Click Template Selector & PDF Download Station",
-  // },
+  {
+    id: "conversion",
+    label: "1-Click Conversion",
+    badge: "ZERO RE-TYPING",
+    title: "Convert Quotations & Session Packs to Invoices in 1 Click",
+    description:
+      "Transform customer plans, estimates, and session packs into final tax invoices with sequential serial numbers without re-entering client details or repeating line item entries.",
+    bullets: [
+      "Instant conversion from gym session packs and service plans to official invoices",
+      "Automatic sequential financial-year numbering (e.g. DFDS26110018) with branch prefix",
+      "Sub-second PDF generation, direct thermal print dispatch, and cloud ledger recording",
+    ],
+    ctaText: "Try 1-Click Invoicing",
+    ctaHref: "https://vinimay.sharda.co.in/client-signup",
+    imageSrc: "/features/gst/template-preview.png",
+    imageAlt: "Invoice Preview and Template Selection Interface",
+    imageCaption: "1-Click Template Selector & PDF Download Station",
+  },
   {
     id: "sharing",
     label: "Instant Sharing",
@@ -136,35 +136,83 @@ export default function GSTComplianceTabsSection() {
   const [activeTabIdx, setActiveTabIdx] = useState(1);
   const activeTab = GST_TABS_DATA[activeTabIdx] || GST_TABS_DATA[1];
 
+  // Sub-type toggle specifically for the "GST & Non-GST Invoices" tab
+  const [gstSubtype, setGstSubtype] = useState<"gst" | "nongst">("gst");
+
   const contentRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  // keep the active pill in view when it changes (tap or programmatic)
-  useEffect(() => {
-    tabRefs.current[activeTabIdx]?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
-  }, [activeTabIdx]);
-  // Smooth cross-fade animation when active tab changes
+  // Smooth cross-fade animation when active tab or subtype changes
   useEffect(() => {
     if (typeof window === "undefined") return;
     const content = contentRef.current;
     if (!content) return;
 
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
+      "(prefers-reduced-motion: reduce)"
     ).matches;
 
     if (prefersReducedMotion) return;
 
     gsap.fromTo(
       content,
-      { opacity: 0, y: 12 },
-      { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
     );
-  }, [activeTabIdx]);
+  }, [activeTabIdx, gstSubtype]);
+
+  // Derived content when on the "GST & Non-GST Invoices" tab
+  const isGstTab = activeTab.id === "gst";
+
+  const displayBadge = isGstTab
+    ? gstSubtype === "gst"
+      ? "100% STATUTORY COMPLIANCE"
+      : "CLEAN COMMERCIAL BILLING"
+    : activeTab.badge;
+
+  const displayTitle = isGstTab
+    ? gstSubtype === "gst"
+      ? "Statutory Tax Invoices with Automated CGST & SGST Splits"
+      : "Non-GST Invoices & Bills of Supply with Zero Tax Friction"
+    : activeTab.title;
+
+  const displayDescription = isGstTab
+    ? gstSubtype === "gst"
+      ? "Generate 100% compliant GST tax invoices in seconds. Vinimay validates the buyer's GSTIN, verifies state codes to automatically split CGST and SGST (or IGST), and generates accurate HSN/SAC statutory tables so your buyers can claim full Input Tax Credit (ITC)."
+      : "Ideal for composition scheme dealers, unregistered retailers, or exempt goods and services. Issue crisp commercial invoices without tax calculation clutter, while retaining full inventory deduction, customer ledger tracking, and instant QR payments."
+    : activeTab.description;
+
+  const displayBullets = isGstTab
+    ? gstSubtype === "gst"
+      ? [
+          "Automatic CGST (9%) & SGST (9%) split with item-wise HSN/SAC breakdown table",
+          "Statutory tax calculation audit (₹1,715 taxable + ₹130.50 tax = ₹1,845.50)",
+          "100% Input Tax Credit (ITC) eligible for B2B business customers",
+        ]
+      : [
+          "Clean Bill of Supply / Commercial format with zero tax calculations or rates",
+          "Ideal for composition scheme sellers, unregistered vendors & exempt supplies",
+          "Embedded Dynamic UPI QR code & bank details for instant one-scan payment",
+        ]
+    : activeTab.bullets;
+
+  const displayImageSrc = isGstTab
+    ? gstSubtype === "gst"
+      ? "/features/gst/gst-tax-invoice.png"
+      : "/features/gst/custom-invoice-primefit.png"
+    : activeTab.imageSrc;
+
+  const displayImageAlt = isGstTab
+    ? gstSubtype === "gst"
+      ? "Dhurandhar Fitness Full GST Tax Invoice with Tax Breakdown"
+      : "PrimeFit Studio Non-GST Commercial Invoice"
+    : activeTab.imageAlt;
+
+  const displayImageCaption = isGstTab
+    ? gstSubtype === "gst"
+      ? "Verified Tax Invoice • CGST & SGST Slabs with HSN Table"
+      : "Commercial Bill of Supply • Zero Tax Friction (PrimeFit Studio)"
+    : activeTab.imageCaption;
 
   return (
     <section className="w-full py-16 sm:py-24 bg-white relative overflow-hidden border-t border-slate-100">
@@ -172,31 +220,20 @@ export default function GSTComplianceTabsSection() {
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold tracking-wide uppercase mb-4 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-emerald" />
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             <span>STATUTORY GST AUTOMATION</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight font-bold">
             Everything you need for effortless GST billing
           </h2>
           <p className="mt-4 text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            From bespoke custom invoice templates and automated CGST/SGST tax
-            splits to 1-click WhatsApp sharing and live customer ledgers.
+            From bespoke custom invoice templates and automated CGST/SGST tax splits to 1-click WhatsApp sharing and live customer ledgers.
           </p>
         </div>
 
-        {/* Pill Navigation Bar: Matching the User-Provided Screenshot */}
-        <div className="w-full max-w-4xl mx-auto mb-12 sm:mb-16">
-          <div
-            role="tablist"
-            className="
-        flex flex-nowrap items-center gap-2.5
-        overflow-x-auto snap-x snap-mandatory scroll-smooth
-        px-4 py-3 -my-3
-        [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
-        [mask-image:linear-gradient(to_right,transparent,black_16px,black_calc(100%-16px),transparent)]
-        sm:flex-wrap sm:justify-center sm:gap-3.5 sm:overflow-visible sm:px-0 sm:py-0 sm:my-0 sm:snap-none sm:[mask-image:none]
-      "
-          >
+        {/* Pill Navigation Bar: Matching User-Provided Screenshot */}
+        <div className="w-full max-w-4xl mx-auto mb-10 sm:mb-14">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
             {GST_TABS_DATA.map((tab, idx) => {
               const isActive = activeTabIdx === idx;
               return (
@@ -206,12 +243,10 @@ export default function GSTComplianceTabsSection() {
                     tabRefs.current[idx] = el;
                   }}
                   type="button"
-                  role="tab"
-                  aria-selected={isActive}
                   onClick={() => setActiveTabIdx(idx)}
-                  className={`shrink-0 snap-center whitespace-nowrap px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer select-none border text-center ${
+                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer select-none border text-center ${
                     isActive
-                      ? "bg-emerald-500 text-white border-emerald-500 shadow-lg shadow-emerald-500/25 scale-[1.02]"
+                      ? "bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-600/25 scale-[1.02]"
                       : "bg-white text-slate-600 border-slate-200/90 hover:text-slate-900 hover:bg-slate-50/80 shadow-2xs"
                   }`}
                 >
@@ -222,29 +257,59 @@ export default function GSTComplianceTabsSection() {
           </div>
         </div>
 
-        {/* Tab Content Display Area: 2 Columns (Left: Text & Controls, Right: Authentic Screenshot) */}
+        {/* Tab Content Display Area: 2 Columns */}
         <div ref={contentRef} className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Left Column: Title, Explanations, Key Bullets & CTA */}
-            <div className="lg:col-span-6 space-y-6">
+            {/* Left Column: Title, Explanations, Key Bullets & Difference Comparison */}
+            <div className="lg:col-span-6 space-y-5">
+              {/* If on GST & Non-GST Invoices tab, display the Subtype Toggle */}
+              {isGstTab && (
+                <div className="inline-flex items-center p-1 rounded-xl bg-slate-100 border border-slate-200 shadow-2xs">
+                  <button
+                    type="button"
+                    onClick={() => setGstSubtype("gst")}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer select-none ${
+                      gstSubtype === "gst"
+                        ? "bg-white text-emerald-700 shadow-xs border border-emerald-200/80"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>GST Tax Invoice</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setGstSubtype("nongst")}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer select-none ${
+                      gstSubtype === "nongst"
+                        ? "bg-white text-blue-700 shadow-xs border border-blue-200/80"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <FileText className="w-3.5 h-3.5 text-blue-600" />
+                    <span>Non-GST Invoice</span>
+                  </button>
+                </div>
+              )}
+
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 inline-block mb-3">
-                  {activeTab.badge}
+                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 inline-block mb-3">
+                  {displayBadge}
                 </span>
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight mb-3">
-                  {activeTab.title}
+                  {displayTitle}
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                  {activeTab.description}
+                  {displayDescription}
                 </p>
               </div>
 
               {/* Bullet Points with Checkmarks */}
-              <ul className="space-y-3 pt-1">
-                {activeTab.bullets.map((bullet, bIdx) => (
+              <ul className="space-y-2.5 pt-1">
+                {displayBullets.map((bullet, bIdx) => (
                   <li key={bIdx} className="flex items-start gap-3">
                     <span className="w-5 h-5 rounded-full border border-emerald-200 bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     </span>
                     <span className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
                       {bullet}
@@ -253,15 +318,68 @@ export default function GSTComplianceTabsSection() {
                 ))}
               </ul>
 
+              {/* Side-by-Side Comparison Box (Specifically for GST & Non-GST tab) */}
+              {isGstTab && (
+                <div className="p-3.5 rounded-xl bg-slate-50/80 border border-slate-200 space-y-2.5">
+                  <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-500 pb-1 border-b border-slate-200">
+                    <span>Key Differences at a Glance</span>
+                    <span className="text-emerald-600 font-semibold">Live Comparison</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    {/* GST Tax Invoice Card */}
+                    <div
+                      className={`p-2.5 rounded-lg border transition-all cursor-pointer ${
+                        gstSubtype === "gst"
+                          ? "bg-emerald-50/90 border-emerald-300 shadow-xs ring-1 ring-emerald-200"
+                          : "bg-white border-slate-200/80 hover:bg-slate-50 opacity-70"
+                      }`}
+                      onClick={() => setGstSubtype("gst")}
+                    >
+                      <div className="font-bold text-slate-900 flex items-center gap-1.5 text-[11px]">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                        <span>GST Tax Invoice</span>
+                      </div>
+                      <ul className="text-[10px] text-slate-600 mt-1.5 space-y-1 leading-snug">
+                        <li>• Mandatory 15-digit GSTIN</li>
+                        <li>• Item-wise HSN/SAC table</li>
+                        <li>• CGST (9%) + SGST (9%) split</li>
+                        <li>• <strong className="text-emerald-700">Buyer can claim ITC ✓</strong></li>
+                      </ul>
+                    </div>
+
+                    {/* Non-GST Invoice Card */}
+                    <div
+                      className={`p-2.5 rounded-lg border transition-all cursor-pointer ${
+                        gstSubtype === "nongst"
+                          ? "bg-blue-50/90 border-blue-300 shadow-xs ring-1 ring-blue-200"
+                          : "bg-white border-slate-200/80 hover:bg-slate-50 opacity-70"
+                      }`}
+                      onClick={() => setGstSubtype("nongst")}
+                    >
+                      <div className="font-bold text-slate-900 flex items-center gap-1.5 text-[11px]">
+                        <span className="w-2 h-2 rounded-full bg-blue-500" />
+                        <span>Non-GST Invoice</span>
+                      </div>
+                      <ul className="text-[10px] text-slate-600 mt-1.5 space-y-1 leading-snug">
+                        <li>• Clean Bill of Supply title</li>
+                        <li>• Zero tax calculation (flat)</li>
+                        <li>• Simple service description</li>
+                        <li>• <strong className="text-blue-700">Composition friendly ✓</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Action Button with OsmoRoll */}
               <div className="pt-2">
                 <a
                   href={activeTab.ctaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md shadow-emerald-500/20 transition-all active:scale-95 group cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md shadow-emerald-600/20 transition-all active:scale-95 group cursor-pointer"
                 >
-                  <OsmoRoll>{activeTab.ctaText}</OsmoRoll>
+                  <OsmoRoll>{isGstTab ? (gstSubtype === "gst" ? "Generate GST Invoice" : "Generate Non-GST Bill") : activeTab.ctaText}</OsmoRoll>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
@@ -277,8 +395,8 @@ export default function GSTComplianceTabsSection() {
               <div className="relative w-full aspect-[16/11] lg:aspect-[4/3] rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-slate-900/5 shadow-2xl shadow-slate-300/40 overflow-hidden flex items-center justify-center p-2 sm:p-3 group">
                 <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden bg-white border border-slate-100">
                   <Image
-                    src={activeTab.imageSrc}
-                    alt={activeTab.imageAlt}
+                    src={displayImageSrc}
+                    alt={displayImageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 42rem"
                     className="object-contain p-1 sm:p-2 transition-transform duration-500 group-hover:scale-[1.01]"
@@ -288,7 +406,7 @@ export default function GSTComplianceTabsSection() {
                   {/* Top Floating Badge Tag */}
                   <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/80 text-[11px] font-semibold text-white shadow-md">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>{activeTab.imageCaption}</span>
+                    <span>{displayImageCaption}</span>
                   </div>
                 </div>
               </div>
