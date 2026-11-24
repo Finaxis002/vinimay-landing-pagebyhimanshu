@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroBackground from "@/components/common/HeroBackground";
@@ -146,7 +144,7 @@ export default function FeaturePageLayout({
 
           <div className="relative z-10 max-w-5xl mx-auto">
             {/* Mobile-Friendly Breadcrumb */}
-            <nav className="hero-meta-reveal inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-white/80 mb-4 sm:mb-6 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/25 shadow-xs">
+            {/* <nav className="hero-meta-reveal inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-white/80 mb-4 sm:mb-6 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/25 shadow-xs">
               <Link href="/" className="hover:text-white transition-colors">
                 Home
               </Link>
@@ -158,7 +156,7 @@ export default function FeaturePageLayout({
               <span className="text-white font-semibold truncate max-w-[140px] sm:max-w-none">
                 {badge}
               </span>
-            </nav>
+            </nav> */}
 
             {/* Pill Badge */}
             <div className="hero-meta-reveal">
@@ -168,9 +166,9 @@ export default function FeaturePageLayout({
             </div>
 
             {/* Headline - Masked Text Reveal Animation (emerges out of baseline mask) */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[58px] font-black tracking-tight leading-[1.18] sm:leading-[1.12] max-w-4xl mx-auto mt-4 mb-3 sm:mb-4 px-2">
+            <h1 className="text-6xl s md:text-5xl lg:text-[78px] font-black tracking-tight leading-[1.18] sm:leading-[1.12] max-w-4xl mx-auto mt-4 mb-3 sm:mb-4 px-2">
               <span className="block overflow-hidden py-0.5">
-                <span className="feature-title-reveal block will-change-transform">
+                <span className="feature-title-reveal block font-handwritten will-change-transform">
                   {title}
                 </span>
               </span>

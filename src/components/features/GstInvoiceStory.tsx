@@ -90,7 +90,8 @@ function Row({
 }
 
 export default function GstInvoiceStory({
-  offsetDesktop = 100, // Safe top offset below fixed navbar on desktop
+  offsetMobile = 72, // clearance below your mobile navbar
+  offsetDesktop = 100,
 }: {
   offsetMobile?: number;
   offsetDesktop?: number;
@@ -100,7 +101,7 @@ export default function GstInvoiceStory({
   const totalRef = useRef<HTMLSpanElement | null>(null);
   const [active, setActive] = useState(0);
   const [reduced, setReduced] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+
 
   /* ScrollTrigger Pinning on Desktop, Natural Height on Mobile */
   useEffect(() => {
@@ -124,47 +125,39 @@ export default function GstInvoiceStory({
           mobile: boolean;
         };
 
-        setIsDesktop(desktop);
-
-        // Reduced motion: no pinning, show full invoice
         if (reduce) {
           setReduced(true);
           setActive(N - 1);
           return;
         }
-
         setReduced(false);
 
-        if (desktop) {
-          // On Desktop: Pin section during scroll with comfortable top clearance
-          const perStep = window.innerHeight * 0.45;
-          const st = ScrollTrigger.create({
-            trigger: section,
-            start: `top top+=${offsetDesktop}`,
-            end: () => `+=${perStep * N}`,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-              const step = Math.min(N - 1, Math.floor(self.progress * N));
-              setActive(step);
-            },
-          });
-          triggerRef.current = st;
+        // Same pinned, scroll-driven behaviour everywhere.
+        // Slightly shorter scroll per step on mobile so it doesn't feel endless.
+      const top = desktop ? offsetDesktop : offsetMobile;
+const factor = desktop ? 0.45 : 0.35;
 
-          return () => {
-            triggerRef.current = null;
-          };
-        } else {
-          // On Mobile: NO PINNING! No massive 3000px empty spacer.
-          // Clean auto-advance timer when in view if user doesn't tap
+const st = ScrollTrigger.create({
+  trigger: section,
+  start: `top top+=${top}`,
+  end: () => `+=${window.innerHeight * factor * N}`,
+  pin: true,
+  anticipatePin: 1,
+  invalidateOnRefresh: true,
+  onUpdate: (self) => {
+    setActive(Math.min(N - 1, Math.floor(self.progress * N)));
+  },
+});
+        triggerRef.current = st;
+
+        return () => {
           triggerRef.current = null;
-        }
-      }
+        };
+      },
     );
 
     return () => mm.revert();
-  }, [offsetDesktop]);
+  }, [offsetDesktop, offsetMobile]);
 
   /* Total counts up when the GST step is reached. */
   useEffect(() => {
@@ -194,14 +187,14 @@ export default function GstInvoiceStory({
 
   /* Tap a step: scroll on desktop, or switch active step directly */
   const goTo = (i: number) => {
-    setActive(i);
     const st = triggerRef.current;
-    if (st && isDesktop) {
+    if (st) {
       const y = st.start + ((i + 0.5) / N) * (st.end - st.start);
       window.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      setActive(i); // reduced-motion fallback
     }
   };
-
   const handleNextStep = () => {
     const next = (active + 1) % N;
     goTo(next);
@@ -211,8 +204,10 @@ export default function GstInvoiceStory({
     <section
       ref={sectionRef}
       aria-labelledby="vm-story-title"
-      className="relative overflow-hidden bg-[#fafafa] pt-6 sm:pt-10 pb-8 sm:pb-14"
-    >
+className="relative overflow-hidden bg-[#fafafa] pt-3 sm:pt-10 pb-4 sm:pb-14"
+
+
+>
       <style>{`
         @keyframes vm-stamp{0%{opacity:0;transform:scale(2.4) rotate(-24deg)}100%{opacity:1;transform:scale(1) rotate(-12deg)}}
         @keyframes vm-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -242,9 +237,7 @@ export default function GstInvoiceStory({
               Watch an invoice build itself
             </h2>
             <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-slate-500 max-w-md mx-auto lg:mx-0">
-              {isDesktop
-                ? "Scroll through the six steps and see the invoice take shape."
-                : "See how an invoice comes together step by step."}
+              Scroll through the six steps and see the invoice take shape.
             </p>
           </header>
 
@@ -403,8 +396,8 @@ export default function GstInvoiceStory({
                           on
                             ? "bg-gradient-to-br from-[#8c75e0] to-[#6a4fc0] text-white shadow-md shadow-purple-500/20"
                             : i < active
-                            ? "bg-[#7b5fd0]/15 text-[#7b5fd0]"
-                            : "bg-slate-100 text-slate-400"
+                              ? "bg-[#7b5fd0]/15 text-[#7b5fd0]"
+                              : "bg-slate-100 text-slate-400"
                         }`}
                       >
                         <Icon className="h-5 w-5" strokeWidth={2} />
@@ -489,8 +482,8 @@ export default function GstInvoiceStory({
                         isCurrent
                           ? "scale-110 border-transparent bg-gradient-to-br from-[#8c75e0] to-[#6a4fc0] text-white shadow-md shadow-purple-500/30"
                           : isPassed
-                          ? "border-[#7b5fd0]/30 bg-[#efeafc] text-[#7b5fd0]"
-                          : "border-slate-200 bg-white text-slate-400"
+                            ? "border-[#7b5fd0]/30 bg-[#efeafc] text-[#7b5fd0]"
+                            : "border-slate-200 bg-white text-slate-400"
                       }`}
                     >
                       <StepIcon className="h-3.5 w-3.5" strokeWidth={2} />

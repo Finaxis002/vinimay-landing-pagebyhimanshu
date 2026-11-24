@@ -48,6 +48,7 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     bgLight: "bg-blue-100",
     bgHover: "group-hover/item:bg-blue-600",
     cardIndex: 1,
+    href: "/features/inventory",
   },
   {
     title: "POS Billing",
@@ -57,6 +58,7 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     bgLight: "bg-emerald-100",
     bgHover: "group-hover/item:bg-emerald-600",
     cardIndex: 2,
+    href: "/features/pos",
   },
   {
     title: "Customer Management",
@@ -66,6 +68,7 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     bgLight: "bg-amber-100",
     bgHover: "group-hover/item:bg-amber-600",
     cardIndex: 3,
+    href: "/features/customers",
   },
   {
     title: "Vendor Management",
@@ -75,6 +78,7 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     bgLight: "bg-rose-100",
     bgHover: "group-hover/item:bg-rose-600",
     cardIndex: 4,
+    href: "/features/vendors",
   },
   {
     title: "Transaction Management",
@@ -84,6 +88,7 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     bgLight: "bg-indigo-100",
     bgHover: "group-hover/item:bg-indigo-600",
     cardIndex: 5,
+    href: "/features/transactions",
   },
 ];
 

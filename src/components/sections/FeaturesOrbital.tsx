@@ -43,7 +43,7 @@ export default function FeaturesOrbital() {
     "Inventory Management",
     "POS Billing",
     "Customer Management",
-    "Vendor Management",
+    // "Vendor Management",
     "Transaction Management",
     "Trip & Transportation",
   ];
@@ -288,7 +288,7 @@ export default function FeaturesOrbital() {
       </div>
 
       {/* Header */}
-      <div className="text-center max-w-4xl mx-auto px-2">
+      <div className="text-center max-w-4xl mx-auto px-4 sm:px-6">
         <h2 className="text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tight leading-tight mb-4 select-none ">
           Features
         </h2>
@@ -296,20 +296,22 @@ export default function FeaturesOrbital() {
           Access everything with a single platform at zero cost—GST Billing, Inventory, POS, Customers, Vendors,
           Transactions, and Fleet Logistics:
         </p>
+      </div>
 
-        {/* 7 Tabs */}
-        <div className="w-full max-w-full overflow-x-auto scrollbar-none py-2 px-1 mt-8">
-          <div className="flex items-center justify-start xl:justify-center gap-1.5 sm:gap-2 flex-nowrap w-max xl:w-auto mx-auto">
+      {/* 7 Tabs - Wide Container */}
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 mt-8 sm:mt-10">
+        <div className="w-full overflow-x-auto no-scrollbar py-2">
+          <div className="flex items-center justify-start xl:justify-center gap-2 sm:gap-2.5 w-max xl:w-auto mx-auto px-2">
             {featureTabs.map((label, idx) => (
               <button
                 key={idx}
                 ref={(el) => { tabsRef.current[idx] = el; }}
                 type="button"
                 onClick={() => animateToCard(idx)}
-                className={`feature-tab-btn shrink-0 whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm transition-all ${
+                className={`feature-tab-btn shrink-0 whitespace-nowrap px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                   activeTabIdx === idx
-                    ? "active font-bold bg-purple-100 text-purple-700 border border-purple-300 shadow-sm"
-                    : "font-semibold bg-white border border-slate-200 text-slate-600 hover:border-slate-300"
+                    ? "active font-bold bg-purple-100 text-purple-700 border border-purple-300 shadow-xs ring-1 ring-purple-300/40"
+                    : "bg-white border border-slate-200/90 text-slate-600 hover:border-slate-300 hover:text-slate-900 shadow-2xs"
                 }`}
               >
                 <OsmoRoll>{label}</OsmoRoll>

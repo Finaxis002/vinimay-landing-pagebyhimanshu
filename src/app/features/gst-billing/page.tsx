@@ -3,8 +3,12 @@ import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import FeaturePageLayout from "@/components/features/FeaturePageLayout";
 import FeatureBannerScreen from "@/components/features/FeatureBannerScreen";
+import GSTComplianceTabsSection from "@/components/common/GSTComplianceTabsSection";
 import GstInvoiceStory from "@/components/features/GstInvoiceStory";
-import FeatureBentoGrid from "@/components/features/FeatureBentoGrid";
+import GstOrbitalCards from "@/components/features/gst-billing/GstOrbitalCards";
+import StackingCardsSection from "@/components/common/StackingCardsSection";
+import { GST_STACKING_CARDS } from "@/content/stackingCardsData";
+import FeatureTestimonialCard from "@/components/features/FeatureTestimonialCard";
 import FeatureDashboardPreview from "@/components/features/FeatureDashboardPreview";
 import FeatureCtaBanner from "@/components/features/FeatureCtaBanner";
 
@@ -48,11 +52,34 @@ export default function GstBillingPage() {
             />
           }
         >
+          {/* Section 0: Statutory GST Compliance & Automation */}
+          <GSTComplianceTabsSection />
+
           {/* Section 1: Watch an invoice build itself (GST Invoice Story) */}
           <GstInvoiceStory />
 
-          {/* Section 2: Built for billing, not paperwork (Interactive Bento Grid) */}
-          <FeatureBentoGrid />
+          {/* Section 2: Built for billing, not paperwork (Orbital 3D Feature Cards) */}
+          <GstOrbitalCards />
+
+          {/* Section 2.2: 3D Stacking Cards Capabilities */}
+          <StackingCardsSection
+            sectionTag="STATUTORY GST ARCHITECTURE"
+            sectionTitle="Everything You Need for Frictionless GST Compliance"
+            sectionLead="From automated multi-rate tax calculations to direct government portal e-invoicing and instant WhatsApp collections."
+            cards={GST_STACKING_CARDS}
+          />
+
+          {/* Section 2.5: Customer Testimonial (Himanshu Dhammeriya) */}
+          <FeatureTestimonialCard
+            featureName="GST Billing & Invoicing"
+            metricBadge="Billing Efficiency"
+            metricHighlight="75% Faster Invoicing"
+            quote="Before Vinimay, generating over 350 GST invoices each month was a constant hassle of manual CGST/SGST splits and accidental HSN mismatches. Vinimay completely streamlined our checkout—invoices generate in 12 seconds with verified tax calculations. The 1-click WhatsApp dispatch with dynamic UPI links reduced payment delays immediately, and our CA files GSTR-1 directly from the JSON export without a single correction."
+            authorRole="Managing Director"
+            companyName="Dhammeriya Enterprises & Retail"
+            businessScale="350+ Monthly GST Invoices"
+            gradientAccent="from-purple-600 to-indigo-600"
+          />
 
           {/* Section 3: Your whole business on one screen (Dark Dashboard) */}
           <FeatureDashboardPreview />
