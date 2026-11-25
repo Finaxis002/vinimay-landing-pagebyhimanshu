@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { OsmoRoll } from "./OsmoRoll";
 import gsap from "gsap";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export interface VendorTabItem {
   id: string;
@@ -177,9 +178,12 @@ export default function VendorTabsSection() {
             <Building2 className="w-4 h-4 text-[#877EFC]" />
             <span>PROCUREMENT &amp; ACCOUNTS PAYABLE AUTOMATION</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight font-black">
+          <ArcHeading
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight font-black"
+          >
             What makes Vinimay Vendor Management seamless
-          </h2>
+          </ArcHeading>
         </div>
 
         {/* Tab Navigation Bar */}

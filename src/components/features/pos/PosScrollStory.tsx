@@ -10,53 +10,79 @@ import {
   QrCode,
   Printer,
   Smartphone,
-  ChevronRight,
+  Sparkles,
+  CheckCircle2,
   type LucideIcon,
 } from "lucide-react";
+import ArcHeading from "@/components/common/ArcHeading";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface StoryStep {
   step: string;
   title: string;
   description: string;
   icon: LucideIcon;
+  badge: string;
+  pillHighlight: string;
 }
 
 const STEPS: StoryStep[] = [
   {
     step: "01",
     icon: ScanBarcode,
+    badge: "LIGHTNING SCAN",
     title: "Scan Product Barcode",
-    description: "Scan product with USB/Bluetooth scanner. Item lands on the register instantly.",
+    description:
+      "Scan products with any standard USB/Bluetooth scanner. Item, price, and tax category land on the register in under 0.1s.",
+    pillHighlight: "Barcode Scanned • Item Registered ✓",
   },
   {
     step: "02",
     icon: PackagePlus,
+    badge: "CUSTOM MODIFIERS",
     title: "Add Custom Modifiers",
-    description: "Select variants, add-ons (extra cheese, sugar-free) with a single tap.",
+    description:
+      "Select variants, toppings, or add-ons (extra cheese, sugar-free) with a single rapid tap for frictionless checkout.",
+    pillHighlight: "Modifiers & Combos Attached ✓",
   },
   {
     step: "03",
     icon: Percent,
+    badge: "INSTANT TAX SLABS",
     title: "Taxes & Discounts Applied",
-    description: "CGST, SGST, and coupon discounts recalculate live on customer display.",
+    description:
+      "CGST, SGST, coupon codes, and promo discounts recalculate live on both the cashier and customer-facing displays.",
+    pillHighlight: "5% GST Split & Discounts Calculated ✓",
   },
   {
     step: "04",
     icon: QrCode,
+    badge: "DYNAMIC PAYMENT",
     title: "Display Dynamic UPI QR",
-    description: "Customer scans dynamic amount QR code directly on counter screen.",
+    description:
+      "Customer scans the dynamic invoice amount QR code directly on counter screen. Zero manual amount typing on UPI apps.",
+    pillHighlight: "Dynamic UPI QR Ready on Counter Screen ✓",
   },
   {
     step: "05",
     icon: Printer,
+    badge: "HIGH-SPEED PRINTING",
     title: "Print Thermal Receipt",
-    description: "2-inch or 3-inch ESC/POS thermal printer cuts slip instantly.",
+    description:
+      "2-inch or 3-inch ESC/POS thermal printers print and cut professional tax receipts in less than 1 second.",
+    pillHighlight: "3-Inch Thermal Receipt Printed ✓",
   },
   {
     step: "06",
     icon: Smartphone,
+    badge: "PAPERLESS DISPATCH",
     title: "Send WhatsApp Copy",
-    description: "Digital tax invoice copy dispatched straight to customer's WhatsApp.",
+    description:
+      "Digital tax invoice copy dispatched straight to customer's WhatsApp with full GST breakdown and loyalty points.",
+    pillHighlight: "WhatsApp PDF Delivered & Bill Closed ✓",
   },
 ];
 
@@ -88,72 +114,128 @@ function Row({
 }
 
 export default function PosScrollStory({
-  offsetMobile = 72,
-  offsetDesktop = 100,
+  className = "",
 }: {
   offsetMobile?: number;
   offsetDesktop?: number;
+  className?: string;
 }) {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const triggerRef = useRef<ScrollTrigger | null>(null);
+  const pinRef = useRef<HTMLDivElement | null>(null);
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const barRef = useRef<HTMLDivElement | null>(null);
   const totalRef = useRef<HTMLSpanElement | null>(null);
+
   const [active, setActive] = useState(0);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    gsap.registerPlugin(ScrollTrigger);
+
     ScrollTrigger.config({ ignoreMobileResize: true });
-    const section = sectionRef.current;
-    if (!section) return;
+
+    const pinEl = pinRef.current;
+    const stageEl = stageRef.current;
+    const listEl = listRef.current;
+    if (!pinEl || !stageEl || !listEl) return;
+
+    const titles = gsap.utils.toArray<HTMLElement>("[data-pos-title]", pinEl);
+    const descs = gsap.utils.toArray<HTMLElement>("[data-pos-desc]", pinEl);
 
     const mm = gsap.matchMedia();
+
     mm.add(
       {
-        reduce: "(prefers-reduced-motion: reduce)",
-        desktop: "(min-width: 1024px)",
-        mobile: "(max-width: 1023px)",
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+        reduceMotion: "(prefers-reduced-motion: reduce)",
       },
-      (ctx) => {
-        const { reduce, desktop } = ctx.conditions as {
-          reduce: boolean;
-          desktop: boolean;
-          mobile: boolean;
+      (context) => {
+        const { isDesktop, reduceMotion } = (context.conditions || {}) as {
+          isDesktop?: boolean;
+          isMobile?: boolean;
+          reduceMotion?: boolean;
         };
 
-        if (reduce) {
+        const stepHeight = isDesktop ? 140 : 54;
+
+        if (reduceMotion) {
           setReduced(true);
           setActive(N - 1);
+          gsap.set(titles, { color: "#0f172a", opacity: 1, filter: "none" });
           return;
         }
+
         setReduced(false);
 
-        const top = desktop ? offsetDesktop : offsetMobile;
-        const factor = desktop ? 0.45 : 0.35;
+        gsap.set(titles, { color: "#94a3b8", filter: "blur(2.5px)", opacity: 0.45 });
+        if (titles[0]) gsap.set(titles[0], { color: "#0f172a", filter: "blur(0px)", opacity: 1 });
 
-        const st = ScrollTrigger.create({
-          trigger: section,
-          start: `top top+=${top}`,
-          end: () => `+=${window.innerHeight * factor * N}`,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            setActive(Math.min(N - 1, Math.floor(self.progress * N)));
+        const tl = gsap.timeline({
+          defaults: { ease: "power2.inOut" },
+          scrollTrigger: {
+            trigger: pinEl,
+            start: isDesktop ? "top top" : "top top+=50",
+            end: () => `+=${N * (isDesktop ? 105 : 75)}%`,
+            pin: true,
+            scrub: 0.8,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              if (barRef.current) {
+                gsap.set(barRef.current, { scaleY: self.progress });
+              }
+              const currentStep = Math.min(N - 1, Math.floor(self.progress * N));
+              setActive(currentStep);
+            },
           },
         });
-        triggerRef.current = st;
 
-        return () => {
-          triggerRef.current = null;
-        };
+        tl.to({}, { duration: 0.5 });
+
+        for (let i = 1; i < N; i++) {
+          const label = `step_${i}`;
+
+          tl.addLabel(label, ">")
+            .to(listEl, { y: -i * stepHeight, duration: 1 }, label)
+            .to(titles[i - 1], { color: "#94a3b8", filter: "blur(2.5px)", opacity: 0.45, duration: 0.6 }, label)
+            .to(titles[i], { color: "#0f172a", filter: "blur(0px)", opacity: 1, duration: 0.6 }, `${label}+=0.3`)
+            .to({}, { duration: 0.5 });
+        }
+
+        if (isDesktop && window.matchMedia("(hover: hover)").matches) {
+          const handlePointerMove = (e: PointerEvent) => {
+            const r = stageEl.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            gsap.to(stageEl, {
+              rotationY: x * 6,
+              rotationX: -y * 6,
+              transformPerspective: 900,
+              duration: 0.5,
+            });
+          };
+
+          const handlePointerLeave = () => {
+            gsap.to(stageEl, { rotationY: 0, rotationX: 0, duration: 0.6 });
+          };
+
+          stageEl.addEventListener("pointermove", handlePointerMove);
+          stageEl.addEventListener("pointerleave", handlePointerLeave);
+
+          return () => {
+            stageEl.removeEventListener("pointermove", handlePointerMove);
+            stageEl.removeEventListener("pointerleave", handlePointerLeave);
+          };
+        }
       }
     );
 
-    return () => mm.revert();
-  }, [offsetDesktop, offsetMobile]);
+    return () => {
+      mm.revert();
+    };
+  }, []);
 
-  // Total counter
+  // Total amount animation at step 2
   useEffect(() => {
     const el = totalRef.current;
     if (!el) return;
@@ -168,7 +250,7 @@ export default function PosScrollStory({
     const o = { v: 0 };
     const tween = gsap.to(o, {
       v: TOTAL,
-      duration: 0.9,
+      duration: 0.85,
       ease: "power2.out",
       onUpdate: () => {
         el.textContent = inr(o.v);
@@ -179,292 +261,255 @@ export default function PosScrollStory({
     };
   }, [active, reduced]);
 
-  const goTo = (i: number) => {
-    const st = triggerRef.current;
-    if (st) {
-      const y = st.start + ((i + 0.5) / N) * (st.end - st.start);
-      window.scrollTo({ top: y, behavior: "smooth" });
-    } else {
-      setActive(i);
-    }
-  };
-
-  const handleNextStep = () => {
-    const next = (active + 1) % N;
-    goTo(next);
-  };
-
   return (
     <section
-      ref={sectionRef}
+      id="pos-story"
       aria-labelledby="pos-story-title"
-      className="relative overflow-hidden bg-[#fafafa] pt-3 sm:pt-10 pb-4 sm:pb-14"
+      className={`relative w-full bg-slate-50/70 border-t border-slate-200/80 ${className}`}
     >
       <style>{`
         @keyframes pos-stamp{0%{opacity:0;transform:scale(2.4) rotate(-24deg)}100%{opacity:1;transform:scale(1) rotate(-12deg)}}
-        @keyframes pos-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
         .pos-stamp{transform:rotate(-12deg);animation:pos-stamp .5s cubic-bezier(.2,1.5,.4,1) both}
-        .pos-up{animation:pos-up .45s ease both}
-        @media (prefers-reduced-motion:reduce){.pos-stamp,.pos-up{animation:none}}
+        @media (prefers-reduced-motion:reduce){.pos-stamp{animation:none}}
       `}</style>
 
-      {/* Ambient background blur */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-[#9a88e3]/15 blur-3xl" />
-        <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-[#1fb487]/15 blur-3xl" />
+      {/* Section Header with WordmarkArc Background */}
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 pb-4 text-center">
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border border-purple-200/90 text-purple-700 text-xs font-bold tracking-wide uppercase mb-3 shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5 text-[#877EFC]" />
+            <span>Ultra-Fast Point of Sale Workflow</span>
+          </div>
+          <div>
+            <ArcHeading
+              id="pos-story-title"
+              as="h2"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto font-bold"
+            >
+              Watch checkout happen in 12 seconds
+            </ArcHeading>
+          </div>
+          <p className="mt-3 text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Scroll through the six steps and experience how Vinimay powers barcode scanning, modifiers, dynamic UPI, and instant thermal printing.
+          </p>
+          <p className="mt-4 text-xs font-bold uppercase tracking-wider text-purple-600 animate-bounce">
+            Scroll to explore ↓
+          </p>
+        </div>
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[auto_1fr] gap-6 lg:gap-x-14 lg:gap-y-6 items-start">
-          {/* Section Header */}
-          <header className="text-center lg:text-left lg:col-start-1 lg:row-start-1">
-            <span className="inline-block rounded-full border border-[#1fb487]/40 bg-[#e3f8f0] px-3 py-1 text-[11px] font-bold text-[#1fb487]">
-              How it works
-            </span>
-            <h2
-              id="pos-story-title"
-              className="mt-2 text-2xl sm:text-3xl lg:text-[40px] font-black leading-tight tracking-tight text-slate-900"
+      {/* PINNED 3-COLUMN STAGE (Mobile Viewport Optimized) */}
+      <div
+        ref={pinRef}
+        className="relative h-[100dvh] min-h-[500px] w-full overflow-hidden flex items-center justify-center py-2 md:py-0"
+      >
+        <div className="mx-auto h-full max-w-[1340px] w-full px-4 sm:px-8 md:px-12 flex flex-col md:grid md:grid-cols-[1.1fr_auto_1.1fr] md:gap-8 lg:gap-12 items-center justify-center">
+          {/* Column 1: Titles List */}
+          <div
+            className="relative w-full h-[54px] md:h-[520px] overflow-hidden order-1"
+            style={{
+              maskImage:
+                "linear-gradient(transparent, #000 20%, #000 80%, transparent)",
+              WebkitMaskImage:
+                "linear-gradient(transparent, #000 20%, #000 80%, transparent)",
+            }}
+          >
+            <div
+              ref={listRef}
+              className="absolute left-0 right-0"
+              style={{ top: "50%", marginTop: "-27px" }}
             >
-              Watch a sale complete in 8 seconds
-            </h2>
-            <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-slate-500 max-w-md mx-auto lg:mx-0">
-              Scroll through the six steps and experience counter checkout speed designed for busy retail.
-            </p>
-          </header>
-
-          {/* Interactive POS Slip Card: Top on Mobile, Right on Desktop */}
-          <div className="lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-start w-full pt-1 lg:pt-2">
-            <div className="relative mx-auto w-full max-w-[380px] sm:max-w-[420px] lg:max-w-[450px]">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-[#7b5fd0]/20 via-transparent to-[#1fb487]/20 blur-xl"
-              />
-
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 bg-white shadow-[0_20px_50px_rgba(90,60,190,0.16)] transition-all">
-                {/* Purple Top Bar */}
-                <div className="flex items-center justify-between bg-gradient-to-r from-[#8c75e0] to-[#6a4fc0] px-4 py-2.5 sm:py-3 text-white">
-                  <div className="flex items-center gap-2">
-                    <span className="grid h-6 w-6 place-items-center rounded-lg bg-white/20 text-xs font-black">
-                      V
-                    </span>
-                    <span className="text-sm sm:text-base font-extrabold tracking-tight">
-                      POS Register
-                    </span>
+              {STEPS.map((step, idx) => (
+                <div
+                  key={step.step || idx}
+                  data-pos-title
+                  style={{
+                    filter: idx === 0 ? "blur(0px)" : "blur(2.5px)",
+                    opacity: idx === 0 ? 1 : 0.45,
+                  }}
+                  className="h-[54px] md:h-[140px] flex flex-col justify-center transition-all px-2 text-center md:text-left will-change-[filter,opacity]"
+                >
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-xs font-bold uppercase tracking-wider text-purple-600 mb-0.5 md:mb-1">
+                    <span>STEP {step.step}</span>
+                    <span>•</span>
+                    <span className="truncate">{step.badge}</span>
                   </div>
-                  <span className="font-mono text-[11px] sm:text-xs opacity-90">
-                    TERMINAL-01
+                  <h3 className="text-base sm:text-xl md:text-2xl lg:text-[2.1rem] font-bold leading-tight text-slate-900 line-clamp-1 md:line-clamp-2">
+                    {step.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 2: Center Stage with Live POS Register Card & 3D Tilt */}
+          <div
+            ref={stageRef}
+            className="relative order-2 shrink-0 w-[min(90vw,350px)] sm:w-[390px] md:w-[430px] lg:w-[450px] my-2 md:my-0"
+            style={{
+              transformStyle: "preserve-3d",
+            }}
+          >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-[#7b5fd0]/20 via-transparent to-[#1fb487]/20 blur-xl"
+            />
+
+            <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 bg-white shadow-[0_20px_50px_rgba(90,60,190,0.16)] transition-all">
+              {/* Card Header */}
+              <div className="flex items-center justify-between bg-gradient-to-r from-[#8c75e0] to-[#6a4fc0] px-4 py-3 text-white">
+                <div className="flex items-center gap-2">
+                  <span className="grid h-6 w-6 place-items-center rounded-lg bg-white/20 text-xs font-black">
+                    V
+                  </span>
+                  <span className="text-sm sm:text-base font-extrabold tracking-tight">
+                    POS Register
                   </span>
                 </div>
+                <span className="font-mono text-[11px] sm:text-xs opacity-90">
+                  TERMINAL-01
+                </span>
+              </div>
 
-                {/* Body Content */}
-                <div className="relative px-4 pb-3 pt-2 text-[12px] sm:text-[13px] text-slate-600">
-                  {/* Step 0: Scanned Product */}
-                  <Row on={active >= 0} className="border-b border-dashed border-slate-200 py-2">
-                    <span>Barcode Scanned</span>
+              {/* Body Content */}
+              <div className="relative px-4 pb-3 pt-2 text-[12px] sm:text-[13px] text-slate-600">
+                {/* Step 0: Scanned Product */}
+                <Row on={active >= 0} className="border-b border-dashed border-slate-200 py-2">
+                  <div>
+                    <span className="block text-slate-500 text-[11px]">Barcode Scanned</span>
                     <b className="text-slate-900 font-bold">Cold Coffee Brew × 2</b>
-                  </Row>
+                  </div>
+                  <span className="text-[10px] font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    Live Stock Synced
+                  </span>
+                </Row>
 
-                  {/* Step 1: Modifiers */}
-                  <div className="border-b border-dashed border-slate-200 py-1.5">
-                    {[
-                      ["Crispy Veg Burger × 1", "₹250"],
-                      ["Peri-Peri Fries × 1", "₹200"],
-                      ["Choco Lava Cup × 1", "₹100"],
-                    ].map(([name, amt], i) => (
-                      <Row key={name} on={active >= 1} delay={i * 80} className="py-[3px]">
-                        <span className="truncate text-slate-700">{name}</span>
-                        <span className="font-mono font-semibold text-slate-900">{amt}</span>
-                      </Row>
-                    ))}
+                {/* Step 1: Modifiers */}
+                <div className="border-b border-dashed border-slate-200 py-2">
+                  {[
+                    ["Crispy Veg Burger × 1", "₹250"],
+                    ["Peri-Peri Fries × 1", "₹200"],
+                    ["Choco Lava Cup × 1", "₹100"],
+                  ].map(([name, amt], i) => (
+                    <Row key={name} on={active >= 1} delay={i * 80} className="py-[3px]">
+                      <span className="truncate text-slate-700">{name}</span>
+                      <span className="font-mono font-semibold text-slate-900">{amt}</span>
+                    </Row>
+                  ))}
+                </div>
+
+                {/* Step 2: Taxes */}
+                <Row on={active >= 2} className="py-2">
+                  <span className="flex items-center gap-1.5">
+                    <span className="rounded bg-[#7b5fd0]/10 px-1.5 py-0.5 text-[10px] font-bold text-[#7b5fd0]">
+                      GST 5%
+                    </span>
+                    CGST + SGST
+                  </span>
+                  <span className="font-mono font-semibold text-[#7b5fd0]">₹35</span>
+                </Row>
+
+                {/* Step 2: Total */}
+                <Row on={active >= 2} delay={100} className="rounded-xl bg-[#e3f8f0] px-3 py-2 my-1">
+                  <span className="font-bold text-slate-900">Total Billed</span>
+                  <span ref={totalRef} className="font-mono text-base sm:text-lg font-black text-[#14916c]">
+                    ₹0
+                  </span>
+                </Row>
+
+                {/* Step 3: Dynamic UPI QR */}
+                <Row on={active >= 3} className="pt-2">
+                  <span>Payment Mode</span>
+                  <b className="rounded bg-purple-50 text-purple-700 px-2 py-0.5 font-mono text-[11px]">
+                    Dynamic UPI QR · Instant
+                  </b>
+                </Row>
+
+                {/* Step 5: WhatsApp copy */}
+                <Row on={active >= 5} className="pt-2">
+                  <span>Receipt Sent</span>
+                  <b className="rounded bg-[#25D366]/10 text-emerald-700 px-2 py-0.5 text-[11px]">
+                    WhatsApp PDF · Delivered
+                  </b>
+                </Row>
+
+                {/* Stamps */}
+                {active >= 4 && active < 5 && (
+                  <div
+                    key="billed"
+                    className="pos-stamp absolute right-3 sm:right-5 top-12 z-10 rounded-lg border-2 border-[#1fb487] bg-white px-3 py-1 text-sm sm:text-base font-black tracking-wider text-[#1fb487] shadow-md"
+                  >
+                    PRINTED
+                  </div>
+                )}
+                {active >= 5 && (
+                  <div
+                    key="paid"
+                    className="pos-stamp absolute right-3 sm:right-5 top-12 z-10 rounded-xl border-[3px] border-[#1fb487] bg-white px-4 py-1 text-base sm:text-xl font-black tracking-wider text-[#1fb487] shadow-lg"
+                  >
+                    SETTLED
+                  </div>
+                )}
+              </div>
+
+              {/* Bottom Verification Pill */}
+              <div className="bg-slate-50 border-t border-slate-100 px-4 py-2.5 flex items-center justify-between text-[11px]">
+                <div className="flex items-center gap-2 text-purple-700 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-600" />
+                  <span>{STEPS[active].pillHighlight}</span>
+                </div>
+                <span className="font-mono text-slate-400 font-bold text-[10px]">
+                  {active + 1}/{N}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Column 3: Descriptions & Step Indicators */}
+          <div className="relative w-full h-[90px] sm:h-[95px] md:h-[520px] order-3 mt-1 md:mt-0">
+            {STEPS.map((step, idx) => {
+              const Icon = step.icon;
+              const isActive = active === idx;
+              return (
+                <div
+                  key={step.step || idx}
+                  data-pos-desc
+                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-w-[360px] mx-auto md:mx-0 space-y-2 md:space-y-3 text-center md:text-left transition-all duration-300 ease-out ${
+                    isActive
+                      ? "opacity-100 pointer-events-auto visible scale-100"
+                      : "opacity-0 pointer-events-none invisible scale-95"
+                  }`}
+                >
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-purple-100/70 border border-purple-200/60 text-purple-800 text-xs font-bold">
+                    <Icon className="w-4 h-4 text-purple-600" />
+                    <span>Capability {step.step}</span>
                   </div>
 
-                  {/* Step 2: Taxes */}
-                  <Row on={active >= 2} className="py-2">
-                    <span className="flex items-center gap-1.5">
-                      <span className="rounded bg-[#7b5fd0]/10 px-1.5 py-0.5 text-[10px] font-bold text-[#7b5fd0]">
-                        GST 5%
-                      </span>
-                      CGST + SGST
-                    </span>
-                    <span className="font-mono font-semibold text-[#7b5fd0]">₹35</span>
-                  </Row>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-snug md:leading-relaxed font-normal">
+                    {step.description}
+                  </p>
 
-                  {/* Step 2: Total */}
-                  <Row on={active >= 2} delay={100} className="rounded-xl bg-[#e3f8f0] px-3 py-2 my-1">
-                    <span className="font-bold text-slate-900">Total Billed</span>
-                    <span ref={totalRef} className="font-mono text-base sm:text-lg font-black text-[#14916c]">
-                      ₹0
-                    </span>
-                  </Row>
-
-                  {/* Step 3: Dynamic UPI QR */}
-                  <Row on={active >= 3} className="pt-1.5">
-                    <span>Payment Mode</span>
-                    <b className="rounded bg-purple-50 text-purple-700 px-2 py-0.5 font-mono">
-                      Dynamic UPI QR · Instant
-                    </b>
-                  </Row>
-
-                  {/* Step 5: WhatsApp copy */}
-                  <Row on={active >= 5} className="pt-1.5">
-                    <span>Receipt Sent</span>
-                    <b className="rounded bg-[#25D366]/10 text-emerald-700 px-2 py-0.5">
-                      WhatsApp PDF · Delivered
-                    </b>
-                  </Row>
-
-                  {/* Stamps */}
-                  {active >= 4 && active < 5 && (
-                    <div
-                      key="billed"
-                      className="pos-stamp absolute right-3 sm:right-5 top-12 z-10 rounded-lg border-2 border-[#1fb487] bg-white px-3 py-1 text-sm sm:text-base font-black tracking-wider text-[#1fb487] shadow-md"
-                    >
-                      PRINTED
-                    </div>
-                  )}
-                  {active >= 5 && (
-                    <div
-                      key="paid"
-                      className="pos-stamp absolute right-3 sm:right-5 top-12 z-10 rounded-xl border-[3px] border-[#1fb487] bg-white px-4 py-1 text-base sm:text-xl font-black tracking-wider text-[#1fb487] shadow-lg"
-                    >
-                      SETTLED
-                    </div>
-                  )}
+                  <div className="pt-0.5 flex items-center justify-center md:justify-start gap-2 text-xs font-bold text-[#877EFC]">
+                    <span>✓ Automated in 0.12s</span>
+                    <span>•</span>
+                    <span>ESC/POS Compliant</span>
+                  </div>
                 </div>
-
-                {/* Footer Action */}
-                <div className="bg-slate-50/80 border-t border-slate-100 px-4 py-2 flex items-center justify-between text-[11px] text-slate-500">
-                  <span>Step {active + 1} of 6</span>
-                  <button
-                    type="button"
-                    onClick={handleNextStep}
-                    className="font-bold text-[#7b5fd0] hover:text-[#5d44b0] flex items-center gap-1 cursor-pointer transition-colors"
-                  >
-                    <span>{active === N - 1 ? "Replay" : "Next step"}</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
+        </div>
 
-          {/* Steps Navigation */}
-          <div className="lg:col-start-1 lg:row-start-2 lg:self-start w-full">
-            <ol className="hidden lg:block space-y-2">
-              {STEPS.map((s, i) => {
-                const on = i === active;
-                const Icon = s.icon;
-                return (
-                  <li key={s.step}>
-                    <button
-                      type="button"
-                      onClick={() => goTo(i)}
-                      aria-current={on ? "step" : undefined}
-                      className={`flex w-full items-start gap-3 rounded-2xl border p-3.5 text-left transition-all duration-300 cursor-pointer ${
-                        on
-                          ? "pos-up border-[#7b5fd0]/30 bg-white shadow-[0_10px_25px_rgba(90,60,190,0.1)]"
-                          : "border-transparent opacity-50 hover:opacity-80"
-                      }`}
-                    >
-                      <span
-                        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-colors duration-300 ${
-                          on
-                            ? "bg-gradient-to-br from-[#8c75e0] to-[#6a4fc0] text-white shadow-md shadow-purple-500/20"
-                            : i < active
-                              ? "bg-[#7b5fd0]/15 text-[#7b5fd0]"
-                              : "bg-slate-100 text-slate-400"
-                        }`}
-                      >
-                        <Icon className="h-5 w-5" strokeWidth={2} />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-mono text-[11px] font-semibold text-[#7b5fd0]">
-                          {s.step} / 0{N}
-                        </span>
-                        <span className="block text-base font-bold leading-snug text-slate-900">
-                          {s.title}
-                        </span>
-                        <span
-                          className={`grid transition-[grid-template-rows] duration-500 ${
-                            on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                          }`}
-                        >
-                          <span className="overflow-hidden">
-                            <span className="block pt-1 text-[13px] leading-relaxed text-slate-500">
-                              {s.description}
-                            </span>
-                          </span>
-                        </span>
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
-
-            {/* Mobile View: Active Card + Progress Rail */}
-            <div className="lg:hidden w-full max-w-[380px] sm:max-w-[420px] mx-auto space-y-3">
-              <div className="bg-white border border-[#7b5fd0]/20 rounded-2xl p-3.5 shadow-sm flex items-start gap-3">
-                {(() => {
-                  const CurrentIcon = STEPS[active].icon;
-                  return (
-                    <>
-                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-[#8c75e0] to-[#6a4fc0] text-white shadow-xs">
-                        <CurrentIcon className="h-5 w-5" strokeWidth={2} />
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <span className="block font-mono text-[10px] font-bold text-[#7b5fd0]">
-                          STEP {STEPS[active].step} OF 0{N}
-                        </span>
-                        <h4 className="text-sm font-bold text-slate-900">
-                          {STEPS[active].title}
-                        </h4>
-                        <p className="text-xs text-slate-500 leading-snug mt-0.5">
-                          {STEPS[active].description}
-                        </p>
-                      </div>
-                    </>
-                  );
-                })()}
-              </div>
-
-              {/* Connected Mobile Progress Rail */}
-              <nav
-                aria-label="POS steps navigation"
-                className="relative flex items-center justify-between px-2 pt-1 pb-1"
-              >
-                <span className="absolute left-6 right-6 top-1/2 h-0.5 -translate-y-1/2 rounded-full bg-slate-200" />
-                <span
-                  className="absolute left-6 top-1/2 h-0.5 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#7b5fd0] to-[#1fb487] transition-[width] duration-500"
-                  style={{
-                    width: `calc((100% - 3rem) * ${active / (N - 1)})`,
-                  }}
-                />
-                {STEPS.map((s, i) => {
-                  const StepIcon = s.icon;
-                  const isCurrent = i === active;
-                  const isPassed = i < active;
-                  return (
-                    <button
-                      key={s.step}
-                      type="button"
-                      onClick={() => goTo(i)}
-                      aria-label={`Step ${i + 1}: ${s.title}`}
-                      className={`relative grid h-8 w-8 place-items-center rounded-full border transition-all duration-300 cursor-pointer ${
-                        isCurrent
-                          ? "scale-110 border-transparent bg-gradient-to-br from-[#8c75e0] to-[#6a4fc0] text-white shadow-md shadow-purple-500/30"
-                          : isPassed
-                            ? "border-[#7b5fd0]/30 bg-[#efeafc] text-[#7b5fd0]"
-                            : "border-slate-200 bg-white text-slate-400"
-                      }`}
-                    >
-                      <StepIcon className="h-3.5 w-3.5" strokeWidth={2} />
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
-          </div>
+        {/* Vertical Progress Bar */}
+        <div className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 h-24 w-[3px] rounded-full overflow-hidden bg-slate-200">
+          <div
+            ref={barRef}
+            className="w-full origin-top rounded-full transition-transform bg-[#6d28d9]"
+            style={{
+              height: "100%",
+              transform: "scaleY(0)",
+            }}
+          />
         </div>
       </div>
     </section>

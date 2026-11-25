@@ -1,155 +1,539 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import { Phone, Mail, ChevronDown } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Check } from "lucide-react";
+import WordmarkArc from "@/components/common/WordmarkArc";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement | null>(null);
+
+  // Form states
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [agreed, setAgreed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [btnText, setBtnText] = useState("Get updates");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      ScrollTrigger.config({ ignoreMobileResize: true });
+    }
+
+    const footerEl = footerRef.current;
+    if (!footerEl) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+        reduceMotion: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+        const { reduceMotion } = (context.conditions || {}) as {
+          reduceMotion?: boolean;
+        };
+
+        if (reduceMotion) return;
+
+        // Reveal content on enter
+        gsap.from("[data-footer-reveal]", {
+          y: 28,
+          autoAlpha: 0,
+          duration: 0.85,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: footerEl,
+            start: "top 85%",
+            once: true,
+          },
+        });
+      }
+    );
+
+    return () => {
+      mm.revert();
+    };
+  }, []);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !agreed) {
+      setBtnText(!agreed ? "Please agree first" : "Enter email");
+      setTimeout(() => setBtnText("Get updates"), 2200);
+      return;
+    }
+    setSubmitting(true);
+    setBtnText("Subscribed ✓");
+    setTimeout(() => {
+      setFirstName("");
+      setEmail("");
+      setAgreed(false);
+      setSubmitting(false);
+      setBtnText("Get updates");
+    }, 2500);
+  };
+
   return (
-    <footer className="relative bg-[#090e17] text-slate-300 pt-44 sm:pt-48 pb-12 px-4 sm:px-8 border-t border-slate-800/80">
-      <div className="max-w-6xl mx-auto">
-        {/* Top Row: Logo, Contact Info, Social Links */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
-          {/* Left: Logo */}
-          <div className="flex items-center gap-3">
-            <Image
-              src="/logo.webp"
-              alt="Vinimay Logo"
-              width={32}
-              height={32}
-              className="h-8 w-auto object-contain"
-            />
-            <span className="text-white font-extrabold text-xl tracking-tight">VINIMAY</span>
+    <footer
+      ref={footerRef}
+      id="footer"
+      className="relative overflow-hidden bg-[#f4f4f4] text-[#1f1d1e] dark:bg-[#161415] dark:text-[#f2f0f0] border-t border-slate-200/90 dark:border-slate-800/90 pt-32 sm:pt-36 md:pt-40 transition-colors"
+    >
+      <style>{`
+        .osmo-link {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 14.5px;
+          line-height: 1.75;
+          width: fit-content;
+          color: inherit;
+          transition: color 0.2s ease;
+        }
+        .osmo-link::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 2px;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .osmo-link:hover::after {
+          transform: scaleX(1);
+        }
+        .osmo-tag {
+          font-size: 9px;
+          font-weight: 700;
+          padding: 1px 5px;
+          border-radius: 3px;
+          line-height: 1.3;
+          letter-spacing: 0.03em;
+        }
+        .osmo-circle {
+          width: 38px;
+          height: 38px;
+          border-radius: 99px;
+          background: #ebebeb;
+          display: grid;
+          place-items: center;
+          transition: background 0.25s, color 0.25s, transform 0.15s;
+        }
+        .dark .osmo-circle {
+          background: #252223;
+        }
+        .osmo-circle:hover {
+          background: #1f1d1e;
+          color: #ffffff;
+          transform: translateY(-1px);
+        }
+        .dark .osmo-circle:hover {
+          background: #ffffff;
+          color: #161415;
+        }
+        .osmo-pill-tag {
+          background: #1f1d1e;
+          color: #ffffff;
+          font-size: 11px;
+          text-transform: uppercase;
+          padding: 5px 10px;
+          line-height: 1;
+          display: inline-block;
+          transition: background 0.2s;
+        }
+        .dark .osmo-pill-tag {
+          background: #252223;
+          color: #e2e8f0;
+        }
+        .osmo-pill-tag:hover {
+          background: #383436;
+        }
+        .dark .osmo-pill-tag:hover {
+          background: #3d393b;
+        }
+      `}</style>
+
+      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 md:px-12 pt-8 sm:pt-12">
+        <div className="grid gap-12 lg:gap-16 lg:grid-cols-[1.1fr_1.3fr] items-start">
+          {/* Newsletter Column */}
+          <div className="max-w-[540px]" data-footer-reveal>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100/70 dark:bg-purple-950/60 border border-purple-200/80 dark:border-purple-800/80 text-purple-700 dark:text-purple-300 text-xs font-bold tracking-wide uppercase mb-3.5">
+              <span>GST &amp; Accounting Digest</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-2">
+              Subscribe to the Vinimay Newsletter
+            </h3>
+            <p className="text-sm text-[#8e8c8d] dark:text-[#7d7a7b] leading-relaxed mb-6">
+              Get monthly updates on GST rule changes, invoice automation tips,
+              and new Vinimay feature drops directly to your inbox.
+            </p>
+
+            <form onSubmit={handleSubscribe} className="grid gap-4" noValidate>
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First name"
+                  aria-label="First name"
+                  className="bg-[#ebebeb] dark:bg-[#252223] text-[#1f1d1e] dark:text-[#f2f0f0] rounded-[4px] px-4 py-3 text-[14.5px] outline-none border border-transparent focus:border-[#1f1d1e] dark:focus:border-white transition-colors placeholder:text-[#8e8c8d] dark:placeholder:text-[#7d7a7b]"
+                />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="yourname@email.com"
+                  aria-label="Email"
+                  required
+                  className="bg-[#ebebeb] dark:bg-[#252223] text-[#1f1d1e] dark:text-[#f2f0f0] rounded-[4px] px-4 py-3 text-[14.5px] outline-none border border-transparent focus:border-[#1f1d1e] dark:focus:border-white transition-colors placeholder:text-[#8e8c8d] dark:placeholder:text-[#7d7a7b]"
+                />
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+                <label className="flex items-center gap-3 text-[14px] cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={agreed}
+                    onChange={(e) => setAgreed(e.target.checked)}
+                    className="sr-only"
+                  />
+                  <span
+                    className={`grid h-7 w-7 place-items-center rounded-full transition-colors border ${
+                      agreed
+                        ? "bg-[#1f1d1e] dark:bg-white text-white dark:text-[#1f1d1e] border-transparent"
+                        : "bg-[#ebebeb] dark:bg-[#252223] border-slate-300 dark:border-slate-700 text-transparent"
+                    }`}
+                  >
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </span>
+                  <span className="text-xs sm:text-[13px] text-[#8e8c8d] dark:text-[#7d7a7b]">
+                    I agree to the{" "}
+                    <a
+                      href="https://vinimay.sharda.co.in/knowledge-base"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 text-[#1f1d1e] dark:text-white"
+                    >
+                      Privacy Policy
+                    </a>
+                  </span>
+                </label>
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="bg-[#1f1d1e] text-white dark:bg-white dark:text-[#161415] rounded-[4px] px-5 py-2.5 text-[14.5px] font-semibold active:scale-95 transition-all self-start sm:self-auto shadow-sm hover:opacity-90"
+                >
+                  {btnText}
+                </button>
+              </div>
+            </form>
           </div>
 
-          {/* Center: Connect with us */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-slate-400">
-            <span className="text-slate-300 font-medium">Connect with us:</span>
-            <a
-              href="tel:+919104369797"
-              className="inline-flex items-center gap-1.5 text-white hover:text-rose-400 underline transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span>(+91) 91043 69797</span>
-            </a>
-            <a
-              href="mailto:inquiry@vinimay.com"
-              className="inline-flex items-center gap-1.5 text-white hover:text-rose-400 underline transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>inquiry@vinimay.com</span>
-            </a>
-          </div>
+          {/* Links Grid & Quick Buttons */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10">
+            {/* Column 1: Product */}
+            <div data-footer-reveal>
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#8e8c8d] dark:text-[#7d7a7b] mb-4">
+                Product
+              </h4>
+              <nav className="flex flex-col space-y-1">
+                <Link href="/features/gst-billing" className="osmo-link">
+                  GST Invoicing
+                </Link>
+                <Link href="/features/inventory" className="osmo-link">
+                  Multi-Godown Stock
+                </Link>
+                <Link href="/features/pos" className="osmo-link">
+                  POS Counter Billing{" "}
+                  <span className="osmo-tag font-mono bg-[#7a1fff] text-white">
+                    NEW
+                  </span>
+                </Link>
+                <Link href="/features/customers" className="osmo-link">
+                  Customer Directory
+                </Link>
+                <Link href="/features/vendors" className="osmo-link">
+                  Vendor &amp; PO Recon
+                </Link>
+                <Link href="/features/transactions" className="osmo-link">
+                  Double-Entry Daybook
+                </Link>
+              </nav>
+            </div>
 
-          {/* Right: Social Links */}
-          <div className="flex items-center gap-2.5">
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-slate-700 hover:border-white hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-              title="LinkedIn"
-            >
-              <span className="text-xs font-bold leading-none font-sans">in</span>
-            </a>
+            {/* Column 2: Solutions */}
+            <div data-footer-reveal>
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#8e8c8d] dark:text-[#7d7a7b] mb-4">
+                Solutions
+              </h4>
+              <nav className="flex flex-col space-y-1">
+                <a
+                  href="https://vinimay.sharda.co.in/client-signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  Retail &amp; Supermarkets
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/client-signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  Wholesale &amp; Distribution
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/client-signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  Textile &amp; Apparel
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/client-signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  Pharma &amp; FMCG
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/client-signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  Chartered Accountants
+                </a>
+              </nav>
+            </div>
 
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-slate-700 hover:border-white hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-              title="Instagram"
-            >
-              <svg
-                className="w-4 h-4 fill-none stroke-current"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-              </svg>
-            </a>
+            {/* Column 3: Resources */}
+            <div data-footer-reveal>
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#8e8c8d] dark:text-[#7d7a7b] mb-4">
+                Resources
+              </h4>
+              <nav className="flex flex-col space-y-1">
+                <a
+                  href="https://vinimay.sharda.co.in/knowledge-base"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  Knowledge Base
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/knowledge-base"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  GST Filing Guidelines
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/knowledge-base"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  HSN Code Directory
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/knowledge-base"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-link"
+                >
+                  Support &amp; FAQs
+                </a>
+                <a
+                  href="tel:+919104369797"
+                  className="osmo-link font-medium text-emerald-600 dark:text-emerald-400"
+                >
+                  Help: (+91) 91043 69797
+                </a>
+              </nav>
+            </div>
 
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-slate-700 hover:border-white hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-              title="YouTube"
+            {/* Buttons + Socials */}
+            <div
+              className="col-span-full flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-200/80 dark:border-slate-800/80"
+              data-footer-reveal
             >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-            </a>
+              <div className="flex items-center">
+                <a
+                  href="https://vinimay.sharda.co.in/client-login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#1f1d1e] text-white dark:bg-white dark:text-[#161415] rounded-l-full px-5 py-2.5 text-[14px] font-semibold active:scale-95 transition-all shadow-sm hover:opacity-90"
+                >
+                  Login
+                </a>
+                <a
+                  href="https://vinimay.sharda.co.in/client-signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-r-full px-5 py-2.5 text-[14px] font-semibold text-white bg-emerald-500 hover:bg-emerald-800 active:scale-95 transition-all shadow-sm"
+                >
+                  Create Free Account 
+                </a>
+              </div>
 
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-slate-700 hover:border-white hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-              title="Facebook"
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-            </a>
+              {/* Social Circles */}
+              <div className="flex items-center gap-1.5">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-circle"
+                  aria-label="LinkedIn"
+                  title="LinkedIn"
+                >
+                  <span className="text-[14px] font-extrabold leading-none">in</span>
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-circle"
+                  aria-label="Instagram"
+                  title="Instagram"
+                >
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+                  </svg>
+                </a>
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-circle"
+                  aria-label="X (Twitter)"
+                  title="X (Twitter)"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M17.8 3H21l-7 8 8.2 10h-6.4l-5-6.2L5.2 21H2l7.5-8.6L1.6 3h6.5l4.5 5.7L17.8 3zm-1.1 16h1.8L7.1 4.9H5.2L16.7 19z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="osmo-circle"
+                  aria-label="YouTube"
+                  title="YouTube"
+                >
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Row: Copyright, Policy Links, Country Selector */}
-        <div className="pt-8 border-t border-slate-800/80 flex flex-col lg:flex-row items-center justify-between gap-4 text-[11px] sm:text-xs text-slate-400">
-          <div className="text-center lg:text-left">
-            <span>© 2026 Vinimay Technologies Pvt. Ltd., India</span>
-          </div>
+      {/* GIANT ANIMATED WORDMARK: VINIMAY */}
+      <WordmarkArc
+        text="VINIMAY"
+        mode="reveal"
+        start="top 90%"
+        once={false}
+        className="mt-12 sm:mt-16 md:mt-12 border-b border-slate-200/80 dark:border-slate-800/80"
+      />
 
-          <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-slate-400 text-center">
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Privacy
-            </a>
-            <span>•</span>
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Compliance
-            </a>
-            <span>•</span>
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Terms
-            </a>
-            <span>•</span>
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Cancellation &amp; Refund
-            </a>
-            <span>•</span>
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Corporate Information
-            </a>
-            <span>•</span>
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Escalation Matrix
-            </a>
-            <span>•</span>
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Security
-            </a>
-            <span>•</span>
-            <a href="https://vinimay.sharda.co.in/knowledge-base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Cookie settings
-            </a>
-          </div>
+      {/* Bottom Bar */}
+      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 md:px-12 py-6 grid gap-4 md:grid-cols-3 items-center font-mono text-[11px] uppercase text-[#8e8c8d] dark:text-[#7d7a7b]">
+        {/* Policy Pill Tags */}
+        <div className="flex flex-wrap items-center">
+          <a
+            href="https://vinimay.sharda.co.in/knowledge-base"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="osmo-pill-tag rounded-l-full pl-3"
+          >
+            Licensing
+          </a>
+          <a
+            href="https://vinimay.sharda.co.in/knowledge-base"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="osmo-pill-tag"
+          >
+            T&amp;Cs
+          </a>
+          <a
+            href="https://vinimay.sharda.co.in/knowledge-base"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="osmo-pill-tag"
+          >
+            Privacy
+          </a>
+          <a
+            href="https://vinimay.sharda.co.in/knowledge-base"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="osmo-pill-tag rounded-r-full pr-3"
+          >
+            Security
+          </a>
+        </div>
 
-          <div className="shrink-0">
-            <button
-              type="button"
-              aria-label="Change language selection"
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/60 hover:bg-slate-800 text-white text-xs font-medium transition-colors"
-            >
-              <span>🇮🇳</span>
-              <span>India</span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-            </button>
-          </div>
+        {/* Copyright */}
+        <div className="md:text-center text-[11px]">
+          © 2026 Vinimay Technologies Pvt. Ltd., India
+        </div>
+
+        {/* Right Badge */}
+        <div className="md:text-right flex md:justify-end items-center gap-1.5">
+          <span>Engineered for Every Country</span>
+          <span className="inline-flex rounded-full overflow-hidden shadow-2xs">
+            <span className="bg-[#7D76D2] text-white px-2.5 py-1 text-[10px] font-bold">
+              GST 100%
+            </span>
+            <span className="bg-[#1f1d1e] dark:bg-slate-800 text-white px-2 py-1 text-[10px]">
+              Cloud
+            </span>
+          </span>
         </div>
       </div>
     </footer>

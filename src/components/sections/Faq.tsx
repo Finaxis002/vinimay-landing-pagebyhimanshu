@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { HelpCircle, Plus, X, Send } from "lucide-react";
 import { FAQ_ITEMS } from "@/content/faq";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function Faq() {
   const [openMap, setOpenMap] = useState<Record<number, boolean>>({
@@ -35,9 +36,14 @@ export default function Faq() {
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-100/80 border border-purple-200 text-[11px] font-extrabold uppercase tracking-widest text-purple-700 mb-4">
           <span>Help Center</span>
         </div>
-        <h2 className="text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tight leading-tight mb-4 select-none">
-          Frequently Ask Questions
-        </h2>
+        <div>
+          <ArcHeading
+            as="h2"
+            className="text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tight leading-tight mb-4 select-none font-bold"
+          >
+            Frequently Asked Questions
+          </ArcHeading>
+        </div>
         <p className="mt-4 text-slate-600 text-sm md:text-base leading-relaxed">
           Find answers to common questions about Vinimay&apos;s features, offline syncing, and zero-cost model.
         </p>

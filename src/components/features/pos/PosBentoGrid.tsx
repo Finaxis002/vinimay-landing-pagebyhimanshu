@@ -11,6 +11,7 @@ import {
   ArrowUpRight,
   CheckCircle2,
 } from "lucide-react";
+import ArcHeading from "@/components/common/ArcHeading";
 
 const counterTypes = [
   {
@@ -45,9 +46,12 @@ export default function PosBentoGrid() {
         <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#7552da] bg-[#7552da]/10 px-3 py-1.5 rounded-full mb-3">
           Counter Architecture
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-          Engineered for Retail, Dining & Supermarket Counters
-        </h2>
+        <ArcHeading
+          as="h2"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight"
+        >
+          Engineered for Retail, Dining &amp; Supermarket Counters
+        </ArcHeading>
         <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
           Whether you run a high-traffic boutique, a buzzing quick-service cafe, or a neighborhood supermarket, Vinimay POS molds to your counter flow.
         </p>

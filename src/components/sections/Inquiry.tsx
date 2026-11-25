@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function Inquiry() {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -42,9 +43,14 @@ export default function Inquiry() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Left Column */}
             <div className="lg:col-span-5 pr-0 lg:pr-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl  text-slate-900 tracking-tight leading-tight mb-4">
-                Quick Inquiry
-              </h2>
+              <div>
+                <ArcHeading
+                  as="h2"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight mb-4"
+                >
+                  Quick Inquiry
+                </ArcHeading>
+              </div>
               <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
                 Ask your queries here.
               </p>

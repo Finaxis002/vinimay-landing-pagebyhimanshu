@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function FeatureBentoGrid() {
   const gridRef = useRef<HTMLElement | null>(null);
@@ -148,9 +149,12 @@ export default function FeatureBentoGrid() {
         <span className="inline-block text-xs font-bold text-[#1fb487] bg-[#e3f8f0] border border-[#1fb487]/40 rounded-full px-3.5 py-1 uppercase tracking-wide">
           Key Features
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-black text-slate-900 tracking-tight leading-tight mt-3 mb-2">
+        <ArcHeading
+          as="h2"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-black text-slate-900 tracking-tight leading-tight mt-3 mb-2"
+        >
           Built for billing, not paperwork
-        </h2>
+        </ArcHeading>
         <p className="text-slate-500 text-sm sm:text-base">
           Interactive tools designed to automate every step of Indian tax compliance.
         </p>

@@ -10,7 +10,7 @@ export interface FeaturePageLayoutProps {
   title: string;
   lead: string;
   trustChips?: string[];
-  screenComponent: React.ReactNode;
+  screenComponent?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -193,10 +193,12 @@ export default function FeaturePageLayout({
               </div>
             )}
 
-            {/* Reusable Desktop Screen / Mockup Container */}
-            <div className="feature-screen-reveal w-full mt-4 sm:mt-8 will-change-transform">
-              {screenComponent}
-            </div>
+            {/* Reusable Desktop Screen / Mockup Container (Rendered only if provided) */}
+            {screenComponent && (
+              <div className="feature-screen-reveal w-full mt-4 sm:mt-8 will-change-transform">
+                {screenComponent}
+              </div>
+            )}
           </div>
         </header>
       </div>

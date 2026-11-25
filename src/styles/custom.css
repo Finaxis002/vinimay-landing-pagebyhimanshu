@@ -363,7 +363,7 @@ body {
    9. HANDWRITTEN ANNOTATION FONT
    -------------------------------------------------------------------------- */
 .font-handwritten {
-  font-family: 'Caveat', cursive, sans-serif;
+  font-family: var(--font-caveat), 'Caveat', cursive, sans-serif !important;
 }
 
 /* --------------------------------------------------------------------------

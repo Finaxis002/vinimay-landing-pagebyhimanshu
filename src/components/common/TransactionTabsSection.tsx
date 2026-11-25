@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { OsmoRoll } from "./OsmoRoll";
 import gsap from "gsap";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export interface TransactionTabItem {
   id: string;
@@ -134,9 +135,12 @@ export default function TransactionTabsSection() {
             <Scale className="w-4 h-4 text-[#877EFC]" />
             <span>DOUBLE-ENTRY ACCOUNTING &amp; AUDIT TRAIL</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight">
+          <ArcHeading
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight font-bold"
+          >
             What makes Vinimay Accounting Books audit-proof
-          </h2>
+          </ArcHeading>
         </div>
 
         {/* Tab Navigation Bar */}

@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function FeatureDashboardPreview() {
   const containerRef = useRef<HTMLElement | null>(null);
@@ -104,9 +105,13 @@ export default function FeatureDashboardPreview() {
           <span className="inline-block text-xs font-bold text-[#3fe0b0] bg-[#3fe0b0]/15 border border-[#3fe0b0]/30 rounded-full px-3.5 py-1 uppercase tracking-wide">
             Dashboard
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-black tracking-tight leading-tight mt-3 mb-2">
+          <ArcHeading
+            as="h2"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-black tracking-tight leading-tight mt-3 mb-2"
+            itemClassName="text-white"
+          >
             Your whole business on one screen
-          </h2>
+          </ArcHeading>
           <p className="text-[#a9a4c0] text-xs sm:text-sm md:text-base leading-relaxed max-w-xl mx-auto">
             View invoices, track sales and outstanding, manage customers and products, and run reports from anywhere.
           </p>

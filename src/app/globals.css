@@ -4,6 +4,7 @@
 @theme {
   --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-handwritten: var(--font-caveat), cursive, sans-serif;
+  --font-heading: var(--font-bricolage), 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-50: #f5f3ff;
   --color-brand-100: #ede9fe;
@@ -26,4 +27,14 @@
 
 body {
   font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+h1:not(.font-handwritten):not(.hero-title),
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
 }

@@ -8,6 +8,7 @@ import {
   Landmark,
   Scale,
 } from "lucide-react";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function TransactionBentoGrid() {
 
@@ -17,9 +18,12 @@ export default function TransactionBentoGrid() {
         <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#7552da] bg-[#7552da]/10 px-3 py-1.5 rounded-full mb-3">
           Accounting Precision
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        <ArcHeading
+          as="h2"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight"
+        >
           Everything You Need to Maintain Clean, Balanced Books
-        </h2>
+        </ArcHeading>
         <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
           From fast cash register entries to audit-proof double entry journals. Vinimay keeps your financial books clean and tax-compliant.
         </p>

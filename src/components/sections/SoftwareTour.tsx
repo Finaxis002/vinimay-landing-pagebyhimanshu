@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { Check, CheckCircle2, FileText, FileOutput } from "lucide-react";
+import WordmarkArc from "@/components/common/WordmarkArc";
 
 /* ------------------------------------------------------------------ */
 /* Data constants                                                      */
@@ -531,10 +532,12 @@ export default function SoftwareTour() {
             <span>THE ENGINE</span>
           </div>
 
-          <div className="relative inline-block mb-4">
-            <h2 className="text-6xl sm:text-8xl md:text-9xl lg:text-[9.5rem] text-white tracking-tighter leading-none select-none font-bold drop-shadow-sm">
-              VINIMAY
-            </h2>
+          <div className="relative inline-block mb-4 w-full">
+            <WordmarkArc
+              text="VINIMAY"
+              mode="scrub"
+              textClassName="text-6xl sm:text-8xl md:text-9xl lg:text-[9.5rem] text-white tracking-tighter leading-none select-none font-bold drop-shadow-sm"
+            />
             {/* Handwritten Annotation */}
             <div className="absolute -top-7 -right-12 sm:-top-10 sm:-right-20 lg:-top-12 lg:-right-24 flex items-center gap-1 select-none pointer-events-none">
               <span className="font-handwritten text-2xl sm:text-3xl lg:text-4xl text-rose-300 font-bold rotate-6 tracking-wide drop-shadow-xs">

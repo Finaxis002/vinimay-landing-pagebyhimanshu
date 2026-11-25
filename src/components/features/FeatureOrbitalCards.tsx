@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { OsmoRoll } from "@/components/common/OsmoRoll";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export interface OrbitalCardItem {
   badge: string;
@@ -312,9 +313,12 @@ export default function FeatureOrbitalCards({
 
       {/* Header */}
       <div className="text-center max-w-4xl mx-auto px-4 sm:px-6">
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl  text-slate-900 tracking-tight leading-tight mb-4 select-none">
+        <ArcHeading
+          as="h2"
+          className="text-4xl sm:text-6xl lg:text-7xl text-slate-900 tracking-tight leading-tight mb-4 select-none font-bold"
+        >
           {title}
-        </h2>
+        </ArcHeading>
         <p className="text-slate-500 text-sm sm:text-base lg:text-lg font-normal max-w-2xl mx-auto">
           {description}
         </p>

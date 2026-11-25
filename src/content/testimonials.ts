@@ -37,7 +37,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 4,
     quote:
-      "Connecting our gym's physical turnstiles straight to Vinimay membership renewals eliminated unpaid walk-ins overnight. Trainer commissions, walk-in leads, and member UPI autopay calculate in 1 click.",
+      "Setting up Vinimay's short member code attendance at our front desk streamlined check-ins and eliminated unpaid walk-ins overnight. Trainer commissions, walk-in leads, and member renewals calculate in 1 click.",
     name: "Himanshu Dhammeriya",
     role: "Managing Director @ IronPulse Fitness Club",
     image:

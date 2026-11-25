@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   TrendingDown,
 } from "lucide-react";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function VendorBentoGrid() {
   const [selectedAging, setSelectedAging] = useState("0-30");
@@ -18,9 +19,12 @@ export default function VendorBentoGrid() {
         <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#7552da] bg-[#7552da]/10 px-3 py-1.5 rounded-full mb-3">
           Vendor Architecture
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        <ArcHeading
+          as="h2"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight"
+        >
           Everything You Need to Command Your Supply Chain
-        </h2>
+        </ArcHeading>
         <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
           Keep suppliers happy, avoid late fees, and claim every eligible rupee of GST Input Tax Credit with automated reconciliation.
         </p>

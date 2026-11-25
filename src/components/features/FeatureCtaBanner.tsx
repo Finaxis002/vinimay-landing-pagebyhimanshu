@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
 import { OsmoRoll } from "../common/OsmoRoll";
+import ArcHeading from "@/components/common/ArcHeading";
 
 interface FeatureCtaBannerProps {
   title?: string;
@@ -104,9 +105,13 @@ export default function FeatureCtaBanner({
             Zero Cost • 100% Free Forever
           </span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+          <ArcHeading
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight"
+            itemClassName="text-white"
+          >
             {title}
-          </h2>
+          </ArcHeading>
 
           <p className="text-white/90 text-sm sm:text-base leading-relaxed max-w-lg mx-auto">
             {lead}

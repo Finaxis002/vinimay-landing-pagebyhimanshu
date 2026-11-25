@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ChevronDown, ArrowRight, BookOpen, Sparkles, PieChart, Users, CheckCircle, ShieldCheck } from "lucide-react";
 import { ACCOUNTING_ITEMS } from "@/content/accounting-solutions";
 import { OsmoRoll } from "../common/OsmoRoll";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function AccountingSolutions() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -148,9 +149,14 @@ export default function AccountingSolutions() {
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100/80 border border-purple-200/90 text-purple-700 text-xs font-extrabold uppercase tracking-widest mb-4 shadow-xs">
           <span>REAL ACCOUNTING</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight mb-4">
-          More than an invoice maker
-        </h2>
+        <div>
+          <ArcHeading
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight mb-4"
+          >
+            More than an invoice maker
+          </ArcHeading>
+        </div>
         <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
           Your CA will be comfortable with it. Everything is double-entry and report-ready.
         </p>

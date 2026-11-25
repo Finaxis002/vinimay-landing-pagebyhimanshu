@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { OsmoRoll } from "../common/OsmoRoll";
+import ArcHeading from "@/components/common/ArcHeading";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -289,9 +290,15 @@ export default function FeaturesOrbital() {
 
       {/* Header */}
       <div className="text-center max-w-4xl mx-auto px-4 sm:px-6">
-        <h2 className="text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tight leading-tight mb-4 select-none ">
-          Features
-        </h2>
+        <div>
+          <ArcHeading
+            as="h2"
+            splitBy="chars"
+            className="text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tight leading-tight mb-4 select-none font-bold"
+          >
+            Features
+          </ArcHeading>
+        </div>
         <p className="text-slate-500 text-sm sm:text-base lg:text-lg font-normal max-w-2xl mx-auto">
           Access everything with a single platform at zero cost—GST Billing, Inventory, POS, Customers, Vendors,
           Transactions, and Fleet Logistics:

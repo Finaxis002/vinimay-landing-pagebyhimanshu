@@ -45,7 +45,7 @@ export const DASHBOARD_TABS: Record<string, DashboardTab> = {
     tabLabel: "Gym & Fitness",
     screenTitle: "Gym Attendance & Footfall",
     heading: "Smart attendance, member access & admissions.",
-    desc: "Hourly footfall heatmaps, turnstile gate synchronization, employee shifts, and automatic expiry locks.",
+    desc: "Hourly footfall heatmaps, quick short member code attendance, employee shifts, and automatic expiry locks.",
     ctaText: "Explore Gym & Fitness",
     badgeText: "Footfall & Member Engine",
     iconName: "users",

@@ -69,7 +69,7 @@ export default function TrustedBrandsCloud() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Title */}
         <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#232938] tracking-tight text-center mb-10 sm:mb-14">
-          Trusted by <span className="text-[#6d28d9] font-black">40000+</span> Restaurants Globally
+          Trusted by <span className="text-[#6d28d9] font-black">40000+</span> Businesses Globally
         </h3>
 
         {/* Cloud Container with horizontal scroll safety on very small screens */}

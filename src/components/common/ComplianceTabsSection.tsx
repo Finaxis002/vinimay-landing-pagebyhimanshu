@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
 import { OsmoRoll } from "./OsmoRoll";
 import gsap from "gsap";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export interface FormFieldData {
   label: string;
@@ -250,9 +251,12 @@ export default function ComplianceTabsSection({
             <ShieldCheck className="w-4 h-4 text-[#877EFC]" />
             <span>{tagline}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight ">
+          <ArcHeading
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight font-bold"
+          >
             {title}
-          </h2>
+          </ArcHeading>
         </div>
 
         {/* Tab Navigation Bar - Styled matching reference design with vertical dividers & sliding indicator */}
@@ -262,6 +266,9 @@ export default function ComplianceTabsSection({
               {tabs.map((tab, idx) => {
                 const isActive = activeTabIdx === idx;
                 return (
+               
+
+                
                   <button
                     key={tab.id}
                     ref={(el) => {
@@ -275,8 +282,10 @@ export default function ComplianceTabsSection({
                         : "text-slate-500 hover:text-slate-800 hover:bg-slate-50/20"
                     }`}
                   >
-                    <span>{tab.label}</span>
+                       <OsmoRoll>{tab.label}</OsmoRoll>
+
                   </button>
+                    
                 );
               })}
 

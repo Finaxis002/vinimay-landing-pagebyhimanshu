@@ -20,6 +20,7 @@ import {
   ChevronRight,
   ImageIcon,
 } from "lucide-react";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function Industries() {
   const [activeModalKey, setActiveModalKey] = useState<string | null>(null);
@@ -36,6 +37,21 @@ export default function Industries() {
     document.body.style.overflow = "";
   };
 
+  React.useEffect(() => {
+    const handleOpenIndustryModal = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail && INDUSTRY_DATA[customEvent.detail]) {
+        setActiveModalKey(customEvent.detail);
+        document.body.style.overflow = "hidden";
+      }
+    };
+
+    window.addEventListener("open-industry-modal", handleOpenIndustryModal);
+    return () => {
+      window.removeEventListener("open-industry-modal", handleOpenIndustryModal);
+    };
+  }, []);
+
   return (
     <>
       <section
@@ -47,19 +63,26 @@ export default function Industries() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           {/* Centered Header */}
-          <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/80 text-purple-700 text-xs font-bold tracking-wider uppercase mb-5 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse" />
-              <span>BUILT FOR YOUR BUSINESS</span>
+          <div className="relative max-w-3xl mx-auto text-center mb-14 sm:mb-20">
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/80 text-purple-700 text-xs font-bold tracking-wider uppercase mb-5 shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse" />
+                <span>BUILT FOR YOUR BUSINESS</span>
+              </div>
+
+              <div>
+                <ArcHeading
+                  as="h2"
+                  className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4"
+                >
+                  Tools for your industry, in any country
+                </ArcHeading>
+              </div>
+
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
+                Pick your business type and the matching tools are ready to use.
+              </p>
             </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
-              Tools for your industry, in any country
-            </h2>
-
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
-              Pick your business type and the matching tools are ready to use.
-            </p>
           </div>
 
           {/* Bento Grid: 6 Industries in 3 Rhythmic Alternating Rows (7+5, 5+7, 7+5) */}
@@ -148,11 +171,11 @@ export default function Industries() {
                   Gyms and fitness clubs
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
-                  Memberships, recurring billing, lead tracking, trainer commissions and turnstile check-in.
+                  Memberships, recurring billing, lead tracking, trainer commissions and short code attendance.
                 </p>
               </div>
 
-              {/* Gym Pass & Turnstile Illustration */}
+              {/* Gym Pass & Short Code Attendance Illustration */}
               <div className="relative mt-2 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2.5 z-10">
                 <div className="bg-gradient-to-tr from-purple-600 via-pink-600 to-amber-500 p-3.5 rounded-xl shadow-md text-white relative overflow-hidden border border-white/20">
                   <div className="flex items-center justify-between text-xs mb-2.5">
@@ -164,17 +187,17 @@ export default function Industries() {
                       <p className="text-[8px] uppercase tracking-wider text-purple-100 font-semibold">Member</p>
                       <p className="font-bold text-xs tracking-wide">Mr Himanshu D.</p>
                     </div>
-                    <span className="text-[8px] bg-white/25 px-2 py-0.5 rounded-full font-bold">RFID ACTIVE</span>
+                    <span className="text-[8px] bg-white/25 px-2 py-0.5 rounded-full font-bold">CODE #108</span>
                   </div>
                 </div>
 
                 <div className="bg-white p-2.5 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between text-[11px]">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                    <span className="text-slate-800 font-medium">Turnstile Barrier #01</span>
+                    <span className="text-slate-800 font-medium">Front Desk Punch #01</span>
                   </div>
                   <span className="text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded text-[10px]">
-                    ✔ Gate Unlocked
+                    ✔ Attendance Logged
                   </span>
                 </div>
               </div>

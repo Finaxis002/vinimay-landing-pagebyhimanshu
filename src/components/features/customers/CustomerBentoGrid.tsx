@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   Receipt,
 } from "lucide-react";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function CustomerBentoGrid() {
 
@@ -17,9 +18,12 @@ export default function CustomerBentoGrid() {
         <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#7552da] bg-[#7552da]/10 px-3 py-1.5 rounded-full mb-3">
           CRM Capabilities
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-          Everything You Need to Manage Customers & Recover Dues
-        </h2>
+        <ArcHeading
+          as="h2"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight"
+        >
+          Everything You Need to Manage Customers &amp; Recover Dues
+        </ArcHeading>
         <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
           From simple contact books to structured business credit control. Vinimay helps you keep customers engaged and payments on schedule.
         </p>

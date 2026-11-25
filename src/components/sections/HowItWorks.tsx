@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { OsmoRoll } from "../common/OsmoRoll";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ArcHeading from "@/components/common/ArcHeading";
 
 const getScatters = (isMobile: boolean) => [
   { x: isMobile ? -280 : -550, y: isMobile ? -260 : -380, rot: -30, scale: 0.35 }, // Step 1: Top-Left
@@ -281,13 +282,20 @@ export default function HowItWorks() {
       </div>
 
       {/* Section Header */}
-      <div className="text-center max-w-4xl mx-auto mb-1  px-4">
-        <h2 className="text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tight leading-tight mb-4 select-none">
-          Get Started
-        </h2>
-        <p className="text-slate-500 text-sm sm:text-base lg:text-lg font-normal max-w-2xl mx-auto">
-          Your first tax invoice in four simple steps—create, preview, and send in under a minute at zero cost:
-        </p>
+      <div className="relative text-center max-w-4xl mx-auto mb-1 px-4">
+        <div className="relative z-10">
+          <div>
+            <ArcHeading
+              as="h2"
+              className="text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tight leading-tight mb-4 select-none font-bold"
+            >
+              Get Started
+            </ArcHeading>
+          </div>
+          <p className="text-slate-500 text-sm sm:text-base lg:text-lg font-normal max-w-2xl mx-auto">
+            Your first tax invoice in four simple steps—create, preview, and send in under a minute at zero cost:
+          </p>
+        </div>
 
         {/* 4 Steps Interactive Pills */}
         <div className="w-full max-w-full overflow-x-auto scrollbar-none py-2 px-1 mt-8">

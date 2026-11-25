@@ -17,6 +17,7 @@ import {
   ArrowRight,
   Truck,
 } from "lucide-react";
+import { IndustriesMegaMenu, IndustriesMobileList } from "../common/IndustriesMegaMenu";
 
 interface FeatureMenuItem {
   title: string;
@@ -34,8 +35,8 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     title: "GST Billing & Invoice",
     description: "Automated e-invoices, GST returns & custom tax templates",
     icon: Receipt,
-    color: "text-purple-600",
-    bgLight: "bg-purple-100",
+    color: "text-purple-300",
+    bgLight: "bg-purple-500/20",
     bgHover: "group-hover/item:bg-purple-600",
     cardIndex: 0,
     href: "/features/gst-billing",
@@ -44,8 +45,8 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     title: "Inventory Management",
     description: "Real-time multi-warehouse stock & low-stock alerts",
     icon: Package,
-    color: "text-blue-600",
-    bgLight: "bg-blue-100",
+    color: "text-blue-300",
+    bgLight: "bg-blue-500/20",
     bgHover: "group-hover/item:bg-blue-600",
     cardIndex: 1,
     href: "/features/inventory",
@@ -54,8 +55,8 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     title: "POS Billing",
     description: "Lightning-fast retail checkout with offline barcode scans",
     icon: Store,
-    color: "text-emerald-600",
-    bgLight: "bg-emerald-100",
+    color: "text-emerald-300",
+    bgLight: "bg-emerald-500/20",
     bgHover: "group-hover/item:bg-emerald-600",
     cardIndex: 2,
     href: "/features/pos",
@@ -64,8 +65,8 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     title: "Customer Management",
     description: "Customer ledgers, credit limits, statements & WhatsApp bills",
     icon: Users,
-    color: "text-amber-600",
-    bgLight: "bg-amber-100",
+    color: "text-amber-300",
+    bgLight: "bg-amber-500/20",
     bgHover: "group-hover/item:bg-amber-600",
     cardIndex: 3,
     href: "/features/customers",
@@ -74,8 +75,8 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     title: "Vendor Management",
     description: "Supplier bills, purchase orders & smart payables tracking",
     icon: Building2,
-    color: "text-rose-600",
-    bgLight: "bg-rose-100",
+    color: "text-rose-300",
+    bgLight: "bg-rose-500/20",
     bgHover: "group-hover/item:bg-rose-600",
     cardIndex: 4,
     href: "/features/vendors",
@@ -84,8 +85,8 @@ const FEATURE_ITEMS: FeatureMenuItem[] = [
     title: "Transaction Management",
     description: "Double-entry books, journal vouchers & automated reconciliation",
     icon: ArrowLeftRight,
-    color: "text-indigo-600",
-    bgLight: "bg-indigo-100",
+    color: "text-indigo-300",
+    bgLight: "bg-indigo-500/20",
     bgHover: "group-hover/item:bg-indigo-600",
     cardIndex: 5,
     href: "/features/transactions",
@@ -96,7 +97,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFeaturesOpen, setIsMobileFeaturesOpen] = useState(false);
+  const [isMobileIndustriesOpen, setIsMobileIndustriesOpen] = useState(false);
   const [isFeaturesHovered, setIsFeaturesHovered] = useState(false);
+  const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -160,7 +163,7 @@ export default function Navbar() {
     handleScroll();
 
     if (pathname === "/") {
-      const sections = ["hero", "industries", "how-it-works", "testimonials", "the-features", "faq"];
+      const sections = ["hero", "industries", "testimonials", "the-features", "faq"];
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -192,6 +195,7 @@ export default function Navbar() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setIsFeaturesHovered(false);
+        setIsIndustriesOpen(false);
         setIsMobileMenuOpen(false);
       }
     };
@@ -200,6 +204,12 @@ export default function Navbar() {
       const target = e.target as HTMLElement;
       if (!target.closest(".features-nav-container")) {
         setIsFeaturesHovered(false);
+      }
+      if (
+        !target.closest(".industries-nav-container") &&
+        !target.closest(".industries-morph-container")
+      ) {
+        setIsIndustriesOpen(false);
       }
     };
 
@@ -221,8 +231,8 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: "#hero", label: "Home", id: "hero" },
-    { href: "#how-it-works", label: "How It Works", id: "how-it-works" },
+    { href: "/", label: "Home", id: "hero" },
+    { href: "#industries", label: "Industries", id: "industries" },
     { href: "#the-features", label: "Features", id: "the-features" },
     { href: "#faq", label: "FAQ", id: "faq" },
   ];
@@ -236,6 +246,9 @@ export default function Navbar() {
           : "py-3 sm:py-4"
       }`}
     >
+      {/* DESKTOP 2-STAGE MORPHING EXPANDABLE INDUSTRIES CAPSULE (Increases length first, then height) */}
+      <IndustriesMegaMenu open={isIndustriesOpen} onClose={() => setIsIndustriesOpen(false)} />
+
       {/* MOBILE FLOATING HEADER */}
       <div className="flex md:hidden items-center justify-between w-full bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl px-3.5 py-2 shadow-xl shadow-purple-950/10">
         {/* Left: Menu Trigger */}
@@ -259,7 +272,7 @@ export default function Navbar() {
             />
           </span>
           <span id="mobile-menu-text" className="text-sm font-semibold tracking-tight text-white select-none">
-            {isMobileMenuOpen ? "Close" : "Menu"}
+            {isMobileMenuOpen ? "Close" : ""}
           </span>
         </button>
 
@@ -313,6 +326,35 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const isActive = effectiveActiveSection === link.id;
 
+            if (link.id === "industries") {
+              return (
+                <div
+                  key={link.id}
+                  className="relative industries-nav-container"
+                >
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setIsIndustriesOpen(true);
+                      setIsFeaturesHovered(false);
+                    }}
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all cursor-pointer ${
+                      isActive || isIndustriesOpen
+                        ? "bg-[#8077EC] text-white shadow-sm font-bold"
+                        : "text-white/85 hover:text-white hover:bg-white/10"
+                    }`}
+                    aria-expanded={isIndustriesOpen}
+                    aria-haspopup="true"
+                  >
+                    <OsmoRoll>{link.label}</OsmoRoll>
+                    <ChevronDown className="w-3.5 h-3.5 opacity-80" />
+                  </button>
+                </div>
+              );
+            }
+
             if (link.id === "the-features") {
               return (
                 <div
@@ -352,22 +394,22 @@ export default function Navbar() {
                         : "opacity-0 -translate-y-2 pointer-events-none"
                     }`}
                   >
-                    <div className="bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-[0_24px_50px_-10px_rgba(0,0,0,0.18)] rounded-2xl p-4 text-slate-800">
+                    <div className="bg-[#17141f]/95 backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/60 rounded-2xl p-4 text-[#f4f2f8]">
                       {/* Header Badge */}
-                      <div className="flex items-center justify-between pb-3 mb-2 border-b border-slate-100">
+                      <div className="flex items-center justify-between pb-3 mb-2 border-b border-white/10">
                         <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-[#8077EC] animate-pulse" />
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#a9a3bd]">
                             Business Operations Suite
                           </span>
                         </div>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100/80 text-emerald-700 border border-emerald-200/60">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
                           100% Free Forever
                         </span>
                       </div>
 
                       {/* 2-Column Grid */}
-                      <div className="grid grid-cols-2 gap-1.5">
+                      <div className="grid grid-cols-2 gap-2">
                         {FEATURE_ITEMS.map((item) => {
                           const IconComponent = item.icon;
                           if (item.href) {
@@ -381,7 +423,7 @@ export default function Navbar() {
                                   setIsMobileMenuOpen(false);
                                   if (item.href) navigateWithTransition(item.href);
                                 }}
-                                className="group/item flex items-start gap-3 p-2.5 rounded-xl hover:bg-purple-50/70 border border-transparent hover:border-purple-100/80 transition-all text-left w-full cursor-pointer"
+                                className="group/item flex items-start gap-3 p-3 rounded-xl border border-[#2e2a3d] bg-[#211d2e] hover:border-[#4a4466] hover:bg-[#282336] transition-all text-left w-full cursor-pointer"
                               >
                                 <div
                                   className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${item.bgLight} ${item.color} ${item.bgHover} group-hover/item:text-white transition-all shadow-xs`}
@@ -389,13 +431,13 @@ export default function Navbar() {
                                   <IconComponent className="w-4 h-4 transition-transform group-hover/item:scale-110" />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                  <div className="text-xs font-bold text-slate-800 group-hover/item:text-[#8077EC] flex items-center justify-between transition-colors">
+                                  <div className="text-xs font-semibold text-[#f4f2f8] group-hover/item:text-[#e3b5d8] flex items-center justify-between transition-colors">
                                     <span>{item.title}</span>
-                                    <span className="text-[9px] font-semibold text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200/60">
+                                    <span className="text-[9px] font-semibold text-[#e3b5d8] bg-white/10 px-1.5 py-0.5 rounded border border-white/15">
                                       View Page →
                                     </span>
                                   </div>
-                                  <p className="text-[11px] text-slate-500 leading-snug line-clamp-2 mt-0.5">
+                                  <p className="text-[11px] text-[#a9a3bd] leading-snug line-clamp-2 mt-0.5">
                                     {item.description}
                                   </p>
                                 </div>
@@ -408,7 +450,7 @@ export default function Navbar() {
                               key={item.title}
                               type="button"
                               onClick={(e) => handleFeatureClick(e, item.cardIndex, item.href)}
-                              className="group/item flex items-start gap-3 p-2.5 rounded-xl hover:bg-purple-50/70 border border-transparent hover:border-purple-100/80 transition-all text-left w-full cursor-pointer"
+                              className="group/item flex items-start gap-3 p-3 rounded-xl border border-[#2e2a3d] bg-[#211d2e] hover:border-[#4a4466] hover:bg-[#282336] transition-all text-left w-full cursor-pointer"
                             >
                               <div
                                 className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${item.bgLight} ${item.color} ${item.bgHover} group-hover/item:text-white transition-all shadow-xs`}
@@ -416,10 +458,10 @@ export default function Navbar() {
                                 <IconComponent className="w-4 h-4 transition-transform group-hover/item:scale-110" />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <div className="text-xs font-bold text-slate-800 group-hover/item:text-[#8077EC] flex items-center justify-between transition-colors">
+                                <div className="text-xs font-semibold text-[#f4f2f8] group-hover/item:text-[#e3b5d8] flex items-center justify-between transition-colors">
                                   <span>{item.title}</span>
                                 </div>
-                                <p className="text-[11px] text-slate-500 leading-snug line-clamp-2 mt-0.5">
+                                <p className="text-[11px] text-[#a9a3bd] leading-snug line-clamp-2 mt-0.5">
                                   {item.description}
                                 </p>
                               </div>
@@ -429,19 +471,19 @@ export default function Navbar() {
                       </div>
 
                       {/* Bottom Footer Bar */}
-                      <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs bg-slate-50/90 -mx-4 -mb-4 px-4 py-2.5 rounded-b-2xl">
+                      <div className="mt-3 pt-3 border-t border-[#2e2a3d] flex items-center justify-between text-xs bg-[#1a1624] -mx-4 -mb-4 px-4 py-2.5 rounded-b-2xl">
                         <button
                           type="button"
                           onClick={(e) => handleFeatureClick(e, 6)}
-                          className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-600 hover:text-cyan-700 transition-colors cursor-pointer"
+                          className="flex items-center gap-1.5 text-[11px] font-semibold text-[#a9a3bd] hover:text-[#f4f2f8] transition-colors cursor-pointer"
                         >
-                          <Truck className="w-3.5 h-3.5 text-cyan-600" />
+                          <Truck className="w-3.5 h-3.5 text-cyan-400" />
                           <span>Trip &amp; Fleet Logistics</span>
                         </button>
                         <button
                           type="button"
                           onClick={(e) => handleFeatureClick(e, -1)}
-                          className="flex items-center gap-1 text-[11px] font-bold text-[#8077EC] hover:text-purple-700 transition-colors cursor-pointer"
+                          className="flex items-center gap-1 text-[11px] font-bold text-[#e3b5d8] hover:underline transition-colors cursor-pointer"
                         >
                           <span>Explore Interactive Tour</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -506,6 +548,38 @@ export default function Navbar() {
         <div id="mobile-nav-content" className="p-4 sm:p-5 flex flex-col gap-1 text-sm font-semibold text-white/95">
           {navLinks.map((link) => {
             const isActive = effectiveActiveSection === link.id;
+
+            if (link.id === "industries") {
+              return (
+                <div key={link.id} className="flex flex-col">
+                  {/* Full Row Click Event for Industries on Mobile */}
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileIndustriesOpen((prev) => !prev)}
+                    className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl hover:bg-white/15 text-white/90 hover:text-white transition-all text-left cursor-pointer"
+                  >
+                    <span className="font-semibold text-white/95">{link.label}</span>
+                    <span className="flex items-center gap-1.5 text-xs text-white/70">
+                      <span className="text-[11px] font-medium opacity-80">
+                        {isMobileIndustriesOpen ? "Hide" : "12 Solutions"}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isMobileIndustriesOpen ? "rotate-180 text-white" : "text-white/80"
+                        }`}
+                      />
+                    </span>
+                  </button>
+
+                  {/* Expanded Mobile Industries Submenu */}
+                  {isMobileIndustriesOpen && (
+                    <div className="py-1 my-1">
+                      <IndustriesMobileList onNavigate={() => setIsMobileMenuOpen(false)} />
+                    </div>
+                  )}
+                </div>
+              );
+            }
 
             if (link.id === "the-features") {
               return (

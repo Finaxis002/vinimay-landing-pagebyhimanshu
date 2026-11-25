@@ -11,6 +11,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import DriftingGlassCards from "@/components/common/DriftingGlassCards";
+import ArcHeading from "@/components/common/ArcHeading";
 
 /* ------------------------------------------------------------------ */
 /* Number Animator Helper (DOM-direct via GSAP to prevent re-renders)  */
@@ -150,20 +151,28 @@ export default function WhatIsVinimay() {
 
       <div className="w-full mx-auto relative z-10">
         {/* Header Title & Subtitle */}
-        <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-xs font-extrabold uppercase tracking-widest mb-4 backdrop-blur-md shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>ALL-IN-ONE PLATFORM</span>
+        <div className="relative max-w-3xl mx-auto text-center mb-14 sm:mb-20">
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-xs font-extrabold uppercase tracking-widest mb-4 backdrop-blur-md shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>ALL-IN-ONE PLATFORM</span>
+            </div>
+
+            <div>
+              <ArcHeading
+                as="h2"
+                className="text-5xl sm:text-7xl lg:text-8xl text-white tracking-tight leading-tight mb-4 drop-shadow-sm font-bold"
+                itemClassName="text-white"
+              >
+                What is Vinimay?
+              </ArcHeading>
+            </div>
+
+            <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-normal drop-shadow-xs">
+              Vinimay is free accounting and billing software. Send GST and VAT invoices,
+              take payments at the counter, and bill on WhatsApp—all in one app.
+            </p>
           </div>
-
-          <h2 className="text-5xl sm:text-7xl lg:text-8xl text-white tracking-tight leading-tight mb-4 drop-shadow-sm font-bold">
-            What is Vinimay?
-          </h2>
-
-          <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-normal drop-shadow-xs">
-            Vinimay is free accounting and billing software. Send GST and VAT invoices,
-            take payments at the counter, and bill on WhatsApp—all in one app.
-          </p>
         </div>
 
         {/* Central Showcase Stage */}

@@ -31,18 +31,18 @@ export const INDUSTRY_DATA: Record<string, IndustryData> = {
     id: "gyms",
     title: "Gyms & Fitness & Member Billing",
     subtitle:
-      "Connect physical turnstile barrier gates directly to member expiry dates. Eliminate unpaid walk-ins and compute trainer payouts in 1 click.",
+      "Fast front-desk short member code attendance punch connected directly to member expiry dates. Eliminate unpaid walk-ins and compute trainer payouts in 1 click.",
     cta: "Explore Gym Module",
     bullets: [
-      "Direct gym-turnstile-bridge hardware integration",
-      "Automated barrier lock on membership expiry",
+      "Rapid 3 or 4-digit short member code attendance",
+      "Instant visual alert on expired or frozen membership",
       "UPI autopay & recurring subscription billing",
       "1-click trainer commission payouts",
     ],
-    previewTitle: "Gym Turnstile & Attendance Screen",
+    previewTitle: "Gym Member Code & Attendance Screen",
     statValue: "100%",
     statDesc:
-      "Elimination of unauthorized gym entries overnight with automated RFID barrier gate synchronization.",
+      "Elimination of unrecorded gym visits with rapid 0.5s short member code attendance.",
   },
   transport: {
     id: "transport",

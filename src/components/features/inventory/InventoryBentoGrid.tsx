@@ -10,6 +10,7 @@ import {
   RefreshCw,
   TrendingUp,
 } from "lucide-react";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function InventoryBentoGrid() {
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>("main");
@@ -20,9 +21,12 @@ export default function InventoryBentoGrid() {
         <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-[#7552da] bg-[#7552da]/10 px-3 py-1.5 rounded-full mb-3">
           Inventory Intelligence
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        <ArcHeading
+          as="h2"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight"
+        >
           Everything You Need to Run Lean, Zero-Waste Stock
-        </h2>
+        </ArcHeading>
         <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
           Smart reorder points, warehouse transfers, barcode lookups, and real-time inventory valuation designed for growing operations.
         </p>

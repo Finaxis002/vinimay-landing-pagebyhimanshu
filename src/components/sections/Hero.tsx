@@ -110,19 +110,11 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.from("#hero-badge", { scale: 0.8, opacity: 0, duration: 0.5 })
-        .from("#hero-title", { y: 40, opacity: 0, duration: 0.9 }, "-=0.2")
-        .from("#hero-ctas", { y: 20, opacity: 0, duration: 0.6 }, "-=0.4")
-        .from("#hero-trust", { opacity: 0, duration: 0.6 }, "-=0.3");
-
-      // Grounded & stable on all devices (no floating, no mouse tilt, no scroll floating)
-      gsap.set(laptop, {
-        rotationX: 0,
-        rotationY: 0,
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        clearProps: "transformPerspective",
-      });
+        .from("#hero-title", { y: 40, opacity: 0, duration: 0.9, delay: 3 }, "-=0.2")
+        .from("#hero-ctas", { y: 20, opacity: 0, duration: 0.6 ,  }, "-=0.4")
+        .from("#hero-trust", { opacity: 0, duration: 0.6 }, "-=0.3")
+        .from(laptop, {y: 40, opacity: 0, duration: 0.6 }, "-=0.3");
+      
     }, hero);
 
     return () => ctx.revert();
@@ -168,13 +160,13 @@ export default function Hero() {
           {/* Hero Main Heading */}
           <h1
             id="hero-title"
-            className="hero-title text-3xl sm:text-6xl lg:text-8xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-[1.15] sm:leading-[1.12] z-10"
+            className="hero-title text-3xl sm:text-6xl lg:text-[80px] font-semibold text-white tracking-tight max-w-4xl mx-auto leading-[1.15] sm:leading-[1.01] z-10"
           >
-            <span className="block font-handwritten">All that your business need</span>
+            <span className="block font-heading">All that your business need</span>
             <span className="block font-handwritten text-white/95 mt-1 sm:mt-2">
               for 100%{" "}
               <span className="free-pill">
-                <span className="free-text">FREE</span>
+                <span className="free-text  lg:text-[100px]">FREE</span>
               </span>
               ?
             </span>
@@ -364,7 +356,10 @@ export default function Hero() {
       >
         <div className="max-w-6xl mx-auto text-center">
           <div className="max-w-3xl mx-auto mb-14 sm:mb-16">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+            <h2
+              key={activeTabKey}
+              className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4 transition-all duration-300"
+            >
               {activeTab.heading}
             </h2>
             <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-6">

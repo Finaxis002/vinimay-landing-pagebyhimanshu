@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { TESTIMONIALS } from "@/content/testimonials";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export default function Testimonials() {
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -22,11 +23,12 @@ export default function Testimonials() {
       {/* Header */}
       <div className="flex items-end justify-between mb-10 sm:mb-14 max-w-6xl mx-auto">
         <div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl  text-slate-900 tracking-tight leading-tight">
-            Hear from our
-            <br />
-            clients
-          </h2>
+          <ArcHeading
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight"
+          >
+            Hear from our clients
+          </ArcHeading>
         </div>
 
         {/* Navigation Arrows */}

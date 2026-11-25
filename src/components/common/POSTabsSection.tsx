@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { OsmoRoll } from "./OsmoRoll";
 import gsap from "gsap";
+import ArcHeading from "@/components/common/ArcHeading";
 
 export interface POSTabItem {
   id: string;
@@ -186,9 +187,12 @@ export default function POSTabsSection() {
             <Zap className="w-4 h-4 text-[#877EFC]" />
             <span>SUB-SECOND COUNTER PERFORMANCE</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight ">
+          <ArcHeading
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-tight font-bold"
+          >
             What makes Vinimay POS lightning fast
-          </h2>
+          </ArcHeading>
         </div>
 
         {/* Tab Navigation Bar - Styled matching reference design with vertical dividers & sliding indicator */}
