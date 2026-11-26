@@ -137,10 +137,10 @@ export default function FeaturePageLayout({
 
       {/* HERO SECTION CONTAINER */}
       <div className="relative z-20 w-full mx-auto">
-        {/* Purple Hero Backdrop - Exact Match to Loader.tsx Curve Height */}
+        {/* Purple Hero Backdrop - Adapts to content on mobile, full 100dvh on desktop */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-screen h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
+          className="absolute inset-x-0 top-0 h-full md:h-screen md:h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
           style={{ borderRadius: CURVE }}
         >
           {/* Reusable Living WebGL Wave Canvas & Silk Sheen */}
@@ -151,15 +151,15 @@ export default function FeaturePageLayout({
           ref={heroRef}
           className={`relative z-10 w-full text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center ${
             screenComponent
-              ? "h-screen h-[100dvh] md:h-auto justify-center md:justify-start pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-12 sm:pb-16 md:pb-0 overflow-hidden md:overflow-visible"
-              : "h-screen h-[100dvh] justify-center pt-16 pb-16 overflow-hidden"
+              ? "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-0 md:justify-start overflow-hidden md:overflow-visible md:pt-24 lg:pt-28"
+              : "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-20 justify-center overflow-hidden md:h-screen md:h-[100dvh]"
           }`}
         >
           <div
             className={`relative z-10 w-full flex flex-col items-center ${
               screenComponent
-                ? "max-w-5xl shrink-0 my-auto md:my-0"
-                : "max-w-4xl justify-center py-6 sm:py-8"
+                ? "max-w-5xl shrink-0 my-0"
+                : "max-w-4xl justify-center my-0 md:my-auto py-4 sm:py-6"
             }`}
           >
             {/* Pill Badge */}
@@ -255,8 +255,8 @@ export default function FeaturePageLayout({
         id="content-start"
         className={`w-full relative z-10 ${
           screenComponent
-            ? "pt-12 sm:pt-16 md:pt-48 lg:pt-56"
-            : "pt-12 sm:pt-16"
+            ? "pt-8 sm:pt-10 md:pt-48 lg:pt-56"
+            : "pt-8 sm:pt-10 md:pt-16"
         }`}
       >
         {children}

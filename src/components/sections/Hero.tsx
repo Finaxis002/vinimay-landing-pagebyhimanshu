@@ -73,9 +73,10 @@ export default function Hero() {
     [activeTabKey]
   );
 
-  // Self-animation: Auto-play cycling through tabs every 4 seconds
+  // Self-animation: Auto-play cycling through tabs every 4 seconds (Desktop Only)
   useEffect(() => {
     if (isPaused) return;
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
     const interval = setInterval(() => {
       setActiveTabKey((prevKey) => {
@@ -212,10 +213,10 @@ export default function Hero() {
   return (
     <>
       <div className="relative z-20 w-full mx-auto">
-        {/* Purple Hero Backdrop - EXACT MATCH to Loader.tsx dimensions and shape */}
+        {/* Purple Hero Backdrop - Adapts to content on mobile, full 100dvh on desktop */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-screen h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
+          className="absolute inset-x-0 top-0 h-full md:h-screen md:h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
           style={{ borderRadius: CURVE }}
         >
           {/* WebGL 3D Wave Canvas */}
@@ -231,10 +232,10 @@ export default function Hero() {
         <section
           id="hero"
           ref={heroRef}
-          className="relative z-10 w-full h-screen h-[100dvh] md:h-auto text-white flex flex-col items-center justify-center md:justify-start text-center px-4 sm:px-6 md:px-8 pt-16 sm:pt-20 md:pt-26 pb-12 sm:pb-16 md:pb-0 overflow-hidden md:overflow-visible"
+          className="relative z-10 w-full text-white flex flex-col items-center text-center px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-26 pb-14 sm:pb-18 md:pb-0 md:justify-start overflow-hidden md:overflow-visible"
         >
-          {/* Content Group (Vertically centered on mobile within 100dvh) */}
-          <div className="w-full flex flex-col items-center my-auto md:my-0 md:shrink-0 max-w-5xl mx-auto">
+          {/* Content Group */}
+          <div className="w-full flex flex-col items-center my-0 md:shrink-0 max-w-5xl mx-auto">
             {/* Top Pill Announcement Badge */}
             <div
               id="hero-badge"
@@ -476,7 +477,7 @@ export default function Hero() {
       {/* LAPTOP SHOWCASE & TRUSTED BY CLIENTS STRIP */}
       <section
         id="laptop-showcase"
-        className="relative bg-white text-slate-900 pt-16 sm:pt-20 md:pt-56 lg:pt-64 pb-20 px-4 sm:px-6 border-b border-slate-100 z-10"
+        className="relative bg-white text-slate-900 pt-8 sm:pt-12 md:pt-56 lg:pt-64 pb-20 px-4 sm:px-6 border-b border-slate-100 z-10"
       >
         <div className="max-w-6xl mx-auto text-center">
           <div className="max-w-3xl mx-auto mb-14 sm:mb-16">

@@ -48,6 +48,7 @@ function BrandCard({ brand, hidden }: { brand: BrandItem; hidden?: boolean }) {
         alt={hidden ? "" : brand.name}
         width={110}
         height={70}
+        loading="lazy"
         className="w-auto h-auto max-w-[80%] max-h-[80%] object-contain  opacity-70 transition duration-200 group-hover:grayscale-0 group-hover:opacity-100"
       />
     </div>

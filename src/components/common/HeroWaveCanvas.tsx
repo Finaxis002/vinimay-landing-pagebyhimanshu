@@ -144,9 +144,17 @@ gl_FragColor = vec4(color, 1.0);
 
     function parseColor(str: string): [number, number, number] {
       if (typeof document === "undefined") return [0.5, 0.46, 0.92];
+      const clean = str.trim() || "#8077EC";
+      // Fast path for 6-digit hex to avoid DOM reflow
+      if (clean.startsWith("#") && clean.length === 7) {
+        const r = parseInt(clean.slice(1, 3), 16) / 255;
+        const g = parseInt(clean.slice(3, 5), 16) / 255;
+        const b = parseInt(clean.slice(5, 7), 16) / 255;
+        if (!isNaN(r) && !isNaN(g) && !isNaN(b)) return [r, g, b];
+      }
       try {
         const dummy = document.createElement("div");
-        dummy.style.color = str.trim() || "#8077EC";
+        dummy.style.color = clean;
         document.body.appendChild(dummy);
         const comp = getComputedStyle(dummy).color;
         document.body.removeChild(dummy);
@@ -179,7 +187,8 @@ gl_FragColor = vec4(color, 1.0);
 
     function resize() {
       if (!gl || !canvas || !hero) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const isMobile = window.innerWidth < 768;
+      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
       const width = hero.clientWidth;
       const height = hero.clientHeight;
       const w = Math.max(1, Math.floor(width * dpr));
