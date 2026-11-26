@@ -149,17 +149,17 @@ export default function FeaturePageLayout({
 
         <header
           ref={heroRef}
-          className={`relative z-10 w-full text-white text-center px-3 sm:px-6 md:px-8 flex flex-col items-center overflow-hidden ${
+          className={`relative z-10 w-full text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center ${
             screenComponent
-              ? "pt-20 sm:pt-24 md:pt-26"
-              : "h-screen h-[100dvh] justify-center pt-16 pb-16"
+              ? "h-screen h-[100dvh] md:h-auto justify-center md:justify-start pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-12 sm:pb-16 md:pb-0 overflow-hidden md:overflow-visible"
+              : "h-screen h-[100dvh] justify-center pt-16 pb-16 overflow-hidden"
           }`}
         >
           <div
             className={`relative z-10 w-full flex flex-col items-center ${
               screenComponent
-                ? "max-w-5xl shrink-0"
-                : "max-w-5xl my-auto justify-center py-4 sm:py-6"
+                ? "max-w-5xl shrink-0 my-auto md:my-0"
+                : "max-w-4xl justify-center py-6 sm:py-8"
             }`}
           >
             {/* Pill Badge */}
@@ -179,8 +179,8 @@ export default function FeaturePageLayout({
             <h1
               className={`font-black tracking-tight mx-auto px-2 ${
                 screenComponent
-                  ? "text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] sm:leading-[1.06] max-w-4xl mt-1 mb-1.5 sm:mb-2"
-                  : "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.08] sm:leading-[1.02] max-w-5xl mb-4 sm:mb-6"
+                  ? "text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] sm:leading-[1.06] max-w-4xl mt-1 mb-2 sm:mb-3"
+                  : "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] sm:leading-[1.04] max-w-5xl mb-4 sm:mb-6"
               }`}
             >
               <span className="block overflow-hidden py-0.5">
@@ -195,8 +195,8 @@ export default function FeaturePageLayout({
               <p
                 className={`feature-lead-reveal text-white/95 font-normal mx-auto leading-relaxed px-2 will-change-transform ${
                   screenComponent
-                    ? "text-xs sm:text-sm md:text-base max-w-2xl mb-2.5 sm:mb-3.5"
-                    : "text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mb-6 sm:mb-8"
+                    ? "text-xs sm:text-sm md:text-base max-w-2xl mb-3 sm:mb-4"
+                    : "text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mb-6 sm:mb-8 text-white/90"
                 }`}
               >
                 {lead}
@@ -208,8 +208,8 @@ export default function FeaturePageLayout({
               <div
                 className={`flex flex-wrap items-center justify-center max-w-3xl mx-auto ${
                   screenComponent
-                    ? "gap-1.5 sm:gap-2 mb-2 sm:mb-3"
-                    : "gap-2.5 sm:gap-3.5 mb-4 sm:mb-6"
+                    ? "gap-1.5 sm:gap-2 mb-2 sm:mb-4"
+                    : "gap-2.5 sm:gap-3.5 mb-6 sm:mb-8"
                 }`}
               >
                 {trustChips.map((chip, idx) => (
@@ -227,9 +227,22 @@ export default function FeaturePageLayout({
               </div>
             )}
 
-            {/* Reusable Desktop Screen / Mockup Container */}
+            {/* In-Hero Action Button for Screenless Pages (smooth scroll to content) */}
+            {!screenComponent && (
+              <div className="mt-2 sm:mt-4 flex items-center justify-center">
+                <a
+                  href="#content-start"
+                  className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 rounded-full bg-white text-primary font-bold text-xs sm:text-sm shadow-lg hover:bg-white/95 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+                >
+                  <span>Explore Solutions</span>
+                  <span className="text-sm sm:text-base animate-bounce">↓</span>
+                </a>
+              </div>
+            )}
+
+            {/* Reusable Desktop Screen / Mockup Container (Desktop Only, Hidden on Mobile just like Hero) */}
             {screenComponent && (
-              <div className="feature-screen-reveal w-full mt-4 sm:mt-6 relative z-30 -mb-28 sm:-mb-36 md:-mb-52 lg:-mb-60 will-change-transform">
+              <div className="hidden md:block feature-screen-reveal w-full mt-6 sm:mt-8 md:mt-10 relative z-30 -mb-28 sm:-mb-36 md:-mb-48 lg:-mb-56 will-change-transform max-w-5xl mx-auto">
                 {screenComponent}
               </div>
             )}
@@ -239,8 +252,11 @@ export default function FeaturePageLayout({
 
       {/* Children Content (Story, Bento, Dashboard, CTA) */}
       <div
+        id="content-start"
         className={`w-full relative z-10 ${
-          screenComponent ? "pt-28 sm:pt-40 md:pt-56 lg:pt-64" : "pt-12 sm:pt-16"
+          screenComponent
+            ? "pt-12 sm:pt-16 md:pt-48 lg:pt-56"
+            : "pt-12 sm:pt-16"
         }`}
       >
         {children}
