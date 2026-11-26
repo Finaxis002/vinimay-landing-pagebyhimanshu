@@ -41,7 +41,7 @@ function BrandCard({ brand, hidden }: { brand: BrandItem; hidden?: boolean }) {
   return (
     <div
       title={hidden ? undefined : brand.name}
-      className="group flex-none w-28 h-20 sm:w-36 sm:h-24 lg:w-40 lg:h-28 rounded-xl sm:rounded-2xl bg-white border border-slate-200 flex items-center justify-center p-3 sm:p-4 select-none transition-colors duration-200 hover:border-purple-300"
+      className="group flex-none w-28 h-28 sm:w-36 sm:h-24 lg:w-40 lg:h-28 rounded-xl sm:rounded-2xl bg-white border border-slate-200 flex items-center justify-center p-3 sm:p-4 select-none transition-colors duration-200 hover:border-purple-300"
     >
       <Image
         src={brand.image}
@@ -49,7 +49,7 @@ function BrandCard({ brand, hidden }: { brand: BrandItem; hidden?: boolean }) {
         width={110}
         height={70}
         loading="lazy"
-        className="w-auto h-auto max-w-[80%] max-h-[80%] object-contain  opacity-70 transition duration-200 group-hover:grayscale-0 group-hover:opacity-100"
+        className="w-auto h-auto max-w-ful max-h-full object-contain  opacity-70 transition duration-200 group-hover:grayscale-0 group-hover:opacity-100"
       />
     </div>
   );
