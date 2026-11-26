@@ -201,7 +201,7 @@ export default function FeatureBannerScreen({
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
           </div>
-          <b className="text-[#7b5fd0] font-extrabold text-[11px] sm:text-xs">
+          <b className="text-primary font-extrabold text-[11px] sm:text-xs">
             {windowTitle}
           </b>
           <span className="text-slate-400 text-[10px] sm:text-[11px]">
@@ -221,7 +221,7 @@ export default function FeatureBannerScreen({
                 key={idx}
                 className={`shrink-0 text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full border transition-all ${
                   isDone
-                    ? "bg-[#7b5fd0]/10 border-[#7b5fd0] text-[#7b5fd0] font-semibold"
+                    ? "bg-primary/10 border-primary text-primary font-semibold"
                     : "border-slate-200 text-slate-400 font-medium"
                 }`}
               >
@@ -273,7 +273,7 @@ export default function FeatureBannerScreen({
                       <span className="col-span-5 sm:col-span-6 font-medium text-slate-800 truncate">
                         LED Monitor 24&quot;
                       </span>
-                      <span className="col-span-3 text-[10px] text-[#7b5fd0] text-center font-mono">
+                      <span className="col-span-3 text-[10px] text-primary text-center font-mono">
                         HSN 8528
                       </span>
                       <span className="col-span-1 text-center font-mono text-slate-500">
@@ -288,7 +288,7 @@ export default function FeatureBannerScreen({
                       <span className="col-span-5 sm:col-span-6 font-medium text-slate-800 truncate">
                         Wireless Keyboard
                       </span>
-                      <span className="col-span-3 text-[10px] text-[#7b5fd0] text-center font-mono">
+                      <span className="col-span-3 text-[10px] text-primary text-center font-mono">
                         HSN 8471
                       </span>
                       <span className="col-span-1 text-center font-mono text-slate-500">
@@ -303,7 +303,7 @@ export default function FeatureBannerScreen({
                       <span className="col-span-5 sm:col-span-6 font-medium text-slate-800 truncate">
                         Installation Service
                       </span>
-                      <span className="col-span-3 text-[10px] text-[#7b5fd0] text-center font-mono">
+                      <span className="col-span-3 text-[10px] text-primary text-center font-mono">
                         SAC 9987
                       </span>
                       <span className="col-span-1 text-center font-mono text-slate-500">
@@ -324,7 +324,7 @@ export default function FeatureBannerScreen({
                     <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
                       Tax Summary
                     </span>
-                    <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-[#7b5fd0]/10 text-[#7b5fd0]">
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">
                       GST 18%
                     </span>
                   </div>
@@ -338,11 +338,11 @@ export default function FeatureBannerScreen({
                     </div>
                     <div className="flex justify-between text-slate-500">
                       <span>CGST 9%</span>
-                      <span className="font-mono text-[#7b5fd0]">{cgstVal}</span>
+                      <span className="font-mono text-primary">{cgstVal}</span>
                     </div>
                     <div className="flex justify-between text-slate-500">
                       <span>SGST 9%</span>
-                      <span className="font-mono text-[#7b5fd0]">{sgstVal}</span>
+                      <span className="font-mono text-primary">{sgstVal}</span>
                     </div>
                     <div className="flex justify-between text-xs font-bold text-slate-900 pt-2 border-t border-slate-100">
                       <span>Total Amount</span>
@@ -352,7 +352,7 @@ export default function FeatureBannerScreen({
                     </div>
                   </div>
 
-                  <div className="mt-3 flex items-center gap-1.5 text-[11px] font-semibold text-[#7b5fd0] bg-[#7b5fd0]/10 rounded-lg px-2.5 py-1">
+                  <div className="mt-3 flex items-center gap-1.5 text-[11px] font-semibold text-primary bg-primary/10 rounded-lg px-2.5 py-1">
                     <FileText className="w-3.5 h-3.5" />
                     <span>INV-2041.pdf</span>
                   </div>
@@ -363,7 +363,7 @@ export default function FeatureBannerScreen({
                     className={`w-full py-2.5 rounded-lg text-center font-bold text-xs transition-all flex items-center justify-center gap-1.5 ${
                       isInvoiceDone
                         ? "bg-[#1fb487] text-white shadow-sm"
-                        : "bg-[#7b5fd0] text-white"
+                        : "bg-primary text-white"
                     }`}
                   >
                     {isInvoiceDone && <Check className="w-3.5 h-3.5" />}

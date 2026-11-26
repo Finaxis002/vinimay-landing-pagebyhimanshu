@@ -280,7 +280,7 @@ export default function GeneralWorkflowSteps() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-[#6B62D2] transition-colors mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-primary transition-colors mb-2">
                   {item.title}
                 </h3>
 

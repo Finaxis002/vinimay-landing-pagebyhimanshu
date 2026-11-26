@@ -277,7 +277,7 @@ export default function PosScrollStory({
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 pb-4 text-center">
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border border-purple-200/90 text-purple-700 text-xs font-bold tracking-wide uppercase mb-3 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#877EFC]" />
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span>Ultra-Fast Point of Sale Workflow</span>
           </div>
           <div>
@@ -352,7 +352,7 @@ export default function PosScrollStory({
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-[#7b5fd0]/20 via-transparent to-[#1fb487]/20 blur-xl"
+              className="pointer-events-none absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-primary/20 via-transparent to-[#1fb487]/20 blur-xl"
             />
 
             <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 bg-white shadow-[0_20px_50px_rgba(90,60,190,0.16)] transition-all">
@@ -401,12 +401,12 @@ export default function PosScrollStory({
                 {/* Step 2: Taxes */}
                 <Row on={active >= 2} className="py-2">
                   <span className="flex items-center gap-1.5">
-                    <span className="rounded bg-[#7b5fd0]/10 px-1.5 py-0.5 text-[10px] font-bold text-[#7b5fd0]">
+                    <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold text-primary">
                       GST 5%
                     </span>
                     CGST + SGST
                   </span>
-                  <span className="font-mono font-semibold text-[#7b5fd0]">₹35</span>
+                  <span className="font-mono font-semibold text-primary">₹35</span>
                 </Row>
 
                 {/* Step 2: Total */}
@@ -489,7 +489,7 @@ export default function PosScrollStory({
                     {step.description}
                   </p>
 
-                  <div className="pt-0.5 flex items-center justify-center md:justify-start gap-2 text-xs font-bold text-[#877EFC]">
+                  <div className="pt-0.5 flex items-center justify-center md:justify-start gap-2 text-xs font-bold text-primary">
                     <span>✓ Automated in 0.12s</span>
                     <span>•</span>
                     <span>ESC/POS Compliant</span>

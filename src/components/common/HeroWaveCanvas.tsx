@@ -29,6 +29,7 @@ export default function HeroWaveCanvas() {
       precision highp float;
       uniform vec2 u_res;
       uniform float u_time;
+      uniform vec3 u_color;
 
       float flagWave(vec2 p, float t) {
         float w1 = sin(p.x * 2.8 + p.y * 1.0 - t * 0.9) * 0.65;
@@ -58,9 +59,9 @@ export default function HeroWaveCanvas() {
         vec3 reflectDir = reflect(-lightDir, normal);
         float spec = pow(max(dot(reflectDir, viewDir), 0.0), 16.0) * 0.35;
 
-        vec3 colBase = vec3(0.502, 0.467, 0.925);
-        vec3 colShadow = vec3(0.38, 0.34, 0.78);
-        vec3 colHighlight = vec3(0.68, 0.65, 0.98);
+        vec3 colBase = u_color;
+        vec3 colShadow = u_color * 0.76;
+        vec3 colHighlight = mix(u_color, vec3(1.0), 0.35);
 
         vec3 color = mix(colShadow, colBase, smoothstep(-0.6, 0.2, h));
         color = mix(color, colHighlight, smoothstep(0.1, 0.75, h));
@@ -112,6 +113,29 @@ export default function HeroWaveCanvas() {
 
     const uRes = gl.getUniformLocation(prog, "u_res");
     const uTime = gl.getUniformLocation(prog, "u_time");
+    const uColor = gl.getUniformLocation(prog, "u_color");
+
+    function parseColor(str: string): [number, number, number] {
+      const s = str.trim();
+      if (s.startsWith("#")) {
+        const hex = s.slice(1);
+        if (hex.length === 6) {
+          return [
+            parseInt(hex.slice(0, 2), 16) / 255,
+            parseInt(hex.slice(2, 4), 16) / 255,
+            parseInt(hex.slice(4, 6), 16) / 255,
+          ];
+        }
+      }
+      return [0.502, 0.467, 0.925];
+    }
+
+    function updateColor() {
+      if (!gl) return;
+      const primary = getComputedStyle(document.documentElement).getPropertyValue("--primary") || "#8077EC";
+      const [r, g, b] = parseColor(primary);
+      gl.uniform3f(uColor, r, g, b);
+    }
 
     function resize() {
       if (!gl || !canvas || !hero) return;
@@ -126,6 +150,7 @@ export default function HeroWaveCanvas() {
       }
       gl.viewport(0, 0, w, h);
       gl.uniform2f(uRes, w, h);
+      updateColor();
     }
 
     resize();
@@ -177,7 +202,10 @@ export default function HeroWaveCanvas() {
     <canvas
       id="hero-waves"
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none rounded-none sm:rounded-[2.5rem] overflow-hidden"
+      className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden"
+      style={{
+        borderRadius: "0 0 50% 50% / 0 0 9vw 9vw",
+      }}
     />
   );
 }

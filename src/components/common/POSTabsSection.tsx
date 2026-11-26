@@ -184,7 +184,7 @@ export default function POSTabsSection() {
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-bold tracking-wide uppercase mb-4 shadow-2xs">
-            <Zap className="w-4 h-4 text-[#877EFC]" />
+            <Zap className="w-4 h-4 text-primary" />
             <span>SUB-SECOND COUNTER PERFORMANCE</span>
           </div>
           <ArcHeading
@@ -222,7 +222,7 @@ export default function POSTabsSection() {
 
               {/* Smooth Animated Sliding Indicator Line at the bottom */}
               <div
-                className="absolute bottom-0 h-1 bg-[#877EFC] transition-all duration-300 ease-out z-10 pointer-events-none rounded-full"
+                className="absolute bottom-0 h-1 bg-primary transition-all duration-300 ease-out z-10 pointer-events-none rounded-full"
                 style={{
                   left: `${indicatorStyle.left}px`,
                   width: `${indicatorStyle.width}px`,
@@ -243,7 +243,7 @@ export default function POSTabsSection() {
                 className="absolute -top-1 left-8 w-24 h-16 pointer-events-none opacity-40 -z-0"
                 style={{
                   backgroundImage:
-                    "radial-gradient(#877efc 1.5px, transparent 1.5px)",
+                    "radial-gradient(var(--primary) 1.5px, transparent 1.5px)",
                   backgroundSize: "8px 8px",
                 }}
               />
@@ -260,7 +260,7 @@ export default function POSTabsSection() {
             {/* Right Column: Title, Explanations & Bullet Points */}
             <div className="lg:col-span-6 space-y-5 lg:pl-4">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#877EFC] bg-purple-100/60 px-3 py-1 rounded-full border border-purple-200 inline-block mb-3">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-primary bg-primary-50 px-3 py-1 rounded-full border border-primary/20 inline-block mb-3">
                   {activeTab.badge}
                 </span>
                 <h3 className="text-2xl sm:text-3xl md:text-[32px] font-bold text-slate-900 tracking-tight leading-tight mb-3">
@@ -291,7 +291,7 @@ export default function POSTabsSection() {
                   href={activeTab.ctaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#877EFC] hover:bg-purple-700 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition-all active:scale-95 group cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition-all active:scale-95 group cursor-pointer"
                 >
                   <OsmoRoll>{activeTab.ctaText}</OsmoRoll>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

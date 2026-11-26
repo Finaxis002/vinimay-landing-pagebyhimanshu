@@ -6,7 +6,38 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Check } from "lucide-react";
 import WordmarkArc from "@/components/common/WordmarkArc";
+import {
+  FaLinkedinIn,
+  FaXTwitter,
+  FaInstagram,
+  FaFacebookF,
+  FaYoutube,
+} from "react-icons/fa6";
 
+// Replace the hrefs with your real profile URLs
+const SOCIAL_LINKS = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/vinimay",
+    Icon: FaLinkedinIn,
+  },
+  { name: "X (Twitter)", href: "https://x.com/vinimay", Icon: FaXTwitter },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/vinimay",
+    Icon: FaInstagram,
+  },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/vinimay",
+    Icon: FaFacebookF,
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@vinimay",
+    Icon: FaYoutube,
+  },
+];
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -57,7 +88,7 @@ export default function Footer() {
             once: true,
           },
         });
-      }
+      },
     );
 
     return () => {
@@ -172,78 +203,34 @@ export default function Footer() {
           {/* Newsletter Column */}
           <div className="max-w-[540px]" data-footer-reveal>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100/70 dark:bg-purple-950/60 border border-purple-200/80 dark:border-purple-800/80 text-purple-700 dark:text-purple-300 text-xs font-bold tracking-wide uppercase mb-3.5">
-              <span>GST &amp; Accounting Digest</span>
+              <span>Stay connected</span>
             </div>
+
             <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-2">
-              Subscribe to the Vinimay Newsletter
+              Follow Vinimay
             </h3>
             <p className="text-sm text-[#8e8c8d] dark:text-[#7d7a7b] leading-relaxed mb-6">
-              Get monthly updates on GST rule changes, invoice automation tips,
-              and new Vinimay feature drops directly to your inbox.
+              GST updates, invoice automation tips, and new feature
+              announcements, shared where you already read.
             </p>
 
-            <form onSubmit={handleSubscribe} className="grid gap-4" noValidate>
-              <div className="grid gap-2.5 sm:grid-cols-2">
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="First name"
-                  aria-label="First name"
-                  className="bg-[#ebebeb] dark:bg-[#252223] text-[#1f1d1e] dark:text-[#f2f0f0] rounded-[4px] px-4 py-3 text-[14.5px] outline-none border border-transparent focus:border-[#1f1d1e] dark:focus:border-white transition-colors placeholder:text-[#8e8c8d] dark:placeholder:text-[#7d7a7b]"
-                />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="yourname@email.com"
-                  aria-label="Email"
-                  required
-                  className="bg-[#ebebeb] dark:bg-[#252223] text-[#1f1d1e] dark:text-[#f2f0f0] rounded-[4px] px-4 py-3 text-[14.5px] outline-none border border-transparent focus:border-[#1f1d1e] dark:focus:border-white transition-colors placeholder:text-[#8e8c8d] dark:placeholder:text-[#7d7a7b]"
-                />
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
-                <label className="flex items-center gap-3 text-[14px] cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={agreed}
-                    onChange={(e) => setAgreed(e.target.checked)}
-                    className="sr-only"
-                  />
-                  <span
-                    className={`grid h-7 w-7 place-items-center rounded-full transition-colors border ${
-                      agreed
-                        ? "bg-[#1f1d1e] dark:bg-white text-white dark:text-[#1f1d1e] border-transparent"
-                        : "bg-[#ebebeb] dark:bg-[#252223] border-slate-300 dark:border-slate-700 text-transparent"
-                    }`}
+            <ul className="flex flex-wrap items-center gap-3 list-none p-0 m-0">
+              {SOCIAL_LINKS.map(({ name, href, Icon }) => (
+                <li key={name}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={name}
+                    title={name}
+                    className="grid h-11 w-11 place-items-center rounded-full bg-[#ebebeb] dark:bg-[#252223] text-[#1f1d1e] dark:text-[#f2f0f0] border border-slate-300 dark:border-slate-700 transition-colors hover:bg-[#1f1d1e] hover:text-white hover:border-transparent dark:hover:bg-white dark:hover:text-[#161415] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
                   >
-                    <Check className="w-3.5 h-3.5 stroke-[3]" />
-                  </span>
-                  <span className="text-xs sm:text-[13px] text-[#8e8c8d] dark:text-[#7d7a7b]">
-                    I agree to the{" "}
-                    <a
-                      href="https://vinimay.sharda.co.in/knowledge-base"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline underline-offset-2 text-[#1f1d1e] dark:text-white"
-                    >
-                      Privacy Policy
-                    </a>
-                  </span>
-                </label>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="bg-[#1f1d1e] text-white dark:bg-white dark:text-[#161415] rounded-[4px] px-5 py-2.5 text-[14.5px] font-semibold active:scale-95 transition-all self-start sm:self-auto shadow-sm hover:opacity-90"
-                >
-                  {btnText}
-                </button>
-              </div>
-            </form>
+                    <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-
           {/* Links Grid & Quick Buttons */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10">
             {/* Column 1: Product */}
@@ -392,7 +379,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="rounded-r-full px-5 py-2.5 text-[14px] font-semibold text-white bg-emerald-500 hover:bg-emerald-800 active:scale-95 transition-all shadow-sm"
                 >
-                  Create Free Account 
+                  Create Free Account
                 </a>
               </div>
 
@@ -406,7 +393,9 @@ export default function Footer() {
                   aria-label="LinkedIn"
                   title="LinkedIn"
                 >
-                  <span className="text-[14px] font-extrabold leading-none">in</span>
+                  <span className="text-[14px] font-extrabold leading-none">
+                    in
+                  </span>
                 </a>
                 <a
                   href="https://instagram.com"

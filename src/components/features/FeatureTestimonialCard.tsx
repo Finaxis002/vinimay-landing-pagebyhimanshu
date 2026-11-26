@@ -1,129 +1,97 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
-import { Star, CheckCircle2, Quote } from "lucide-react";
 
 export interface FeatureTestimonialProps {
-  featureName: string;
-  metricBadge: string;
-  metricHighlight: string;
+  featureName?: string;
+  metricBadge?: string;
+  metricHighlight?: string;
   quote: string;
+  authorName?: string;
   authorRole: string;
   companyName: string;
-  businessScale: string;
+  businessScale?: string;
   gradientAccent?: string;
+  avatarSrc?: string;
 }
 
 export default function FeatureTestimonialCard({
-  featureName,
-  metricBadge,
-  metricHighlight,
   quote,
   authorRole,
   companyName,
-  businessScale,
-  gradientAccent = "from-purple-600 via-indigo-600 to-violet-700",
+  authorName = "Himanshu Dhammeriya",
+  avatarSrc = "/testimonials/himanshu.jpg",
 }: FeatureTestimonialProps) {
+  const authorSubtitle = companyName
+    ? `${authorRole} at ${companyName}`
+    : authorRole;
+
   return (
-    <section className="w-full py-12 sm:py-20 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        {/* Main Card with ambient backlight & layered gradient border */}
-        <div className="relative rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 md:p-12 bg-white/90 backdrop-blur-xl border border-slate-200/90 shadow-[0_20px_60px_-15px_rgba(109,40,217,0.12)] overflow-hidden transition-all duration-300 hover:shadow-[0_25px_70px_-15px_rgba(109,40,217,0.18)]">
-          {/* Subtle Ambient Radial Glows */}
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-purple-400/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
-
-          {/* Background Decorative Quote Mark */}
-          <Quote
-            className="absolute top-6 right-6 sm:top-10 sm:right-10 w-20 h-20 sm:w-28 sm:h-28 text-purple-600/[0.06] pointer-events-none"
-            strokeWidth={1.5}
-          />
-
-          {/* Top Row: Ratings, Eyebrow & Live Metric */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 relative z-10">
-            {/* Stars & Category */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400 drop-shadow-xs"
-                  />
-                ))}
-              </div>
-              <span className="text-xs sm:text-sm font-bold text-slate-800">
-                5.0 Verified Review
-              </span>
-              <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-slate-300" />
-              <span className="hidden sm:inline-block text-xs font-semibold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/60">
-                {featureName}
-              </span>
+    <section className="w-full py-16 sm:py-20 lg:py-24 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-14 xl:gap-16">
+          {/* Left Column: Opening Quote Mark & Wide Proportional Quote */}
+          <div className="flex-1 min-w-0">
+            {/* Opening quotation mark icon matching the reference design */}
+            <div className="mb-5 sm:mb-6 text-neutral-950">
+              <svg
+                className="w-7 h-7 sm:w-8 sm:h-8 text-neutral-950 fill-current"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M10 7c0-2.209-1.791-4-4-4S2 4.791 2 7c0 1.488.81 2.784 2 3.486V15c0 1.657 1.343 3 3 3h1v-2H7c-.552 0-1-.448-1-1v-4.514C8.79 9.784 10 8.488 10 7zm12 0c0-2.209-1.791-4-4-4s-4 1.791-4 4c0 1.488.81 2.784 2 3.486V15c0 1.657 1.343 3 3 3h1v-2h-1c-.552 0-1-.448-1-1v-4.514C20.79 9.784 22 8.488 22 7z" />
+              </svg>
             </div>
 
-            {/* Impact Metric Badge */}
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200/80 px-3.5 py-1.5 rounded-full shadow-2xs self-start sm:self-auto">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-xs font-bold text-slate-700">
-                {metricBadge}:
-              </span>
-              <span className={`text-xs font-extrabold bg-gradient-to-r ${gradientAccent} bg-clip-text text-transparent`}>
-                {metricHighlight}
-              </span>
-            </div>
+            {/* Testimonial Quote - Clean editorial typography that wraps naturally in 3-4 lines */}
+            <blockquote className="text-xl sm:text-2xl lg:text-[27px] xl:text-[28px] font-medium sm:font-semibold text-neutral-900 tracking-tight leading-[1.38] sm:leading-[1.32]">
+              {quote}
+            </blockquote>
           </div>
 
-          {/* Testimonial Quote */}
-          <blockquote className="relative z-10 mb-8 sm:mb-10">
-            <p className="text-base sm:text-lg md:text-xl text-slate-800 font-medium leading-relaxed sm:leading-relaxed tracking-tight">
-              &ldquo;{quote}&rdquo;
-            </p>
-          </blockquote>
-
-          {/* Author Profile Footer - Mobile Friendly */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-slate-100 relative z-10">
-            {/* Left: Avatar + Details */}
-            <div className="flex items-center gap-3.5 sm:gap-4">
-              {/* Photo with Glowing Gradient Ring */}
-              <div className="relative shrink-0">
-                <div className="w-13 h-13 sm:w-15 sm:h-15 rounded-2xl overflow-hidden ring-2 ring-purple-600/30 ring-offset-2 ring-offset-white shadow-md bg-purple-100">
-                  <Image
-                    src="/testimonials/himanshu.jpg"
-                    alt="Himanshu Dhammeriya"
-                    width={60}
-                    height={60}
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-                {/* Verified Checkmark Pill */}
-                <span
-                  className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-xs"
-                  title="Verified Business Owner"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 fill-emerald-50" />
-                </span>
+          {/* Right Column: Author Profile (sits naturally adjacent at the bottom) */}
+          <div className="flex items-center gap-3.5 shrink-0 lg:pb-1">
+            {/* Circular Avatar with Brand / Verified Badge */}
+            <div className="relative shrink-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-neutral-100 ring-1 ring-black/5">
+                <Image
+                  src={avatarSrc}
+                  alt={authorName}
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
 
-              {/* Name, Role & Company */}
-              <div>
-                <div className="flex items-center gap-2">
-                  <h4 className="font-extrabold text-slate-900 text-sm sm:text-base leading-snug">
-                    Himanshu Dhammeriya
-                  </h4>
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full">
-                    Verified Owner
-                  </span>
-                </div>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">
-                  {authorRole} • <span className="text-slate-700 font-semibold">{companyName}</span>
-                </p>
+              {/* Verified badge at bottom-right corner */}
+              <div
+                className="absolute -bottom-0.5 -right-0.5 w-4.5 h-4.5 bg-neutral-950 rounded-[4px] flex items-center justify-center text-white ring-2 ring-white shadow-2xs"
+                aria-hidden="true"
+              >
+                <svg
+                  className="w-2.5 h-2.5 text-white"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.5 6.2L4.8 8.5L9.5 3.5"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
             </div>
 
-            {/* Right: Business Scale Pill */}
-            <div className="self-start sm:self-auto flex items-center gap-2 bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-1.5 text-[11px] sm:text-xs font-semibold text-slate-600">
-              <span className="text-purple-600 font-black">⚡ Live Scale:</span>
-              <span className="font-bold text-slate-900">{businessScale}</span>
+            {/* Author Identity & Role */}
+            <div>
+              <h3 className="text-sm font-semibold text-neutral-900 tracking-tight leading-snug">
+                {authorName}
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-500 leading-snug mt-0.5 max-w-[220px] sm:max-w-none">
+                {authorSubtitle}
+              </p>
             </div>
           </div>
         </div>

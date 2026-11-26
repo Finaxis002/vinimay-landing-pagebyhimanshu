@@ -7,6 +7,10 @@ import FeaturePageLayout from "@/components/features/FeaturePageLayout";
 import FeatureBannerScreen from "@/components/features/FeatureBannerScreen";
 import ArcHeading from "@/components/common/ArcHeading";
 import IndustryWorkingMockup from "@/components/industries/IndustryWorkingMockup";
+import IndustryFaqSection from "@/components/industries/IndustryFaqSection";
+import IndustryBlogsSection from "@/components/industries/IndustryBlogsSection";
+import { getIndustryFaq } from "@/content/industryFaqData";
+import { getIndustryBlogs } from "@/content/industryBlogsData";
 import {
   Package,
   Boxes,
@@ -178,6 +182,8 @@ function PreviewBox({
 
 export default function IndustryPageTemplate({ data }: { data: IndustryPageData }) {
   const { hero, capabilities, workflow } = data;
+  const faqData = getIndustryFaq(data.id);
+  const blogsData = getIndustryBlogs(data.id);
 
   return (
     <>
@@ -187,7 +193,7 @@ export default function IndustryPageTemplate({ data }: { data: IndustryPageData 
         <FeaturePageLayout
           badge={hero.badge}
           title={hero.title}
-          lead={hero.lead}
+          // lead={hero.lead}
           trustChips={hero.trustChips}
           screenComponent={
             <FeatureBannerScreen
@@ -289,7 +295,7 @@ export default function IndustryPageTemplate({ data }: { data: IndustryPageData 
                         </span>
                       </div>
 
-                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-[#6B62D2] transition-colors mb-2">
+                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-primary transition-colors mb-2">
                         {step.title}
                       </h3>
 
@@ -307,6 +313,21 @@ export default function IndustryPageTemplate({ data }: { data: IndustryPageData 
               </div>
             </div>
           </section>
+
+          {/* Section 3: Industry Blogs & Resources Carousel (Stripe Style) */}
+          <IndustryBlogsSection
+            industryTitle={hero.badge}
+            data={blogsData}
+          />
+
+          {/* Section 4: Industry-Specific Frequently Asked Questions */}
+          <IndustryFaqSection
+            industryTitle={hero.badge}
+            badge={faqData.badge}
+            headline={faqData.headline}
+            subtitle={faqData.subtitle}
+            items={faqData.items}
+          />
         </FeaturePageLayout>
       </main>
 

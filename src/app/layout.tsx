@@ -43,7 +43,7 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="bg-mesh text-slate-800 font-sans antialiased selection:bg-[#6B62D2] selection:text-white min-h-screen overflow-x-clip"
+        className="bg-mesh text-slate-800 font-sans antialiased selection:bg-primary selection:text-white min-h-screen overflow-x-clip"
       >
         <ScrollToTop />
         <PageTransition>{children}</PageTransition>

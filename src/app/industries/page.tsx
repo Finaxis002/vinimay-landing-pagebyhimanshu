@@ -3,6 +3,8 @@ import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import FeaturePageLayout from "@/components/features/FeaturePageLayout";
 import AllIndustriesExplorer from "@/components/industries/AllIndustriesExplorer";
+import IndustryFaqSection from "@/components/industries/IndustryFaqSection";
+import { getIndustryFaq } from "@/content/industryFaqData";
 
 export const metadata: Metadata = {
   title: "All Industry Solutions – Dedicated Billing & Inventory Software | Vinimay",
@@ -23,6 +25,8 @@ export const metadata: Metadata = {
 };
 
 export default function IndustriesIndexPage() {
+  const allFaq = getIndustryFaq("all");
+
   return (
     <>
       <Navbar />
@@ -42,6 +46,15 @@ export default function IndustriesIndexPage() {
         >
           {/* Light Mode Grid Section */}
           <AllIndustriesExplorer />
+
+          {/* Industry Directory FAQ Section */}
+          <IndustryFaqSection
+            industryTitle="Industry Solutions"
+            badge={allFaq.badge}
+            headline={allFaq.headline}
+            subtitle={allFaq.subtitle}
+            items={allFaq.items}
+          />
         </FeaturePageLayout>
       </main>
 

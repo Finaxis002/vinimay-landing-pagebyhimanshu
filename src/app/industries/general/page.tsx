@@ -6,6 +6,10 @@ import FeatureBannerScreen from "@/components/features/FeatureBannerScreen";
 import IndustryWorkingMockup from "@/components/industries/IndustryWorkingMockup";
 import GeneralCapabilitiesGrid from "@/components/industries/general/GeneralCapabilitiesGrid";
 import GeneralWorkflowSteps from "@/components/industries/general/GeneralWorkflowSteps";
+import IndustryFaqSection from "@/components/industries/IndustryFaqSection";
+import IndustryBlogsSection from "@/components/industries/IndustryBlogsSection";
+import { getIndustryFaq } from "@/content/industryFaqData";
+import { getIndustryBlogs } from "@/content/industryBlogsData";
 
 export const metadata: Metadata = {
   title: "General Business Suite – Billing, Inventory & Accounts | Vinimay",
@@ -22,6 +26,9 @@ export const metadata: Metadata = {
 };
 
 export default function GeneralIndustryPage() {
+  const generalFaq = getIndustryFaq("general");
+  const generalBlogs = getIndustryBlogs("general");
+
   return (
     <>
       <Navbar />
@@ -57,6 +64,17 @@ export default function GeneralIndustryPage() {
         >
           <GeneralCapabilitiesGrid />
           <GeneralWorkflowSteps />
+          <IndustryBlogsSection
+            industryTitle="General Business & Retail"
+            data={generalBlogs}
+          />
+          <IndustryFaqSection
+            industryTitle="General Business & Retail"
+            badge={generalFaq.badge}
+            headline={generalFaq.headline}
+            subtitle={generalFaq.subtitle}
+            items={generalFaq.items}
+          />
         </FeaturePageLayout>
       </main>
 

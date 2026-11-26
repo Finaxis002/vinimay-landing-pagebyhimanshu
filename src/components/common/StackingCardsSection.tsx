@@ -390,7 +390,7 @@ function PinnedStageLayout({
                       {card.statBadge && (
                         <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-purple-950/90 backdrop-blur-md border border-purple-500/50 text-[10px] sm:text-[11px] font-bold text-purple-200 font-mono">
                           <span>{card.statBadge.label}:</span>
-                          <span className="text-[#877EFC]">
+                          <span className="text-primary">
                             {card.statBadge.value}
                           </span>
                         </div>
@@ -436,7 +436,7 @@ function PinnedStageLayout({
                   <ul className="space-y-2 pt-1 hidden sm:block">
                     {card.bullets.slice(0, 3).map((bullet, bIdx) => (
                       <li key={bIdx} className="flex items-start gap-2">
-                        <span className="w-4 h-4 rounded-full bg-purple-100 border border-purple-200 text-[#877EFC] flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="w-4 h-4 rounded-full bg-purple-100 border border-purple-200 text-primary flex items-center justify-center shrink-0 mt-0.5">
                           <CheckCircle2 className="w-3 h-3" />
                         </span>
                         <span className="text-xs text-slate-700 font-medium leading-relaxed">
@@ -645,7 +645,7 @@ function StickySplitLayout({
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-4 sm:pb-8 text-center">
         {sectionTag && (
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border border-purple-200/90 text-purple-700 text-xs font-bold tracking-wide uppercase mb-4 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#877EFC]" />
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span>{sectionTag}</span>
           </div>
         )}
@@ -700,7 +700,7 @@ function StickySplitLayout({
                       {card.statBadge && (
                         <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-950/85 backdrop-blur-md border border-purple-500/50 text-[11px] font-bold text-purple-200 font-mono">
                           <span>{card.statBadge.label}:</span>
-                          <span className="text-[#877EFC]">
+                          <span className="text-primary">
                             {card.statBadge.value}
                           </span>
                         </div>
@@ -746,7 +746,7 @@ function StickySplitLayout({
                   <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-900 text-white font-mono text-xs font-bold shadow-xs">
                     {card.stepNumber}
                   </span>
-                  <p className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#877EFC]">
+                  <p className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-primary">
                     {card.badge}
                   </p>
                 </div>
@@ -766,7 +766,7 @@ function StickySplitLayout({
                   <ul className="space-y-2.5 pt-1">
                     {card.bullets.map((bullet, bIdx) => (
                       <li key={bIdx} className="flex items-start gap-2.5">
-                        <span className="w-5 h-5 rounded-full bg-purple-100/80 border border-purple-200 text-[#877EFC] flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="w-5 h-5 rounded-full bg-purple-100/80 border border-purple-200 text-primary flex items-center justify-center shrink-0 mt-0.5">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                         </span>
                         <span className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">

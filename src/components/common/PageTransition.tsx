@@ -254,7 +254,7 @@ export default function PageTransition({
         className="fixed inset-0 z-[9999] pointer-events-none bg-[#fbfbfe] flex items-center justify-center will-change-transform shadow-2xl"
         style={{ display: "none" }}
       >
-        <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#8077EC] via-[#6B62D2] to-[#1fb487] opacity-80 shadow-xs" />
+        <div className="w-16 h-1 rounded-full bg-gradient-to-r from-primary via-primary-hover to-[#1fb487] opacity-80 shadow-xs" />
       </div>
 
       {children}

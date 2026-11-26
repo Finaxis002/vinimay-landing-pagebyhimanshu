@@ -63,7 +63,7 @@ body {
   inset: -2px;
   border-radius: 9999px;
   padding: 2px;
-  background: linear-gradient(135deg, #ec4899, #8077EC, #3b82f6, #06b6d4);
+  background: linear-gradient(135deg, #ec4899, var(--primary, #8077EC), #3b82f6, #06b6d4);
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -95,10 +95,9 @@ body {
 .hero-gradient-card {
   background: linear-gradient(
     135deg,
-    #8279ec 0%,
-    #938bf8 0%,
-    #7d74ea 45%,
-    #7166e5 100%
+    var(--hero-gradient-from, #8279ec) 0%,
+    var(--hero-gradient-mid, #7d74ea) 45%,
+    var(--hero-gradient-to, #7166e5) 100%
   );
   position: relative;
 }
@@ -106,9 +105,9 @@ body {
 .bg-hero-purple {
   background: linear-gradient(
     135deg,
-    #8279ec 0%,
-    #7d74ea 45%,
-    #7166e5 100%
+    var(--hero-gradient-from, #8279ec) 0%,
+    var(--hero-gradient-mid, #7d74ea) 45%,
+    var(--hero-gradient-to, #7166e5) 100%
   );
 }
 

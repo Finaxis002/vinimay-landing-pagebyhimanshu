@@ -544,7 +544,7 @@ export default function AllIndustriesExplorer() {
               onClick={() => setActiveCategory("all")}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 activeCategory === "all"
-                  ? "bg-[#6B62D2] text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
               }`}
             >
@@ -555,7 +555,7 @@ export default function AllIndustriesExplorer() {
               onClick={() => setActiveCategory("logistics")}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 activeCategory === "logistics"
-                  ? "bg-[#6B62D2] text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
               }`}
             >
@@ -566,7 +566,7 @@ export default function AllIndustriesExplorer() {
               onClick={() => setActiveCategory("retail")}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 activeCategory === "retail"
-                  ? "bg-[#6B62D2] text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
               }`}
             >
@@ -577,7 +577,7 @@ export default function AllIndustriesExplorer() {
               onClick={() => setActiveCategory("production")}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 activeCategory === "production"
-                  ? "bg-[#6B62D2] text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
               }`}
             >
@@ -588,7 +588,7 @@ export default function AllIndustriesExplorer() {
               onClick={() => setActiveCategory("services")}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 activeCategory === "services"
-                  ? "bg-[#6B62D2] text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
               }`}
             >
@@ -629,16 +629,16 @@ export default function AllIndustriesExplorer() {
 
                     {/* Title with Hover Icon */}
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-[#6B62D2] transition-colors">
+                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-primary transition-colors">
                         {item.title}
                       </h3>
-                      <div className="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-purple-50 flex items-center justify-center shrink-0 border border-slate-200 group-hover:border-purple-200 transition-colors">
-                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#6B62D2] group-hover:translate-x-0.5 transition-all" />
+                      <div className="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-primary-50 flex items-center justify-center shrink-0 border border-slate-200 group-hover:border-primary/20 transition-colors">
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                       </div>
                     </div>
 
                     {/* Tagline */}
-                    <div className="text-[11px] font-mono font-semibold text-[#6B62D2] mb-3 uppercase tracking-wider">
+                    <div className="text-[11px] font-mono font-semibold text-primary mb-3 uppercase tracking-wider">
                       {item.tags}
                     </div>
 
@@ -654,7 +654,7 @@ export default function AllIndustriesExplorer() {
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                       100% Free Forever
                     </span>
-                    <span className="text-[#6B62D2] group-hover:underline flex items-center gap-1">
+                    <span className="text-primary group-hover:underline flex items-center gap-1">
                       Explore solution →
                     </span>
                   </div>
@@ -675,7 +675,7 @@ export default function AllIndustriesExplorer() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/industries/general"
-              className="px-5 py-2.5 rounded-xl bg-[#6B62D2] hover:bg-[#5b52c0] text-white text-sm font-bold shadow-xs transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-xs transition-colors"
             >
               Explore General Suite
             </Link>
@@ -683,7 +683,7 @@ export default function AllIndustriesExplorer() {
               href="#inquiry"
               className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-sm font-semibold transition-colors"
             >
-              Request Custom Vertical
+              Talk to Us
             </Link>
           </div>
         </div>

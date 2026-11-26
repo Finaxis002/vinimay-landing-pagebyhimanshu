@@ -285,7 +285,7 @@ export function IndustriesMegaMenu({ open, onClose }: { open: boolean; onClose: 
                       onClick={onClose}
                       className="group flex items-center gap-3 p-3 rounded-2xl border border-[#2e2a3d] bg-[#211d2e] transition-all hover:border-[#4a4466] hover:bg-[#282336]"
                     >
-                      <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${item.tint} group-hover:bg-[#8077EC] group-hover:text-white transition-all shrink-0`}>
+                      <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${item.tint} group-hover:bg-primary group-hover:text-white transition-all shrink-0`}>
                         <IconComponent className="w-5 h-5 transition-transform group-hover:scale-110" />
                       </span>
                       <div className="min-w-0 flex-1">

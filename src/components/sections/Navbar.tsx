@@ -242,7 +242,7 @@ export default function Navbar() {
       id="navbar"
       className={`w-full fixed top-0 left-0 z-[100] transition-all duration-300 px-3 sm:px-6 md:px-8 lg:px-12 ${
         isScrolled
-          ? "bg-[#8077EC]/90 backdrop-blur-md shadow-xl border-b border-white/20 py-2.5 sm:py-3"
+          ? "bg-primary/90 backdrop-blur-md shadow-xl border-b border-white/20 py-2.5 sm:py-3"
           : "py-3 sm:py-4"
       }`}
     >
@@ -342,7 +342,7 @@ export default function Navbar() {
                     }}
                     className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all cursor-pointer ${
                       isActive || isIndustriesOpen
-                        ? "bg-[#8077EC] text-white shadow-sm font-bold"
+                        ? "bg-primary text-white shadow-sm font-bold"
                         : "text-white/85 hover:text-white hover:bg-white/10"
                     }`}
                     aria-expanded={isIndustriesOpen}
@@ -372,7 +372,7 @@ export default function Navbar() {
                     }}
                     className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all cursor-pointer ${
                       isActive || isFeaturesHovered
-                        ? "bg-[#8077EC] text-white shadow-sm font-bold"
+                        ? "bg-primary text-white shadow-sm font-bold"
                         : "text-white/85 hover:text-white hover:bg-white/10"
                     }`}
                     aria-expanded={isFeaturesHovered}
@@ -501,7 +501,7 @@ export default function Navbar() {
                 href={getHref(link.href)}
                 className={`px-3.5 py-1.5 rounded-full transition-all ${
                   isActive
-                    ? "bg-[#8077EC] text-white shadow-sm font-bold"
+                    ? "bg-primary text-white shadow-sm font-bold"
                     : "text-white/85 hover:text-white hover:bg-white/10"
                 }`}
               >
@@ -660,7 +660,7 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={(e) => handleFeatureClick(e, -1)}
-                        className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-[#8077EC] bg-white/10 hover:bg-white/15 rounded-xl transition-all cursor-pointer mt-1"
+                        className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-primary bg-white/10 hover:bg-white/15 rounded-xl transition-all cursor-pointer mt-1"
                       >
                         <span>View All 7 Modules →</span>
                       </button>

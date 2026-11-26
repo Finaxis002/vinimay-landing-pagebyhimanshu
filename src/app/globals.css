@@ -1,32 +1,62 @@
 @import "tailwindcss";
 @import "../styles/custom.css";
 
+:root {
+  --background: #ffffff;
+  --foreground: #1e293b;
+
+  /* =========================================================================
+     PRIMARY BRAND THEME CONFIGURATION
+     Change --primary below to update the primary color everywhere.
+     All secondary shades, gradients, and glows derive automatically!
+     ========================================================================= */
+  --primary: #8077ec;
+  --primary-hover: color-mix(in srgb, var(--primary) 85%, black);
+  --primary-light: color-mix(in srgb, var(--primary) 18%, white);
+  --primary-50: color-mix(in srgb, var(--primary) 8%, white);
+  --primary-glow: color-mix(in srgb, var(--primary) 25%, transparent);
+
+  /* Primary Hero & Accent Gradients - Derived automatically from --primary */
+  --hero-gradient-from: color-mix(in srgb, var(--primary) 92%, white);
+  --hero-gradient-mid: var(--primary);
+  --hero-gradient-to: color-mix(in srgb, var(--primary) 85%, black);
+}
+
 @theme {
   --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-handwritten: var(--font-caveat), cursive, sans-serif;
   --font-heading: var(--font-bricolage), 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand-50: #f5f3ff;
-  --color-brand-100: #ede9fe;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-primary-50: var(--primary-50);
+
+  --color-brand-50: var(--primary-50);
+  --color-brand-100: var(--primary-light);
+  --color-brand-500: var(--primary);
+  --color-brand-600: var(--primary-hover);
   --color-brand-700: #6d28d9;
   --color-brand-800: #5b21b6;
   --color-brand-900: #4c1d95;
 
-  --shadow-glow: 0 0 50px -12px rgba(139, 92, 246, 0.25);
+  --shadow-glow: 0 0 50px -12px var(--primary-glow);
   --shadow-card: 0 10px 40px -15px rgba(0, 0, 0, 0.07);
-  --shadow-float: 0 30px 70px -15px rgba(99, 102, 241, 0.22);
+  --shadow-float: 0 30px 70px -15px var(--primary-glow);
   --shadow-deep: 0 40px 100px -20px rgba(15, 23, 42, 0.18);
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #1e293b;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: #ffffff;
 }
 
 h1:not(.font-handwritten):not(.hero-title),
@@ -37,4 +67,19 @@ h5,
 h6,
 .font-heading {
   font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari, Edge and Opera */
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }

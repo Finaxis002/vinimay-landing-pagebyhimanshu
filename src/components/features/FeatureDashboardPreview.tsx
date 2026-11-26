@@ -99,7 +99,7 @@ export default function FeatureDashboardPreview() {
     <section ref={containerRef} className="py-10 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto">
       <div className="bg-[#15112b] text-white rounded-3xl sm:rounded-[36px] p-6 sm:p-12 lg:p-16 text-center relative overflow-hidden shadow-2xl border border-white/10">
         {/* Subtle background glow */}
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#7b5fd0]/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -left-24 w-72 h-72 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl mx-auto">
           <span className="inline-block text-xs font-bold text-[#3fe0b0] bg-[#3fe0b0]/15 border border-[#3fe0b0]/30 rounded-full px-3.5 py-1 uppercase tracking-wide">

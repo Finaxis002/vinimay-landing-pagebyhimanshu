@@ -110,10 +110,10 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.from("#hero-badge", { scale: 0.8, opacity: 0, duration: 0.5 })
-        .from("#hero-title", { y: 40, opacity: 0, duration: 0.9, delay: 3 }, "-=0.2")
-        .from("#hero-ctas", { y: 20, opacity: 0, duration: 0.6 ,  }, "-=0.4")
+        .from("#hero-title", { y: 40, opacity: 0, duration: 0.9 }, "-=0.2")
+        .from("#hero-ctas", { y: 20, opacity: 0, duration: 0.6 }, "-=0.4")
         .from("#hero-trust", { opacity: 0, duration: 0.6 }, "-=0.3")
-        .from(laptop, {y: 40, opacity: 0, duration: 0.6 }, "-=0.3");
+        .from(laptop, { y: 40, opacity: 0, duration: 0.6 }, "-=0.3");
       
     }, hero);
 
@@ -131,25 +131,38 @@ export default function Hero() {
     return "opacity-0 [transform:translate3d(105%,0,-140px)_rotateY(22deg)_scale(0.86)] pointer-events-none z-0";
   };
 
+  const CURVE = "0 0 50% 50% / 0 0 9vw 9vw";
+
   return (
     <>
-      <div className="p-0 sm:px-4 md:px-6 lg:px-8 sm:pt-2 pb-6 mx-auto w-full">
-        <section
-          id="hero"
-          ref={heroRef}
-          className="relative pt-24 sm:pt-28 md:pt-36 pb-16 sm:pb-28 px-3 sm:px-6 md:px-8 w-full rounded-none sm:rounded-[2.5rem] bg-hero-purple text-white flex flex-col items-center text-center shadow-2xl border-0 sm:border border-white/20"
+      <div className="relative w-full mx-auto">
+        {/* Purple Hero Backdrop - EXACT MATCH to Loader.tsx dimensions and shape */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-screen h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
+          style={{ borderRadius: CURVE }}
         >
           {/* WebGL 3D Wave Canvas */}
           <HeroWaveCanvas />
 
-          <div className="hero-silk-sheen absolute inset-0 pointer-events-none rounded-none sm:rounded-[2.5rem]" />
+          <div
+            className="hero-silk-sheen absolute inset-0 pointer-events-none"
+            style={{ borderRadius: CURVE }}
+          />
+        </div>
 
+        {/* Hero Interactive Content & Mockup */}
+        <section
+          id="hero"
+          ref={heroRef}
+          className="relative z-10 w-full text-white flex flex-col items-center text-center pt-20 sm:pt-24 md:pt-26 px-3 sm:px-6 md:px-8"
+        >
           {/* Top Pill Announcement Badge */}
           <div
             id="hero-badge"
-            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/25 shadow-sm text-xs font-medium text-white mb-4 sm:mb-6 backdrop-blur-md z-10"
+            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/25 shadow-sm text-xs font-medium text-white mb-3 sm:mb-4 backdrop-blur-md z-10"
           >
-            <span className="bg-white text-[#8077EC] font-extrabold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+            <span className="bg-white text-primary font-extrabold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
               Fastest Way
             </span>
             <span className="tracking-wide hidden sm:inline">
@@ -160,13 +173,13 @@ export default function Hero() {
           {/* Hero Main Heading */}
           <h1
             id="hero-title"
-            className="hero-title text-3xl sm:text-6xl lg:text-[80px] font-semibold text-white tracking-tight max-w-4xl mx-auto leading-[1.15] sm:leading-[1.01] z-10"
+            className="hero-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight max-w-5xl mx-auto leading-[1.12] sm:leading-[1.06] z-10"
           >
             <span className="block font-heading">All that your business need</span>
-            <span className="block font-handwritten text-white/95 mt-1 sm:mt-2">
+            <span className="block font-handwritten text-white/95 mt-1 sm:mt-1.5">
               for 100%{" "}
-              <span className="free-pill">
-                <span className="free-text  lg:text-[100px]">FREE</span>
+              <span className="gradient-pill-border text-slate-900 not-italic font-sans text-xl sm:text-4xl lg:text-5xl font-black mx-1 sm:mx-2 align-middle inline-flex shadow-xl">
+                <span>FREE</span>
               </span>
               ?
             </span>
@@ -175,7 +188,7 @@ export default function Hero() {
           {/* Split CTAs */}
           <div
             id="hero-ctas"
-            className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 z-10 w-full sm:w-auto px-4 sm:px-0"
+            className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 z-10 w-full sm:w-auto px-4 sm:px-0"
           >
             <Link
               href="https://vinimay.sharda.co.in/client-signup"
@@ -183,7 +196,7 @@ export default function Hero() {
               className="w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-900 font-bold text-sm sm:text-base px-7 py-3 sm:py-3.5 rounded-full shadow-xl shadow-purple-950/30 flex items-center justify-center gap-3 transition-all hover:scale-105 group"
             >
               <span>Start Free </span>
-              <div className="w-6 h-6 rounded-full bg-[#8077EC] text-white flex items-center justify-center text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+              <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </div>
             </Link>
@@ -201,7 +214,7 @@ export default function Hero() {
           {/* Trust Badges */}
           <div
             id="hero-trust"
-            className="hidden sm:flex mt-8 flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs text-white/95 font-medium z-10"
+            className="hidden sm:flex mt-4 sm:mt-6 flex-wrap items-center justify-center gap-2.5 sm:gap-3 text-xs text-white/95 font-medium z-10"
           >
             <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm">
               <Check className="w-3.5 h-3.5 text-emerald-300" />
@@ -224,7 +237,7 @@ export default function Hero() {
           {/* 3D HARDWARE SHOWCASE: LAPTOP & SMARTPHONE MOCKUP */}
           <div
             id="dashboard-trigger"
-            className="dashboard-perspective-wrapper mt-6 sm:mt-12 md:mt-16 w-full max-w-5xl mx-auto px-2 sm:px-4 relative z-20 -mb-28 sm:-mb-36 md:-mb-64 lg:-mb-72"
+            className="dashboard-perspective-wrapper mt-6 sm:mt-8 md:mt-10 w-full max-w-5xl mx-auto px-2 sm:px-4 relative z-20 -mb-28 sm:-mb-36 md:-mb-52 lg:-mb-60"
           >
             {/* Ambient Glow */}
             <div className="ambient-glow" />
@@ -352,7 +365,7 @@ export default function Hero() {
       {/* LAPTOP SHOWCASE & TRUSTED BY CLIENTS STRIP */}
       <section
         id="laptop-showcase"
-        className="relative bg-white text-slate-900 pt-24 sm:pt-36 md:pt-68 lg:pt-76 pb-20 px-4 sm:px-6 border-b border-slate-100 z-10"
+        className="relative bg-white text-slate-900 pt-28 sm:pt-40 md:pt-56 lg:pt-64 pb-20 px-4 sm:px-6 border-b border-slate-100 z-10"
       >
         <div className="max-w-6xl mx-auto text-center">
           <div className="max-w-3xl mx-auto mb-14 sm:mb-16">
@@ -379,7 +392,11 @@ export default function Hero() {
           {/* Trusted By Brands Cloud */}
           <TrustedBrandsCloud />
         </div>
+
+
       </section>
+
+      
     </>
   );
 }

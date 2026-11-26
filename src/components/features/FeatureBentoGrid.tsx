@@ -224,9 +224,9 @@ export default function FeatureBentoGrid() {
           </div>
 
           <div className="mt-5 space-y-2">
-            <div className="border border-[#7b5fd0] rounded-xl px-3 py-2 text-sm font-mono font-bold text-slate-800 bg-purple-50/40 min-h-[40px] flex items-center">
+            <div className="border border-primary rounded-xl px-3 py-2 text-sm font-mono font-bold text-slate-800 bg-purple-50/40 min-h-[40px] flex items-center">
               <span>{hsnText || "\u00a0"}</span>
-              <span className="w-1.5 h-4 bg-[#7b5fd0] ml-1 animate-pulse" />
+              <span className="w-1.5 h-4 bg-primary ml-1 animate-pulse" />
             </div>
             <div
               className={`bg-[#e3f8f0] text-[#1fb487] rounded-xl px-3 py-2 text-xs font-bold transition-all duration-300 ${
@@ -250,7 +250,7 @@ export default function FeatureBentoGrid() {
           </div>
 
           <div className="relative h-24 mt-4 flex items-end justify-center">
-            <div className="template-card-fan absolute w-16 h-20 bg-[#7b5fd0] rounded-lg shadow-sm" />
+            <div className="template-card-fan absolute w-16 h-20 bg-primary rounded-lg shadow-sm" />
             <div className="template-card-fan absolute w-16 h-20 bg-[#1fb487] rounded-lg shadow-sm" />
             <div className="template-card-fan absolute w-16 h-20 bg-[#e8a33d] rounded-lg shadow-sm" />
           </div>
@@ -274,7 +274,7 @@ export default function FeatureBentoGrid() {
             </div>
             <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
               <div
-                className="h-full bg-[#7b5fd0] transition-all duration-100 rounded-full"
+                className="h-full bg-primary transition-all duration-100 rounded-full"
                 style={{ width: `${downloadPct}%` }}
               />
             </div>
@@ -324,7 +324,7 @@ export default function FeatureBentoGrid() {
           </div>
 
           <div className="mt-4 flex items-baseline gap-1">
-            <span className="text-4xl sm:text-5xl font-black text-[#7b5fd0] font-mono leading-none">
+            <span className="text-4xl sm:text-5xl font-black text-primary font-mono leading-none">
               {secondsCount}s
             </span>
             <span className="text-xs text-slate-400 font-semibold">average speed</span>

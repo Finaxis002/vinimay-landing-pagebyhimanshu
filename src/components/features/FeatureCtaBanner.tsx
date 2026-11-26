@@ -85,7 +85,7 @@ export default function FeatureCtaBanner({
         className="relative overflow-hidden rounded-3xl sm:rounded-[36px] px-6 sm:px-12 py-16 sm:py-24 text-center text-white shadow-2xl"
         style={{
           background:
-            "linear-gradient(120deg, #7b5fd0 0%, #4f7be0 50%, #7b5fd0 100%)",
+            "linear-gradient(120deg, var(--primary) 0%, #4f7be0 50%, var(--primary) 100%)",
           backgroundSize: "200% 200%",
         }}
       >

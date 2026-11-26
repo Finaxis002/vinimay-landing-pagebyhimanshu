@@ -248,7 +248,7 @@ export default function ComplianceTabsSection({
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-bold tracking-wide uppercase mb-4 shadow-2xs">
-            <ShieldCheck className="w-4 h-4 text-[#877EFC]" />
+            <ShieldCheck className="w-4 h-4 text-primary" />
             <span>{tagline}</span>
           </div>
           <ArcHeading
@@ -291,7 +291,7 @@ export default function ComplianceTabsSection({
 
               {/* Smooth Animated Sliding Indicator Line at the bottom */}
               <div
-                className="absolute bottom-0 h-1 bg-[#877EFC] transition-all duration-300 ease-out z-10 pointer-events-none rounded-full"
+                className="absolute bottom-0 h-1 bg-primary transition-all duration-300 ease-out z-10 pointer-events-none rounded-full"
                 style={{
                   left: `${indicatorStyle.left}px`,
                   width: `${indicatorStyle.width}px`,
@@ -344,7 +344,7 @@ export default function ComplianceTabsSection({
                         <div
                           className={`w-full px-3 py-1.5 sm:py-2 rounded-md text-[11px] sm:text-xs font-normal border truncate ${
                             fIdx === 0
-                              ? "border-[#877EFC] ring-1 ring-[#877EFC]/20 text-slate-800 bg-white"
+                              ? "border-primary ring-1 ring-primary/20 text-slate-800 bg-white"
                               : field.isHighlight
                               ? "bg-purple-50/60 border-purple-200 text-purple-900 font-medium font-mono"
                               : "bg-white border-slate-200 text-slate-600"
@@ -390,7 +390,7 @@ export default function ComplianceTabsSection({
                   href={activeTab.ctaHref || "https://vinimay.sharda.co.in/client-signup"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#877EFC] hover:bg-purple-700 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition-all active:scale-95 group cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition-all active:scale-95 group cursor-pointer"
                 >
                   <OsmoRoll>{activeTab.ctaText || "Explore Feature"}</OsmoRoll>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

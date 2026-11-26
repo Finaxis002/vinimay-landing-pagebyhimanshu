@@ -9,7 +9,6 @@ import SoftwareTour from "@/components/sections/SoftwareTour";
 import FeaturesOrbital from "@/components/sections/FeaturesOrbital";
 import Testimonials from "@/components/sections/Testimonials";
 import Faq from "@/components/sections/Faq";
-import Inquiry from "@/components/sections/Inquiry";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
         <FeaturesOrbital />
         <Testimonials />
         <Faq />
-        <Inquiry />
       </main>
       <Footer />
     </>
