@@ -60,65 +60,80 @@ export default function FeaturePageLayout({
 
       if (!prefersReducedMotion) {
         // 1. Badge & Breadcrumb reveal
-        gsap.fromTo(
-          ".hero-meta-reveal",
-          { y: -14, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.1 }
-        );
+        const metaEl = heroRef.current?.querySelector(".hero-meta-reveal");
+        if (metaEl) {
+          gsap.fromTo(
+            metaEl,
+            { y: -14, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.1 }
+          );
+        }
 
         // 2. Headline: Rises up smoothly from behind the overflow-hidden mask
-        gsap.fromTo(
-          ".feature-title-reveal",
-          { y: "115%", opacity: 0 },
-          {
-            y: "0%",
-            opacity: 1,
-            duration: 0.9,
-            ease: "power4.out",
-            delay: 0.2,
-          }
-        );
+        const titleEl = heroRef.current?.querySelector(".feature-title-reveal");
+        if (titleEl) {
+          gsap.fromTo(
+            titleEl,
+            { y: "115%", opacity: 0 },
+            {
+              y: "0%",
+              opacity: 1,
+              duration: 0.9,
+              ease: "power4.out",
+              delay: 0.2,
+            }
+          );
+        }
 
-        // 3. Lead subtitle: Fades and floats in gently
-        gsap.fromTo(
-          ".feature-lead-reveal",
-          { y: 22, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.75,
-            ease: "power3.out",
-            delay: 0.42,
-          }
-        );
+        // 3. Lead subtitle: Fades and floats in gently (only if present)
+        const leadEl = heroRef.current?.querySelector(".feature-lead-reveal");
+        if (leadEl) {
+          gsap.fromTo(
+            leadEl,
+            { y: 22, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.75,
+              ease: "power3.out",
+              delay: 0.42,
+            }
+          );
+        }
 
-        // 4. Trust chips: Staggered entrance
-        gsap.fromTo(
-          ".feature-chip-reveal",
-          { y: 16, opacity: 0, scale: 0.96 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.08,
-            duration: 0.6,
-            ease: "power3.out",
-            delay: 0.55,
-          }
-        );
+        // 4. Trust chips: Staggered entrance (only if chips exist)
+        const chipEls = heroRef.current?.querySelectorAll(".feature-chip-reveal");
+        if (chipEls && chipEls.length > 0) {
+          gsap.fromTo(
+            chipEls,
+            { y: 16, opacity: 0, scale: 0.96 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              stagger: 0.08,
+              duration: 0.6,
+              ease: "power3.out",
+              delay: 0.55,
+            }
+          );
+        }
 
-        // 5. Laptop / Screen Mockup: Slides up into place
-        gsap.fromTo(
-          ".feature-screen-reveal",
-          { y: 35, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.85,
-            ease: "power3.out",
-            delay: 0.65,
-          }
-        );
+        // 5. Laptop / Screen Mockup: Slides up into place (only if screenComponent exists)
+        const screenEl = heroRef.current?.querySelector(".feature-screen-reveal");
+        if (screenEl) {
+          gsap.fromTo(
+            screenEl,
+            { y: 35, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.85,
+              ease: "power3.out",
+              delay: 0.65,
+            }
+          );
+        }
       }
     }, heroRef);
 

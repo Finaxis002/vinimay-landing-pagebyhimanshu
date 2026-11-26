@@ -231,10 +231,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: "/", label: "Home", id: "hero" },
+    // { href: "/", label: "Home", id: "hero" },
     { href: "#industries", label: "Industries", id: "industries" },
     { href: "#the-features", label: "Features", id: "the-features" },
-    { href: "#faq", label: "FAQ", id: "faq" },
+    // { href: "#faq", label: "FAQ", id: "faq" },
   ];
 
   return (
