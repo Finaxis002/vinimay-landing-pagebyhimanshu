@@ -244,9 +244,9 @@ export default function Hero() {
               <span className="bg-white text-primary font-extrabold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
                 Fastest Way
               </span>
-              <span className="tracking-wide text-[11px] sm:text-xs">
+              {/* <span className="tracking-wide text-[11px] sm:text-xs">
                 SIGN UP FREE · SEND INVOICE IN 1 MINUTE
-              </span>
+              </span> */}
             </div>
 
             {/* Hero Main Heading with Alternating Kinetic Typography */}
@@ -275,7 +275,7 @@ export default function Hero() {
                 aria-hidden="true"
                 className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none text-white leading-none font-heading font-extrabold uppercase select-none"
                 style={{
-                  fontSize: "clamp(3.2rem, 16vw, 15rem)",
+                  fontSize: "clamp(3.2rem, 16vw, 9rem)",
                   letterSpacing: "-0.05em",
                 }}
               >
@@ -325,7 +325,13 @@ export default function Hero() {
             {/* Trust Badges */}
             <div
               id="hero-trust"
-              className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 text-xs text-white/95 font-medium z-10 max-w-sm sm:max-w-xl mx-auto"
+              className="mt-5 sm:mt-6 text-xs text-white/95 font-medium z-10 max-w-sm sm:max-w-xl mx-auto"
+              style={{
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: 8,
+  marginTop: 20,
+}}
             >
               <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-xs">
                 <Check className="w-3.5 h-3.5 text-emerald-300 shrink-0" />

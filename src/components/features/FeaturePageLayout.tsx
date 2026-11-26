@@ -42,7 +42,7 @@ export default function FeaturePageLayout({
 
     const ctx = gsap.context(() => {
       const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
+        "(prefers-reduced-motion: reduce)",
       ).matches;
 
       // Top scroll reading progress bar
@@ -65,7 +65,7 @@ export default function FeaturePageLayout({
           gsap.fromTo(
             metaEl,
             { y: -14, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.1 }
+            { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.1 },
           );
         }
 
@@ -81,7 +81,7 @@ export default function FeaturePageLayout({
               duration: 0.9,
               ease: "power4.out",
               delay: 0.2,
-            }
+            },
           );
         }
 
@@ -97,12 +97,14 @@ export default function FeaturePageLayout({
               duration: 0.75,
               ease: "power3.out",
               delay: 0.42,
-            }
+            },
           );
         }
 
         // 4. Trust chips: Staggered entrance (only if chips exist)
-        const chipEls = heroRef.current?.querySelectorAll(".feature-chip-reveal");
+        const chipEls = heroRef.current?.querySelectorAll(
+          ".feature-chip-reveal",
+        );
         if (chipEls && chipEls.length > 0) {
           gsap.fromTo(
             chipEls,
@@ -115,12 +117,14 @@ export default function FeaturePageLayout({
               duration: 0.6,
               ease: "power3.out",
               delay: 0.55,
-            }
+            },
           );
         }
 
         // 5. Laptop / Screen Mockup: Slides up into place (only if screenComponent exists)
-        const screenEl = heroRef.current?.querySelector(".feature-screen-reveal");
+        const screenEl = heroRef.current?.querySelector(
+          ".feature-screen-reveal",
+        );
         if (screenEl) {
           gsap.fromTo(
             screenEl,
@@ -131,7 +135,7 @@ export default function FeaturePageLayout({
               duration: 0.85,
               ease: "power3.out",
               delay: 0.65,
-            }
+            },
           );
         }
       }
@@ -221,16 +225,22 @@ export default function FeaturePageLayout({
             {/* Trust Chips - Mobile First Wrap */}
             {trustChips && trustChips.length > 0 && (
               <div
-                className={`flex flex-wrap items-center justify-center max-w-3xl mx-auto ${
-                  screenComponent
-                    ? "gap-1.5 sm:gap-2 mb-2 sm:mb-4"
-                    : "gap-2.5 sm:gap-3.5 mb-6 sm:mb-8"
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  gap: 10,
+                  maxWidth: 640,
+                  margin: "20px auto 0",
+                }}
+                className={` max-w-3xl mx-auto ${
+                  screenComponent ? " mb-2 sm:mb-4" : " mb-6 sm:mb-8"
                 }`}
               >
                 {trustChips.map((chip, idx) => (
                   <span
                     key={idx}
-                    className={`feature-chip-reveal bg-white/15 border border-white/30 backdrop-blur-md text-white shadow-xs will-change-transform font-medium ${
+                    className={`feature-chip-reveal inline-block bg-white/15 border border-white/30 backdrop-blur-md text-white shadow-xs will-change-transform font-medium ${
                       screenComponent
                         ? "rounded-xl px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs"
                         : "rounded-2xl px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm"
