@@ -63,7 +63,7 @@ export default function Inquiry() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="inquiry-name" className="block text-xs font-semibold text-slate-700 mb-1.5">
-                      Name<span className="text-rose-500">*</span>
+                      Name<span className="text-purple-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -71,12 +71,12 @@ export default function Inquiry() {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-all"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
                     />
                   </div>
                   <div>
                     <label htmlFor="inquiry-email" className="block text-xs font-semibold text-slate-700 mb-1.5">
-                      Email<span className="text-rose-500">*</span>
+                      Email<span className="text-purple-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -84,7 +84,7 @@ export default function Inquiry() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-all"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
                     />
                   </div>
                 </div>
@@ -93,9 +93,9 @@ export default function Inquiry() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="inquiry-phone" className="block text-xs font-semibold text-slate-700 mb-1.5">
-                      Phone number<span className="text-rose-500">*</span>
+                      Phone number<span className="text-purple-500">*</span>
                     </label>
-                    <div className="flex rounded-lg border border-slate-300 bg-white overflow-hidden focus-within:ring-1 focus-within:ring-rose-500 focus-within:border-rose-500 transition-all">
+                    <div className="flex rounded-lg border border-slate-300 bg-white overflow-hidden focus-within:ring-1 focus-within:ring-purple-500 focus-within:border-purple-500 transition-all">
                       <select
                         value={countryCode}
                         onChange={(e) => setCountryCode(e.target.value)}
@@ -118,7 +118,7 @@ export default function Inquiry() {
                   </div>
                   <div>
                     <label htmlFor="inquiry-city" className="block text-xs font-semibold text-slate-700 mb-1.5">
-                      City<span className="text-rose-500">*</span>
+                      City<span className="text-purple-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -126,7 +126,7 @@ export default function Inquiry() {
                       required
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-all"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
                     />
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function Inquiry() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="inquiry-pincode" className="block text-xs font-semibold text-slate-700 mb-1.5">
-                      Pincode<span className="text-rose-500">*</span>
+                      Pincode<span className="text-purple-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -143,12 +143,12 @@ export default function Inquiry() {
                       required
                       value={pincode}
                       onChange={(e) => setPincode(e.target.value)}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-all"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
                     />
                   </div>
                   <div>
                     <label htmlFor="inquiry-business" className="block text-xs font-semibold text-slate-700 mb-1.5">
-                      Business Name<span className="text-rose-500">*</span>
+                      Business Name<span className="text-purple-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -156,7 +156,7 @@ export default function Inquiry() {
                       required
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-rose-500 focus:border-rose-500 transition-all"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
                     />
                   </div>
                 </div>
@@ -164,7 +164,7 @@ export default function Inquiry() {
                 {/* Row 4: Product interest pills */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-2">
-                    Which product are you interested in?<span className="text-rose-500">*</span>
+                    Which product are you interested in?<span className="text-purple-500">*</span>
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {productOptions.map((prod) => {

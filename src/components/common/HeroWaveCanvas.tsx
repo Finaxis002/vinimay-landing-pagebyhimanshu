@@ -1,10 +1,31 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-
-export default function HeroWaveCanvas() {
+type Props = {
+  speed?: number; // 1 = default, 0.5 = slower, 2 = faster, 0 = paused
+  overlayOpacity?: number; // 0 = no overlay, 1 = fully covered
+  overlayColor?: string; // any CSS color, e.g. "#000" or "rgb(0,0,0)"
+};
+export default function HeroWaveCanvas({
+  speed = 1,
+  overlayOpacity = 0,
+  overlayColor = "#000000",
+}) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Refs so changing props doesn't restart WebGL
+  const speedRef = useRef(speed);
+  const overlayOpacityRef = useRef(overlayOpacity);
+  const overlayColorRef = useRef(overlayColor);
 
+  useEffect(() => {
+    speedRef.current = speed;
+  }, [speed]);
+  useEffect(() => {
+    overlayOpacityRef.current = overlayOpacity;
+  }, [overlayOpacity]);
+  useEffect(() => {
+    overlayColorRef.current = overlayColor;
+  }, [overlayColor]);
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -27,6 +48,8 @@ export default function HeroWaveCanvas() {
 
     const FRAG = `
       precision highp float;
+      uniform vec3 u_overlayColor;
+uniform float u_overlayOpacity;
       uniform vec2 u_res;
       uniform float u_time;
       uniform vec3 u_color;
@@ -70,6 +93,8 @@ export default function HeroWaveCanvas() {
         color += vec3(spec);
 
         gl_FragColor = vec4(color, 1.0);
+        color = mix(color, u_overlayColor, u_overlayOpacity);
+gl_FragColor = vec4(color, 1.0);
       }
     `;
 
@@ -104,7 +129,7 @@ export default function HeroWaveCanvas() {
     gl.bufferData(
       gl.ARRAY_BUFFER,
       new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
-      gl.STATIC_DRAW
+      gl.STATIC_DRAW,
     );
 
     const aPos = gl.getAttribLocation(prog, "a_pos");
@@ -114,6 +139,8 @@ export default function HeroWaveCanvas() {
     const uRes = gl.getUniformLocation(prog, "u_res");
     const uTime = gl.getUniformLocation(prog, "u_time");
     const uColor = gl.getUniformLocation(prog, "u_color");
+    const uOverlayColor = gl.getUniformLocation(prog, "u_overlayColor");
+    const uOverlayOpacity = gl.getUniformLocation(prog, "u_overlayOpacity");
 
     function parseColor(str: string): [number, number, number] {
       if (typeof document === "undefined") return [0.5, 0.46, 0.92];
@@ -140,7 +167,10 @@ export default function HeroWaveCanvas() {
     let lastColorStr = "";
     function updateColor() {
       if (!gl) return;
-      const primary = getComputedStyle(document.documentElement).getPropertyValue("--primary") || "#8077EC";
+      const primary =
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--primary",
+        ) || "#8077EC";
       if (primary === lastColorStr) return;
       lastColorStr = primary;
       const [r, g, b] = parseColor(primary);
@@ -172,6 +202,7 @@ export default function HeroWaveCanvas() {
     const observer = new IntersectionObserver((entries) => {
       isVisible = entries[0].isIntersecting;
       if (isVisible && !animationId) {
+        lastNow = performance.now(); // <-- the new line goes here
         animationId = requestAnimationFrame(render);
       } else if (!isVisible && animationId) {
         cancelAnimationFrame(animationId);
@@ -181,28 +212,31 @@ export default function HeroWaveCanvas() {
     observer.observe(hero);
 
     let frameCount = 0;
-    const startTime = performance.now();
+    let lastNow = performance.now();
+    let animTime = 0;
+
     function render(now: number) {
       if (!isVisible || !gl) {
         animationId = null;
         return;
       }
 
-      // Periodically check if CSS --primary changed (e.g. every 30 frames) to update WebGL in real-time
-      if (++frameCount % 30 === 0) {
-        updateColor();
-      }
+      const dt = (now - lastNow) / 1000;
+      lastNow = now;
+      animTime += dt * speedRef.current;
 
-      const t = (now - startTime) / 1000;
-      gl.uniform1f(uTime, t);
+      if (++frameCount % 30 === 0) updateColor();
+
+      gl.uniform1f(uTime, animTime);
+
+      const [or, og, ob] = parseColor(overlayColorRef.current);
+      gl.uniform3f(uOverlayColor, or, og, ob);
+      gl.uniform1f(uOverlayOpacity, overlayOpacityRef.current);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-
       animationId = requestAnimationFrame(render);
     }
-
     animationId = requestAnimationFrame(render);
-
     return () => {
       window.removeEventListener("resize", resize);
       observer.disconnect();

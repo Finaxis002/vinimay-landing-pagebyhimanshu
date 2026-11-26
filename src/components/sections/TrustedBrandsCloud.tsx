@@ -110,7 +110,7 @@ export default function TrustedBrandsMarquee() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#232938] tracking-tight text-center mb-8 sm:mb-12">
-          Trusted by <span className="text-[#7E74EB] font-black">40, 000+</span>{" "}
+          Trusted by <span className="text-purple-700 font-black">40, 000+</span>{" "}
           Businesses Globally
         </h3>
 

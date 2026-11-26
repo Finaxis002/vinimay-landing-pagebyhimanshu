@@ -135,12 +135,12 @@ export default function FeaturePageLayout({
         className="fixed top-0 left-0 h-[3px] w-full bg-[#1fb487] origin-left scale-x-0 z-[120] pointer-events-none"
       />
 
-      {/* HERO SECTION CONTAINER - Matches Home Page Hero and Loader.tsx Height Exactly */}
-      <div className="relative z-20 w-full mx-auto h-screen h-[100dvh] overflow-hidden">
-        {/* Purple Hero Backdrop */}
+      {/* HERO SECTION CONTAINER */}
+      <div className="relative z-20 w-full mx-auto">
+        {/* Purple Hero Backdrop - Exact Match to Loader.tsx Curve Height */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
+          className="absolute inset-x-0 top-0 h-screen h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
           style={{ borderRadius: CURVE }}
         >
           {/* Reusable Living WebGL Wave Canvas & Silk Sheen */}
@@ -149,10 +149,10 @@ export default function FeaturePageLayout({
 
         <header
           ref={heroRef}
-          className={`relative z-10 w-full h-full text-white text-center px-3 sm:px-6 md:px-8 flex flex-col items-center overflow-hidden ${
+          className={`relative z-10 w-full text-white text-center px-3 sm:px-6 md:px-8 flex flex-col items-center overflow-hidden ${
             screenComponent
-              ? "justify-between pt-16 sm:pt-18 md:pt-20 pb-4 sm:pb-6 md:pb-8"
-              : "justify-center pt-16 pb-16"
+              ? "pt-20 sm:pt-24 md:pt-26"
+              : "h-screen h-[100dvh] justify-center pt-16 pb-16"
           }`}
         >
           <div
@@ -229,7 +229,7 @@ export default function FeaturePageLayout({
 
             {/* Reusable Desktop Screen / Mockup Container */}
             {screenComponent && (
-              <div className="feature-screen-reveal w-full mt-2 sm:mt-3 relative z-20 will-change-transform shrink min-h-0">
+              <div className="feature-screen-reveal w-full mt-4 sm:mt-6 relative z-30 -mb-28 sm:-mb-36 md:-mb-52 lg:-mb-60 will-change-transform">
                 {screenComponent}
               </div>
             )}
@@ -238,7 +238,11 @@ export default function FeaturePageLayout({
       </div>
 
       {/* Children Content (Story, Bento, Dashboard, CTA) */}
-      <div className="w-full relative z-10 pt-12 sm:pt-16">
+      <div
+        className={`w-full relative z-10 ${
+          screenComponent ? "pt-28 sm:pt-40 md:pt-56 lg:pt-64" : "pt-12 sm:pt-16"
+        }`}
+      >
         {children}
       </div>
     </div>

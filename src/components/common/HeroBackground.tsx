@@ -18,7 +18,7 @@ export default function HeroBackground({ className = "" }: HeroBackgroundProps) 
   return (
     <>
       {/* Living WebGL 3D Wave Canvas */}
-      <HeroWaveCanvas />
+      <HeroWaveCanvas speed={8} overlayOpacity={0.15} overlayColor="#fff" />
 
       {/* Silk sheen radial overlay matching home page */}
       <div
