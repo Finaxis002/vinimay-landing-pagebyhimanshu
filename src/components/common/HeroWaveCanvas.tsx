@@ -116,23 +116,33 @@ export default function HeroWaveCanvas() {
     const uColor = gl.getUniformLocation(prog, "u_color");
 
     function parseColor(str: string): [number, number, number] {
-      const s = str.trim();
-      if (s.startsWith("#")) {
-        const hex = s.slice(1);
-        if (hex.length === 6) {
+      if (typeof document === "undefined") return [0.5, 0.46, 0.92];
+      try {
+        const dummy = document.createElement("div");
+        dummy.style.color = str.trim() || "#8077EC";
+        document.body.appendChild(dummy);
+        const comp = getComputedStyle(dummy).color;
+        document.body.removeChild(dummy);
+        const match = comp.match(/\d+/g);
+        if (match && match.length >= 3) {
           return [
-            parseInt(hex.slice(0, 2), 16) / 255,
-            parseInt(hex.slice(2, 4), 16) / 255,
-            parseInt(hex.slice(4, 6), 16) / 255,
+            Number(match[0]) / 255,
+            Number(match[1]) / 255,
+            Number(match[2]) / 255,
           ];
         }
+      } catch {
+        /* fallback */
       }
       return [0.502, 0.467, 0.925];
     }
 
+    let lastColorStr = "";
     function updateColor() {
       if (!gl) return;
       const primary = getComputedStyle(document.documentElement).getPropertyValue("--primary") || "#8077EC";
+      if (primary === lastColorStr) return;
+      lastColorStr = primary;
       const [r, g, b] = parseColor(primary);
       gl.uniform3f(uColor, r, g, b);
     }
@@ -170,11 +180,17 @@ export default function HeroWaveCanvas() {
     });
     observer.observe(hero);
 
+    let frameCount = 0;
     const startTime = performance.now();
     function render(now: number) {
       if (!isVisible || !gl) {
         animationId = null;
         return;
+      }
+
+      // Periodically check if CSS --primary changed (e.g. every 30 frames) to update WebGL in real-time
+      if (++frameCount % 30 === 0) {
+        updateColor();
       }
 
       const t = (now - startTime) / 1000;

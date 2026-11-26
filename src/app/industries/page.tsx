@@ -43,6 +43,7 @@ export default function IndustriesIndexPage() {
             "📦 Industry-Specific Fields",
             "✨ Zero Accounting Knowledge Needed",
           ]}
+          // screenComponent={}
         >
           {/* Light Mode Grid Section */}
           <AllIndustriesExplorer />

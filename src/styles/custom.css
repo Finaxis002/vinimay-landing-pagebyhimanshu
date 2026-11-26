@@ -47,29 +47,85 @@ body {
 }
 
 /* Gradient border pill around "Zero Cost" badge in hero */
-.gradient-pill-border {
-  position: relative;
-  background: white;
-  border-radius: 9999px;
-  padding: 3px 18px;
-  display: inline-flex;
-  align-items: center;
-  margin: 0 4px;
+/* Lets the gradient angle animate smoothly (falls back to a static border if unsupported) */
+@property --pill-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
+.gradient-pill-border {
+  /* tokens */
+  --pill-bg: #ffffff;
+  --pill-fg: #1b1340;
+  --pill-border: 2px;
+  --pill-accent: var(--primary, #8077ec);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-inline: 0.25em;
+  padding: 0.12em 0.7em;          /* scales with the headline size */
+  border-radius: 9999px;
+  background: var(--pill-bg);
+  color: var(--pill-fg);
+  font: inherit;
+  line-height: 1.1;
+  white-space: nowrap;
+  vertical-align: middle;
+  box-shadow: 0 8px 24px -10px color-mix(in srgb, var(--pill-accent) 60%, transparent);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
+}
+
+/* Gradient ring: the border sits inside the pill, so it never gets clipped */
 .gradient-pill-border::before {
   content: "";
   position: absolute;
-  inset: -2px;
-  border-radius: 9999px;
-  padding: 2px;
-  background: linear-gradient(135deg, #ec4899, var(--primary, #8077EC), #3b82f6, #06b6d4);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
+  inset: 0;
+  padding: var(--pill-border);
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--pill-angle),
+    #ec4899,
+    var(--pill-accent),
+    #3b82f6,
+    #06b6d4,
+    #ec4899                        /* repeat the first colour so the loop has no seam */
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
   pointer-events: none;
+}
+
+.gradient-pill-border:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px color-mix(in srgb, var(--pill-accent) 75%, transparent);
+}
+
+/* Optional: slowly rotating border. Add the class to opt in. */
+.gradient-pill-border--animated::before {
+  animation: pill-spin 5s linear infinite;
+}
+@keyframes pill-spin {
+  to { --pill-angle: 360deg; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .gradient-pill-border {
+    --pill-bg: #14102b;
+    --pill-fg: #f4f1ff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-pill-border,
+  .gradient-pill-border--animated::before {
+    animation: none;
+    transition: none;
+  }
 }
 
 /* Colorful CTA Button Gradient with glow hover */
@@ -95,9 +151,9 @@ body {
 .hero-gradient-card {
   background: linear-gradient(
     135deg,
-    var(--hero-gradient-from, #8279ec) 0%,
-    var(--hero-gradient-mid, #7d74ea) 45%,
-    var(--hero-gradient-to, #7166e5) 100%
+    color-mix(in srgb, var(--primary) 92%, white 8%) 0%,
+    var(--primary) 45%,
+    color-mix(in srgb, var(--primary) 85%, black 15%) 100%
   );
   position: relative;
 }
@@ -105,9 +161,9 @@ body {
 .bg-hero-purple {
   background: linear-gradient(
     135deg,
-    var(--hero-gradient-from, #8279ec) 0%,
-    var(--hero-gradient-mid, #7d74ea) 45%,
-    var(--hero-gradient-to, #7166e5) 100%
+    color-mix(in srgb, var(--primary) 92%, white 8%) 0%,
+    var(--primary) 45%,
+    color-mix(in srgb, var(--primary) 85%, black 15%) 100%
   );
 }
 
@@ -178,7 +234,7 @@ body {
     ),
     radial-gradient(
       ellipse 55% 40% at 75% 35%,
-      rgba(196, 181, 253, 0.25) 0%,
+      color-mix(in srgb, var(--primary) 35%, transparent 65%) 0%,
       transparent 50%
     );
 }
@@ -205,8 +261,8 @@ body {
   height: 70%;
   background: radial-gradient(
     ellipse at center,
-    rgba(147, 51, 234, 0.28) 0%,
-    rgba(79, 70, 229, 0.18) 40%,
+    color-mix(in srgb, var(--primary) 28%, transparent 72%) 0%,
+    color-mix(in srgb, var(--primary) 18%, transparent 82%) 40%,
     transparent 70%
   );
   filter: blur(50px);

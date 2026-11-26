@@ -36,7 +36,7 @@ export default function InventoryPage() {
         <FeaturePageLayout
           badge="Inventory & Stock Control"
           title="Control Your Inventory With Real-Time Stock Insights"
-          lead="Know exactly what's in stock, what's running low and what's moving fast — with a live dashboard that updates as every purchase and sale happens."
+          // lead="Know exactly what's in stock, what's running low and what's moving fast — with a live dashboard that updates as every purchase and sale happens."
           trustChips={[
             "📦 Real-Time Multi-Warehouse Stock",
             "⚡ Automated Low-Stock Alerts",

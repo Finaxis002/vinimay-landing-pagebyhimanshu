@@ -36,7 +36,7 @@ export default function CustomersPage() {
         <FeaturePageLayout
           badge="Customer Relationship Management"
           title="Build Stronger Customer Loyalty & Track Receivables"
-          lead="Store customer profiles, view complete purchase history, send automated WhatsApp payment reminders, and keep customer credit strictly under control."
+          // lead="Store customer profiles, view complete purchase history, send automated WhatsApp payment reminders, and keep customer credit strictly under control."
           trustChips={[
             "👥 Centralized Customer CRM",
             "💬 WhatsApp Payment Reminders",

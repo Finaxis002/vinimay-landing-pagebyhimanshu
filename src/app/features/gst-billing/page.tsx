@@ -36,7 +36,7 @@ export default function GstBillingPage() {
         <FeaturePageLayout
           badge="GST Billing & Invoicing"
           title="Create GST Invoices Faster With Vinimay"
-          lead="Generate GST-compliant invoices, manage taxes, track payments and share professional bills with your customers, all in one simple platform."
+          // lead="Generate GST-compliant invoices, manage taxes, track payments and share professional bills with your customers, all in one simple platform."
           trustChips={[
             "🛡 100% GST compliant",
             "🖱 Easy to use",

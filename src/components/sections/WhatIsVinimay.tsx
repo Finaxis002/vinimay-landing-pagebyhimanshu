@@ -145,7 +145,7 @@ export default function WhatIsVinimay() {
     <>
       <section
         id="what-is-vinimay"
-        className="relative py-20 sm:py-28 lg:py-28 px-4 sm:px-6 md:px-8 bg-[radial-gradient(ellipse_70%_60%_at_50%_20%,rgba(255,255,255,0.28),transparent_70%),linear-gradient(165deg,#8E86E8,#584FB2)] text-white overflow-hidden border-t border-purple-400/20"
+        className="relative py-20 sm:py-28 lg:py-28 px-4 sm:px-6 md:px-8 bg-[radial-gradient(ellipse_70%_60%_at_50%_20%,rgba(255,255,255,0.28),transparent_70%),linear-gradient(165deg,var(--hero-gradient-from),var(--hero-gradient-to))] text-white overflow-hidden border-t border-purple-400/20"
         aria-label="What is Vinimay dashboard overview"
       >
         {/* Bottom ambient vignette */}

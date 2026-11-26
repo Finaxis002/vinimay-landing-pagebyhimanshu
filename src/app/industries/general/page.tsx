@@ -37,7 +37,7 @@ export default function GeneralIndustryPage() {
         <FeaturePageLayout
           badge="General Business & Retail"
           title="Simple Billing, Inventory & Accounts for every Business"
-          lead="Add Products , Services, manage stock, create GST/VAT invoicesand handle entire business in one place"
+          // lead="Add Products , Services, manage stock, create GST/VAT invoicesand handle entire business in one place"
           trustChips={[
             "🛡 100% GST & Non-GST Billing",
             "⚡ No Credit Card required",

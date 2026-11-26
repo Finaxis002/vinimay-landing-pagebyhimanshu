@@ -193,7 +193,7 @@ export default function IndustryPageTemplate({ data }: { data: IndustryPageData 
         <FeaturePageLayout
           badge={hero.badge}
           title={hero.title}
-          // lead={hero.lead}
+          lead={hero.lead}
           trustChips={hero.trustChips}
           screenComponent={
             <FeatureBannerScreen

@@ -135,14 +135,12 @@ export default function FeaturePageLayout({
         className="fixed top-0 left-0 h-[3px] w-full bg-[#1fb487] origin-left scale-x-0 z-[120] pointer-events-none"
       />
 
-      {/* HERO SECTION CONTAINER - Matches Home Page Hero Exactly */}
-      <div className="relative w-full mx-auto">
-        {/* Purple Hero Backdrop - Locked to 100dvh (or 60vh when no mockup) */}
+      {/* HERO SECTION CONTAINER - Matches Home Page Hero and Loader.tsx Height Exactly */}
+      <div className="relative z-20 w-full mx-auto h-screen h-[100dvh] overflow-hidden">
+        {/* Purple Hero Backdrop */}
         <div
           aria-hidden="true"
-          className={`absolute inset-x-0 top-0 w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0 ${
-            screenComponent ? "h-screen h-[100dvh]" : "h-[50vh] sm:h-[58vh] md:h-[62vh]"
-          }`}
+          className="absolute inset-0 w-full h-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
           style={{ borderRadius: CURVE }}
         >
           {/* Reusable Living WebGL Wave Canvas & Silk Sheen */}
@@ -151,18 +149,40 @@ export default function FeaturePageLayout({
 
         <header
           ref={heroRef}
-          className="relative z-10 w-full text-white text-center pt-20 sm:pt-24 md:pt-26 px-3 sm:px-6 md:px-8 flex flex-col items-center"
+          className={`relative z-10 w-full h-full text-white text-center px-3 sm:px-6 md:px-8 flex flex-col items-center overflow-hidden ${
+            screenComponent
+              ? "justify-between pt-16 sm:pt-18 md:pt-20 pb-4 sm:pb-6 md:pb-8"
+              : "justify-center pt-16 pb-16"
+          }`}
         >
-          <div className="relative z-10 max-w-5xl mx-auto w-full">
+          <div
+            className={`relative z-10 w-full flex flex-col items-center ${
+              screenComponent
+                ? "max-w-5xl shrink-0"
+                : "max-w-5xl my-auto justify-center py-4 sm:py-6"
+            }`}
+          >
             {/* Pill Badge */}
             <div className="hero-meta-reveal">
-              <span className="inline-block text-xs font-semibold px-4 py-1.5 rounded-full bg-white/20 border border-white/35 backdrop-blur-md tracking-wide shadow-xs mb-3 sm:mb-4">
+              <span
+                className={`inline-block font-semibold rounded-full bg-white/20 border border-white/35 backdrop-blur-md tracking-wide shadow-xs ${
+                  screenComponent
+                    ? "text-xs px-4 py-1.5 mb-2 sm:mb-3"
+                    : "text-xs sm:text-sm px-5 py-2 mb-4 sm:mb-6"
+                }`}
+              >
                 {badge}
               </span>
             </div>
 
             {/* Headline - Masked Text Reveal Animation */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.12] sm:leading-[1.06] max-w-4xl mx-auto mt-2 mb-2 sm:mb-3 px-2">
+            <h1
+              className={`font-black tracking-tight mx-auto px-2 ${
+                screenComponent
+                  ? "text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] sm:leading-[1.06] max-w-4xl mt-1 mb-1.5 sm:mb-2"
+                  : "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.08] sm:leading-[1.02] max-w-5xl mb-4 sm:mb-6"
+              }`}
+            >
               <span className="block overflow-hidden py-0.5">
                 <span className="feature-title-reveal block font-handwritten will-change-transform">
                   {title}
@@ -171,17 +191,35 @@ export default function FeaturePageLayout({
             </h1>
 
             {/* Subtitle / Lead Paragraph */}
-            <p className="feature-lead-reveal text-sm sm:text-base md:text-lg text-white/90 font-normal max-w-2xl mx-auto leading-relaxed mb-4 sm:mb-5 px-2 will-change-transform">
-              {lead}
-            </p>
+            {lead && (
+              <p
+                className={`feature-lead-reveal text-white/95 font-normal mx-auto leading-relaxed px-2 will-change-transform ${
+                  screenComponent
+                    ? "text-xs sm:text-sm md:text-base max-w-2xl mb-2.5 sm:mb-3.5"
+                    : "text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mb-6 sm:mb-8"
+                }`}
+              >
+                {lead}
+              </p>
+            )}
 
             {/* Trust Chips - Mobile First Wrap */}
             {trustChips && trustChips.length > 0 && (
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-2xl mx-auto mb-4 sm:mb-6">
+              <div
+                className={`flex flex-wrap items-center justify-center max-w-3xl mx-auto ${
+                  screenComponent
+                    ? "gap-1.5 sm:gap-2 mb-2 sm:mb-3"
+                    : "gap-2.5 sm:gap-3.5 mb-4 sm:mb-6"
+                }`}
+              >
                 {trustChips.map((chip, idx) => (
                   <span
                     key={idx}
-                    className="feature-chip-reveal bg-white/15 border border-white/30 backdrop-blur-md rounded-xl px-3 sm:px-3.5 py-1.5 text-xs sm:text-sm font-medium text-white shadow-xs will-change-transform"
+                    className={`feature-chip-reveal bg-white/15 border border-white/30 backdrop-blur-md text-white shadow-xs will-change-transform font-medium ${
+                      screenComponent
+                        ? "rounded-xl px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs"
+                        : "rounded-2xl px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm"
+                    }`}
                   >
                     {chip}
                   </span>
@@ -189,9 +227,9 @@ export default function FeaturePageLayout({
               </div>
             )}
 
-            {/* Reusable Desktop Screen / Mockup Container - Overlaps across bottom curve like Home Hero */}
+            {/* Reusable Desktop Screen / Mockup Container */}
             {screenComponent && (
-              <div className="feature-screen-reveal w-full mt-2 sm:mt-4 relative z-20 -mb-28 sm:-mb-36 md:-mb-52 lg:-mb-60 will-change-transform">
+              <div className="feature-screen-reveal w-full mt-2 sm:mt-3 relative z-20 will-change-transform shrink min-h-0">
                 {screenComponent}
               </div>
             )}
@@ -200,13 +238,7 @@ export default function FeaturePageLayout({
       </div>
 
       {/* Children Content (Story, Bento, Dashboard, CTA) */}
-      <div
-        className={`w-full relative z-10 ${
-          screenComponent
-            ? "pt-28 sm:pt-40 md:pt-56 lg:pt-64"
-            : "pt-12 sm:pt-16"
-        }`}
-      >
+      <div className="w-full relative z-10 pt-12 sm:pt-16">
         {children}
       </div>
     </div>

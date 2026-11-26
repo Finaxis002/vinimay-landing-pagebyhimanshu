@@ -192,7 +192,7 @@ export default function FeatureBannerScreen({
       {/* Main Desktop / Laptop Device Frame */}
       <div
         ref={laptopRef}
-        className="relative z-20 w-full bg-white text-slate-800 rounded-t-xl sm:rounded-t-2xl border-4 sm:border-6 md:border-[7px] border-[#1a1a24] text-left shadow-[0_20px_50px_rgba(30,10,90,0.35)] overflow-hidden"
+        className="relative z-20 w-full bg-white text-slate-800 rounded-xl sm:rounded-2xl border-4 sm:border-6 md:border-[7px] border-[#1a1a24] text-left shadow-[0_20px_50px_rgba(30,10,90,0.35)] overflow-hidden max-h-[42vh]"
       >
         {/* Window Top Control Bar */}
         <div className="flex items-center gap-2 px-3 sm:px-4 py-2 border-b border-slate-200/80 bg-slate-50/70 text-xs">

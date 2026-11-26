@@ -130,8 +130,13 @@ export default function KineticIntro({ once = false, onComplete }: Props) {
       );
 
       // Finale: big wordmark rises
+      const primaryColor =
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--primary")
+          .trim() || FINAL_BG;
+
       tl.addLabel("final", tFinal)
-        .to(root, { backgroundColor: FINAL_BG, color: "#ffffff", duration: 0.5 }, "final")
+        .to(root, { backgroundColor: primaryColor, color: "#ffffff", duration: 0.5 }, "final")
         .to(block, { yPercent: -75, opacity: 0, duration: 0.8, ease: "power3.inOut" }, "final")
         .to(
           letters,
