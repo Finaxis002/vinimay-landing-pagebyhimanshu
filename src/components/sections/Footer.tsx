@@ -383,78 +383,7 @@ export default function Footer() {
                 </a>
               </div>
 
-              {/* Social Circles */}
-              <div className="flex items-center gap-1.5">
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="osmo-circle"
-                  aria-label="LinkedIn"
-                  title="LinkedIn"
-                >
-                  <span className="text-[14px] font-extrabold leading-none">
-                    in
-                  </span>
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="osmo-circle"
-                  aria-label="Instagram"
-                  title="Instagram"
-                >
-                  <svg
-                    width="17"
-                    height="17"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
-                  </svg>
-                </a>
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="osmo-circle"
-                  aria-label="X (Twitter)"
-                  title="X (Twitter)"
-                >
-                  <svg
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M17.8 3H21l-7 8 8.2 10h-6.4l-5-6.2L5.2 21H2l7.5-8.6L1.6 3h6.5l4.5 5.7L17.8 3zm-1.1 16h1.8L7.1 4.9H5.2L16.7 19z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="osmo-circle"
-                  aria-label="YouTube"
-                  title="YouTube"
-                >
-                  <svg
-                    width="17"
-                    height="17"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
-                </a>
-              </div>
+
             </div>
           </div>
         </div>
@@ -466,7 +395,7 @@ export default function Footer() {
         mode="reveal"
         start="top 90%"
         once={false}
-        className="mt-12 sm:mt-16 md:mt-12 border-b border-slate-200/80 dark:border-slate-800/80"
+        className="mt-12 sm:mt-16 md:mt-12 border-b hover:opacity-40 transition-all border-slate-200/80 dark:border-slate-800/80"
       />
 
       {/* Bottom Bar */}

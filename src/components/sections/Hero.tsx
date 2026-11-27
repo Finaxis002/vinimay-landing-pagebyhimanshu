@@ -208,32 +208,22 @@ export default function Hero() {
     return "opacity-0 [transform:translate3d(105%,0,-140px)_rotateY(22deg)_scale(0.86)] pointer-events-none z-0";
   };
 
-  const CURVE = "0 0 50% 50% / 0 0 9vw 9vw";
-
   return (
     <>
-      <div className="relative z-20 w-full mx-auto">
-        {/* Purple Hero Backdrop - Adapts to content on mobile, full 100dvh on desktop */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-full md:h-screen md:h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
-          style={{ borderRadius: CURVE }}
-        >
-          {/* WebGL 3D Wave Canvas */}
-          <HeroWaveCanvas speed={8} overlayOpacity={0.15} overlayColor="#fff" />
-
-          <div
-            className="hero-silk-sheen absolute inset-0 pointer-events-none"
-            style={{ borderRadius: CURVE }}
-          />
-        </div>
-
+      <div className="relative z-20 w-full px-2 sm:px-4 md:px-6 lg:px-8 pt-2 pb-6 mx-auto">
         {/* Hero Interactive Content & Mockup */}
         <section
           id="hero"
           ref={heroRef}
-          className="relative z-10 w-full text-white flex flex-col items-center text-center px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-26 pb-14 sm:pb-18 md:pb-0 md:justify-start overflow-hidden md:overflow-visible"
+          className="relative z-10 w-full rounded-[2.5rem] bg-[#8077EC] text-white flex flex-col items-center text-center px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-36 pb-14 sm:pb-18 md:pb-0 md:justify-start shadow-2xl border border-white/20"
         >
+          {/* 3D Waving Flag Background Canvas (Clipped inside rounded purple card matching index.html) */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 rounded-[2.5rem] overflow-hidden pointer-events-none z-0"
+          >
+            <HeroWaveCanvas speed={1} />
+          </div>
           {/* Content Group */}
           <div className="w-full flex flex-col items-center my-0 md:shrink-0 max-w-5xl mx-auto">
             {/* Top Pill Announcement Badge */}
@@ -270,7 +260,7 @@ export default function Hero() {
               </div>
 
               {/* State 2: VINIMAY™ (Exact Match to Loader.tsx font size, weight & letter-spacing) */}
-              <div
+              {/* <div
                 ref={state2Ref}
                 aria-hidden="true"
                 className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none text-white leading-none font-heading font-extrabold uppercase select-none"
@@ -293,7 +283,7 @@ export default function Hero() {
                   ))}
                   <sup className="ml-[0.15em] align-top text-[0.28em] tracking-normal">™</sup>
                 </div>
-              </div>
+              </div> */}
             </h1>
 
             {/* Split CTAs */}

@@ -6,13 +6,13 @@ import gsap from "gsap";
 type Step = { word: string; bg: string; fg: string };
 
 const STEPS: Step[] = [
+  { word: "Accounting", bg: "#c8f2d8", fg: "#0b4a36" },
   { word: "Billing", bg: "#ff7a45", fg: "#fff1c9" },
   { word: "Inventory", bg: "#14122c", fg: "#34d399" },
-  { word: "POS", bg: "#e6e0ff", fg: "#4a2bb5" },
-  { word: "GST Filing", bg: "#c8f2d8", fg: "#0b4a36" },
-  { word: "Ledgers", bg: "#fbd3e6", fg: "#3d1260" },
-  { word: "WhatsApp", bg: "#847BE6", fg: "#ffffff" },
-  { word: "Zero cost", bg: "#ffd84d", fg: "#2a1670" },
+  // { word: "POS", bg: "#e6e0ff", fg: "#4a2bb5" },
+  // { word: "Ledgers", bg: "#fbd3e6", fg: "#3d1260" },
+  // { word: "WhatsApp", bg: "#847BE6", fg: "#ffffff" },
+  // { word: "Zero cost", bg: "#ffd84d", fg: "#2a1670" },
 ];
 
 const BRAND = "VINIMAY".split("");

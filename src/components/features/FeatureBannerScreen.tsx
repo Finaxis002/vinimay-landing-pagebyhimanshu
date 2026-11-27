@@ -184,10 +184,10 @@ export default function FeatureBannerScreen({
       className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto px-1 sm:px-4 select-none"
     >
       {/* Drifting Glassmorphic Business Cards (Marquee Track behind screen) */}
-      <DriftingGlassCards
-        className="absolute top-1/2 -translate-y-1/2 -inset-x-8 sm:-inset-x-24 md:-inset-x-36 z-0 pointer-events-none"
+      {/* <DriftingGlassCards
+        className="absolute top-[33%] -translate-y-1/2 -inset-x-8 sm:-inset-x-24 md:-inset-x-36 z-0 pointer-events-none"
         opacity="opacity-40 sm:opacity-85"
-      />
+      /> */}
 
       {/* Main Desktop / Laptop Device Frame */}
       <div

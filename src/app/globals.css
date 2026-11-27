@@ -23,6 +23,19 @@
   --hero-gradient-to: color-mix(in srgb, var(--primary) 85%, black);
 }
 
+.hero {
+  min-height: 100vh;
+  background:
+    /* soft glow behind the center */
+    radial-gradient(60% 45% at 50% 55%, rgba(200, 180, 255, 0.55) 0%, transparent 70%),
+    /* bright violet bloom on the right */
+    radial-gradient(50% 50% at 85% 40%, rgba(140, 105, 250, 0.7) 0%, transparent 70%),
+    /* pale lavender at the bottom */
+    radial-gradient(90% 40% at 50% 105%, #e4d9ff 0%, transparent 75%),
+    /* base: deep indigo to violet to lilac */
+    linear-gradient(180deg, #8077ec 0%, #6b4ce0 30%, #8f74f5 60%, #b9a4fb 85%, #d8cbff 100%);
+}
+
 @theme {
   --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-handwritten: var(--font-caveat), cursive, sans-serif;

@@ -144,8 +144,6 @@ export default function FeaturePageLayout({
     return () => ctx.revert();
   }, []);
 
-  const CURVE = "0 0 50% 50% / 0 0 9vw 9vw";
-
   return (
     <div className="w-full bg-[#fafafa] text-[#1d1b2e] min-h-screen overflow-x-clip selection:bg-primary selection:text-white">
       {/* Top Reading Progress Bar */}
@@ -155,25 +153,17 @@ export default function FeaturePageLayout({
       />
 
       {/* HERO SECTION CONTAINER */}
-      <div className="relative z-20 w-full mx-auto">
-        {/* Purple Hero Backdrop - Adapts to content on mobile, full 100dvh on desktop */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-full md:h-screen md:h-[100dvh] w-full bg-hero-purple pointer-events-none shadow-2xl overflow-hidden z-0"
-          style={{ borderRadius: CURVE }}
-        >
-          {/* Reusable Living WebGL Wave Canvas & Silk Sheen */}
-          <HeroBackground />
-        </div>
-
+      <div className="relative z-20 w-full px-2 sm:px-4 md:px-6 lg:px-8 pt-2 pb-6 mx-auto">
         <header
           ref={heroRef}
-          className={`relative z-10 w-full text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center ${
+          className={`relative z-10 w-full rounded-[2.5rem] bg-[#8077EC] shadow-2xl border border-white/20 text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center ${
             screenComponent
-              ? "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-0 md:justify-start overflow-hidden md:overflow-visible md:pt-24 lg:pt-28"
-              : "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-20 justify-center overflow-hidden md:h-screen md:h-[100dvh]"
+              ? "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-0 md:justify-start md:pt-24 lg:pt-28"
+              : "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-20 justify-center"
           }`}
         >
+          {/* Reusable Living WebGL Wave Canvas */}
+          <HeroBackground />
           <div
             className={`relative z-10 w-full flex flex-col items-center ${
               screenComponent

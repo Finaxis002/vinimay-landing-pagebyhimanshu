@@ -216,7 +216,7 @@ export default function IndustryBlogsSection({
 
   return (
     <section className="relative py-16 sm:py-24 md:py-28 bg-[#fbfbfd] border-t border-slate-200/80 overflow-hidden select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className=" mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-10 sm:mb-14">
           <div className="lg:col-span-7">

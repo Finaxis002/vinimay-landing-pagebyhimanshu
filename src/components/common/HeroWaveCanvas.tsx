@@ -5,12 +5,16 @@ type Props = {
   speed?: number; // 1 = default, 0.5 = slower, 2 = faster, 0 = paused
   overlayOpacity?: number; // 0 = no overlay, 1 = fully covered
   overlayColor?: string; // any CSS color, e.g. "#000" or "rgb(0,0,0)"
+  className?: string;
+  style?: React.CSSProperties;
 };
 export default function HeroWaveCanvas({
   speed = 1,
   overlayOpacity = 0,
   overlayColor = "#000000",
-}) {
+  className = "",
+  style,
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   // Refs so changing props doesn't restart WebGL
   const speedRef = useRef(speed);
@@ -83,7 +87,7 @@ uniform float u_overlayOpacity;
         float spec = pow(max(dot(reflectDir, viewDir), 0.0), 16.0) * 0.35;
 
         vec3 colBase = u_color;
-        vec3 colShadow = u_color * 0.76;
+        vec3 colShadow = u_color * 0.96;
         vec3 colHighlight = mix(u_color, vec3(1.0), 0.35);
 
         vec3 color = mix(colShadow, colBase, smoothstep(-0.6, 0.2, h));
@@ -93,8 +97,10 @@ uniform float u_overlayOpacity;
         color += vec3(spec);
 
         gl_FragColor = vec4(color, 1.0);
-        color = mix(color, u_overlayColor, u_overlayOpacity);
-gl_FragColor = vec4(color, 1.0);
+        if (u_overlayOpacity > 0.0) {
+          color = mix(color, u_overlayColor, u_overlayOpacity);
+          gl_FragColor = vec4(color, 1.0);
+        }
       }
     `;
 
@@ -261,10 +267,8 @@ gl_FragColor = vec4(color, 1.0);
     <canvas
       id="hero-waves"
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden"
-      style={{
-        borderRadius: "0 0 50% 50% / 0 0 9vw 9vw",
-      }}
+      className={`absolute inset-0 w-full h-full pointer-events-none overflow-hidden ${className}`}
+      style={style}
     />
   );
 }
