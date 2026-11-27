@@ -26,7 +26,6 @@ export interface BusinessSolution {
   description: string;
   icon: React.ComponentType<{ className?: string }>;
   tint: string;
-  modalKey?: string;
 }
 
 export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
@@ -36,7 +35,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Billing, inventory & accounts",
     icon: Building2,
     tint: "bg-purple-500/20 text-purple-300",
-    modalKey: "retail",
   },
   {
     id: "courier",
@@ -44,7 +42,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Tracking, delivery & billing",
     icon: Package,
     tint: "bg-blue-500/20 text-blue-300",
-    modalKey: "transport",
   },
   {
     id: "marbles",
@@ -52,7 +49,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Stock, units & sales",
     icon: Layers,
     tint: "bg-teal-500/20 text-teal-300",
-    modalKey: "manufacturing",
   },
   {
     id: "kirana",
@@ -60,7 +56,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Billing, inventory & invoice",
     icon: ShoppingBasket,
     tint: "bg-emerald-500/20 text-emerald-300",
-    modalKey: "retail",
   },
   {
     id: "manufacturing",
@@ -68,7 +63,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Production, raw material & stock",
     icon: Factory,
     tint: "bg-rose-500/20 text-rose-300",
-    modalKey: "manufacturing",
   },
   {
     id: "travels",
@@ -76,7 +70,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Bookings, routes & billing",
     icon: Plane,
     tint: "bg-indigo-500/20 text-indigo-300",
-    modalKey: "transport",
   },
   {
     id: "transportation",
@@ -84,7 +77,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Trips, vehicles & expenses",
     icon: Truck,
     tint: "bg-amber-500/20 text-amber-300",
-    modalKey: "transport",
   },
   {
     id: "restaurant",
@@ -92,7 +84,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Sales, stock & vendors",
     icon: UtensilsCrossed,
     tint: "bg-orange-500/20 text-orange-300",
-    modalKey: "restaurants",
   },
   {
     id: "service",
@@ -100,7 +91,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Sales, raw material & stock",
     icon: Wrench,
     tint: "bg-cyan-500/20 text-cyan-300",
-    modalKey: "properties",
   },
   {
     id: "trading",
@@ -108,7 +98,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Purchase, sales & stock ledger",
     icon: ArrowLeftRight,
     tint: "bg-violet-500/20 text-violet-300",
-    modalKey: "retail",
   },
   {
     id: "gyms",
@@ -116,7 +105,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Members, short code attendance & check-in",
     icon: Dumbbell,
     tint: "bg-teal-500/20 text-teal-300",
-    modalKey: "gyms",
   },
   {
     id: "properties",
@@ -124,7 +112,6 @@ export const BUSINESS_SOLUTIONS: BusinessSolution[] = [
     description: "Projects, flats & RERA invoicing",
     icon: Building2,
     tint: "bg-amber-500/20 text-amber-300",
-    modalKey: "properties",
   },
 ];
 
@@ -209,15 +196,6 @@ export function IndustriesMegaMenu({ open, onClose }: { open: boolean; onClose: 
       }
     };
   }, []);
-
-  const handleSolutionClick = (modalKey?: string) => {
-    onClose();
-    if (modalKey) {
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent("open-industry-modal", { detail: modalKey }));
-      }, 350);
-    }
-  };
 
   return (
     <div
@@ -373,15 +351,6 @@ export function IndustriesMegaMenu({ open, onClose }: { open: boolean; onClose: 
 /* ---------- mobile: render inside your isMobileMenuOpen drawer ---------- */
 
 export function IndustriesMobileList({ onNavigate }: { onNavigate: () => void }) {
-  const handleSolutionClick = (modalKey?: string) => {
-    onNavigate();
-    if (modalKey) {
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent("open-industry-modal", { detail: modalKey }));
-      }, 350);
-    }
-  };
-
   return (
     <div className="rounded-2xl border border-white/10 bg-[#17141f] p-2 text-[#f4f2f8]">
       {BUSINESS_SOLUTIONS.map((item) => {

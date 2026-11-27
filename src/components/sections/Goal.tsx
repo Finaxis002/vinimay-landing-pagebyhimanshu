@@ -131,7 +131,7 @@ export default function Goal() {
                   tabIndex={0}
                   className={`group relative flex flex-col justify-between rounded-2xl p-6 cursor-pointer select-none transition-all duration-500 ease-out will-change-transform border ${
                     isHovered
-                      ? "bg-white/95 backdrop-blur-xl border-purple-400 shadow-2xl -translate-y-2 ring-2 ring-purple-400/30 scale-[1.02]"
+                      ? "bg-white/5 backdrop-blur-xl border-purple-400 shadow-2xl -translate-y-2 ring-2 ring-purple-400/30 scale-[1.02]"
                       : isAnyHovered
                       ? "bg-white/75 backdrop-blur-md border-slate-200/80 shadow-xs opacity-75"
                       : "bg-white/90 backdrop-blur-xs border-slate-200 shadow-xs hover:border-purple-300 hover:shadow-xl"

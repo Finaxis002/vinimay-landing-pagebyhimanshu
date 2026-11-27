@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { INDUSTRY_DATA, type IndustryData } from "@/content/industries";
+import React from "react";
+import Link from "next/link";
 import {
   Utensils,
   Dumbbell,
@@ -16,46 +16,13 @@ import {
   MessageSquare,
   MapPin,
   Layers,
-  X,
-  ChevronRight,
-  ImageIcon,
 } from "lucide-react";
 import ArcHeading from "@/components/common/ArcHeading";
 
 export default function Industries() {
-  const [activeModalKey, setActiveModalKey] = useState<string | null>(null);
-
-  const activeData: IndustryData | null = activeModalKey ? INDUSTRY_DATA[activeModalKey] : null;
-
-  const handleOpenModal = (key: string) => {
-    setActiveModalKey(key);
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleCloseModal = () => {
-    setActiveModalKey(null);
-    document.body.style.overflow = "";
-  };
-
-  React.useEffect(() => {
-    const handleOpenIndustryModal = (e: Event) => {
-      const customEvent = e as CustomEvent<string>;
-      if (customEvent.detail && INDUSTRY_DATA[customEvent.detail]) {
-        setActiveModalKey(customEvent.detail);
-        document.body.style.overflow = "hidden";
-      }
-    };
-
-    window.addEventListener("open-industry-modal", handleOpenIndustryModal);
-    return () => {
-      window.removeEventListener("open-industry-modal", handleOpenIndustryModal);
-    };
-  }, []);
-
   return (
-    <>
-      <section
-        id="industries"
+    <section
+      id="industries"
         className="relative py-20 sm:py-28 md:py-36 bg-white text-slate-900 overflow-hidden border-t border-slate-100"
       >
         {/* Subtle Ambient Radial Glow */}
@@ -88,8 +55,8 @@ export default function Industries() {
           {/* Bento Grid: 6 Industries in 3 Rhythmic Alternating Rows (7+5, 5+7, 7+5) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
             {/* Card 1: Restaurants & Cafes (7 cols) */}
-            <div
-              onClick={() => handleOpenModal("restaurants")}
+            <Link
+              href="/industries/restaurant"
               className="group lg:col-span-7 bg-white hover:bg-slate-50/50 rounded-3xl p-6 sm:p-9 border border-slate-200/80 hover:border-purple-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-purple-500/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -150,11 +117,11 @@ export default function Industries() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Card 2: Gyms & Fitness (5 cols) */}
-            <div
-              onClick={() => handleOpenModal("gyms")}
+            <Link
+              href="/industries/gyms"
               className="group lg:col-span-5 bg-white hover:bg-slate-50/50 rounded-3xl p-6 sm:p-9 border border-slate-200/80 hover:border-pink-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-pink-500/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -201,11 +168,11 @@ export default function Industries() {
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Card 3: Shops and Traders (5 cols) */}
-            <div
-              onClick={() => handleOpenModal("retail")}
+            <Link
+              href="/industries/kirana"
               className="group lg:col-span-5 bg-white hover:bg-slate-50/50 rounded-3xl p-6 sm:p-9 border border-slate-200/80 hover:border-emerald-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -259,11 +226,11 @@ export default function Industries() {
                   <span className="text-emerald-700 font-mono font-bold text-[10px]">✓✓ 0.8s</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Card 4: Transport and Logistics (7 cols) */}
-            <div
-              onClick={() => handleOpenModal("transport")}
+            <Link
+              href="/industries/transportation"
               className="group lg:col-span-7 bg-white hover:bg-slate-50/50 rounded-3xl p-6 sm:p-9 border border-slate-200/80 hover:border-blue-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -339,11 +306,11 @@ export default function Industries() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Card 5: Manufacturing (7 cols) */}
-            <div
-              onClick={() => handleOpenModal("manufacturing")}
+            <Link
+              href="/industries/manufacturing"
               className="group lg:col-span-7 bg-white hover:bg-slate-50/50 rounded-3xl p-6 sm:p-9 border border-slate-200/80 hover:border-amber-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden"
             >
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-amber-500/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -412,12 +379,12 @@ export default function Industries() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Card 6: Property & Rentals (5 cols) */}
-            <div
-              onClick={() => handleOpenModal("properties")}
-              className="group lg:col-span-5 bg-white hover:bg-slate-50/50 rounded-3xl p-6 sm:p-9 border border-slate-200/80 hover:border-cyan-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden"
+            <Link
+              href="/industries/properties"
+              className="group lg:col-span-5 bg-white hover:bg-slate-50/50 rounded-3xl p-6 sm:p-9 border border-slate-200/80 hover:border-cyan-300 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden block"
             >
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
               <div className="z-10">
@@ -465,105 +432,9 @@ export default function Industries() {
                   <span className="text-emerald-700 font-mono font-bold">Scheduled</span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* EXPANDED INDUSTRY MODAL */}
-      {activeData && (
-        <div
-          id="industry-modal-overlay"
-          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
-          onClick={handleCloseModal}
-        >
-          <div
-            id="industry-modal-card"
-            className="bg-white text-slate-900 rounded-3xl max-w-4xl w-full p-6 sm:p-10 shadow-2xl border border-slate-200/90 relative overflow-hidden animate-in zoom-in-95 duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={handleCloseModal}
-              aria-label="Close modal"
-              className="absolute top-6 right-6 w-9 h-9 rounded-xl bg-purple-50 hover:bg-purple-100 flex items-center justify-center text-purple-700 transition-colors cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Modal Content Header */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-8">
-              <div className="md:col-span-7">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">
-                  {activeData.title}
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed mb-6 font-normal">
-                  {activeData.subtitle}
-                </p>
-
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://vinimay.sharda.co.in/knowledge-base"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={handleCloseModal}
-                    className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-md transition-all flex items-center gap-2"
-                  >
-                    <span>{activeData.cta}</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://vinimay.sharda.co.in/knowledge-base"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={handleCloseModal}
-                    className="text-slate-600 hover:text-slate-900 text-xs sm:text-sm font-semibold px-4 py-3 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"
-                  >
-                    See 100% Free Details
-                  </a>
-                </div>
-              </div>
-
-              {/* Right Side: Bullet Benefits Checklist */}
-              <div className="md:col-span-5 bg-slate-50/80 p-5 rounded-2xl border border-slate-100 space-y-3">
-                {activeData.bullets.map((bullet, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
-                    <span className="w-4 h-4 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[10px] shrink-0 mt-0.5">
-                      ✓
-                    </span>
-                    <span>{bullet}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Bottom Visual Showcase */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch pt-6 border-t border-slate-100">
-              <div className="md:col-span-7 bg-slate-100 rounded-2xl border border-slate-200 overflow-hidden flex items-center justify-center min-h-[220px] p-4 relative group">
-                <div className="text-center p-6">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-purple-600 mx-auto mb-3">
-                    <ImageIcon className="w-6 h-6" />
-                  </div>
-                  <p className="text-xs font-bold text-slate-800">{activeData.previewTitle}</p>
-                  <p className="text-[11px] text-slate-500 mt-1">
-                    Integrated live in Vinimay with zero subscription or terminal fees.
-                  </p>
-                </div>
-              </div>
-
-              <div className="md:col-span-5 bg-gradient-to-br from-amber-50 to-orange-50/70 p-6 rounded-2xl border border-amber-200/60 flex flex-col items-center justify-center text-center">
-                <div className="text-4xl sm:text-5xl font-extrabold text-orange-500 tracking-tight font-mono mb-2">
-                  {activeData.statValue}
-                </div>
-                <p className="text-xs sm:text-sm text-slate-700 font-medium max-w-xs leading-relaxed">
-                  {activeData.statDesc}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
   );
 }

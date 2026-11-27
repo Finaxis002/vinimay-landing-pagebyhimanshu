@@ -8,7 +8,7 @@ import Goal from "@/components/sections/Goal";
 const WhatIsVinimay = dynamic(() => import("@/components/sections/WhatIsVinimay"));
 const Industries = dynamic(() => import("@/components/sections/Industries"));
 const HowItWorks = dynamic(() => import("@/components/sections/HowItWorks"));
-const AccountingSolutions = dynamic(() => import("@/components/sections/AccountingSolutions"));
+// const AccountingSolutions = dynamic(() => import("@/components/sections/AccountingSolutions"));
 const SoftwareTour = dynamic(() => import("@/components/sections/SoftwareTour"));
 const HowToCreateBill = dynamic(() => import("@/components/sections/HowToCreateBill"));
 const FeaturesOrbital = dynamic(() => import("@/components/sections/FeaturesOrbital"));
