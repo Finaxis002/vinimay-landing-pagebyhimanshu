@@ -360,8 +360,8 @@ export default function Navbar() {
                 <div
                   key={link.id}
                   className="relative features-nav-container"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onClick={handleMouseEnter}
+                  // onMouseLeave={handleMouseLeave}
                 >
                   <button
                     type="button"
@@ -372,7 +372,7 @@ export default function Navbar() {
                     }}
                     className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all cursor-pointer ${
                       isActive || isFeaturesHovered
-                        ? "bg-primary text-white shadow-sm font-bold"
+                        ? "hover:bg-white/10 text-white shadow-sm font-bold"
                         : "text-white/85 hover:text-white hover:bg-white/10"
                     }`}
                     aria-expanded={isFeaturesHovered}
