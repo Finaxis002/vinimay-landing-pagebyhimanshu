@@ -43,21 +43,21 @@ export default function VendorsPage() {
             "🔔 Due Date Payment Alerts",
             "🛡️ 100% Input Tax Credit (ITC) Verification",
           ]}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle="Vinimay"
-              windowSubtitle="/ Supplier Directory & Payables"
-              badgeCode="VEN-MGMT-01"
-              customerName="ABC Traders & Electronics"
-              customerGstin="✓ GSTIN 23AABCC8871Z1Z8"
-              chips={[
-                "PO Dispatched",
-                "Goods Inward",
-                "ITC Matched",
-                "Payment Cleared",
-              ]}
-            />
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle="Vinimay"
+          //     windowSubtitle="/ Supplier Directory & Payables"
+          //     badgeCode="VEN-MGMT-01"
+          //     customerName="ABC Traders & Electronics"
+          //     customerGstin="✓ GSTIN 23AABCC8871Z1Z8"
+          //     chips={[
+          //       "PO Dispatched",
+          //       "Goods Inward",
+          //       "ITC Matched",
+          //       "Payment Cleared",
+          //     ]}
+          //   />
+          // }
         >
           {/* Section 0: Procurement & Accounts Payable Automation */}
           <VendorTabsSection />

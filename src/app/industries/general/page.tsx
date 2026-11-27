@@ -45,23 +45,23 @@ export default function GeneralIndustryPage() {
             "⚡ Setup in Minutes",
             "✨ Zero Accounting Knowledge Needed",
           ]}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle="Vinimay"
-              windowSubtitle="/ General Business & Retail POS"
-              badgeCode="GEN-2026"
-              customerName="Sharma General Store"
-              customerGstin="✓ GSTIN 23ABCDE1234F1Z5"
-              chips={[
-                "Counter POS Active",
-                "Barcode Scanned",
-                "Stock Synced",
-                "WhatsApp Bill Sent",
-              ]}
-            >
-              <IndustryWorkingMockup industryId="general" />
-            </FeatureBannerScreen>
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle="Vinimay"
+          //     windowSubtitle="/ General Business & Retail POS"
+          //     badgeCode="GEN-2026"
+          //     customerName="Sharma General Store"
+          //     customerGstin="✓ GSTIN 23ABCDE1234F1Z5"
+          //     chips={[
+          //       "Counter POS Active",
+          //       "Barcode Scanned",
+          //       "Stock Synced",
+          //       "WhatsApp Bill Sent",
+          //     ]}
+          //   >
+          //     <IndustryWorkingMockup industryId="general" />
+          //   </FeatureBannerScreen>
+          // }
         >
           <GeneralCapabilitiesGrid />
           <GeneralWorkflowSteps />

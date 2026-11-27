@@ -43,21 +43,21 @@ export default function TransactionsPage() {
             "🔍 Sub-Second Transaction Search",
             "🛡️ Audit-Ready Journal Entries",
           ]}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle="Vinimay"
-              windowSubtitle="/ Accounting Books & Ledgers"
-              badgeCode="TXN-BOOK-01"
-              customerName="Dhurandhar Fitness Hub"
-              customerGstin="✓ Daybook Balanced"
-              chips={[
-                "Voucher Recorded",
-                "Debit/Credit Matched",
-                "Ledger Updated",
-                "Bank Reconciled",
-              ]}
-            />
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle="Vinimay"
+          //     windowSubtitle="/ Accounting Books & Ledgers"
+          //     badgeCode="TXN-BOOK-01"
+          //     customerName="Dhurandhar Fitness Hub"
+          //     customerGstin="✓ Daybook Balanced"
+          //     chips={[
+          //       "Voucher Recorded",
+          //       "Debit/Credit Matched",
+          //       "Ledger Updated",
+          //       "Bank Reconciled",
+          //     ]}
+          //   />
+          // }
         >
           {/* Section 0: Double-Entry Accounting & Audit Trail */}
           <TransactionTabsSection />

@@ -43,21 +43,21 @@ export default function InventoryPage() {
             "⚡ Automated Low-Stock Alerts",
             "🏷️ Barcode & Batch Expiry Tracking",
           ]}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle="Vinimay"
-              windowSubtitle="/ Inventory & Stock Control"
-              badgeCode="STK-2026"
-              customerName="Central Godown (Bhopal)"
-              customerGstin="✓ 18,420 Units Available"
-              chips={[
-                "Stock Received",
-                "Barcode Scanned",
-                "Shelf Synced",
-                "Ledger Balanced",
-              ]}
-            />
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle="Vinimay"
+          //     windowSubtitle="/ Inventory & Stock Control"
+          //     badgeCode="STK-2026"
+          //     customerName="Central Godown (Bhopal)"
+          //     customerGstin="✓ 18,420 Units Available"
+          //     chips={[
+          //       "Stock Received",
+          //       "Barcode Scanned",
+          //       "Shelf Synced",
+          //       "Ledger Balanced",
+          //     ]}
+          //   />
+          // }
         >
           {/* Section 0: What makes Vinimay Inventory GST Compliant (Reusable Tabs) */}
           <ComplianceTabsSection

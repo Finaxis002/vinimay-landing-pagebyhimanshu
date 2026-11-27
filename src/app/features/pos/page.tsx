@@ -36,28 +36,28 @@ export default function PosBillingPage() {
         <FeaturePageLayout
           badge="Point of Sale (POS)"
           title="Lightning-Fast Counter POS for High-Volume Stores"
-          backgroundImage="https://images.unsplash.com/photo-1556742049-0a67c5574f73?w=1600&auto=format&fit=crop&q=80"
+          backgroundImage="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=1600&auto=format&fit=crop&q=80"
           // lead="A fast, offline-friendly point-of-sale built for counters that can't afford to slow down. Barcode scanning, split payments, and instant thermal printing."
           trustChips={[
             "⚡ Sub-second Barcode Scan",
             "📶 Works 100% Offline",
             "🖨️ Thermal & WhatsApp Receipts",
           ]}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle="Vinimay"
-              windowSubtitle="/ Counter POS Terminal"
-              badgeCode="POS-REG-01"
-              customerName="Walk-in Order #412"
-              customerGstin="✓ Terminal Active"
-              chips={[
-                "Barcode Scanned",
-                "Items Added",
-                "Split Paid",
-                "Slip Printed",
-              ]}
-            />
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle="Vinimay"
+          //     windowSubtitle="/ Counter POS Terminal"
+          //     badgeCode="POS-REG-01"
+          //     customerName="Walk-in Order #412"
+          //     customerGstin="✓ Terminal Active"
+          //     chips={[
+          //       "Barcode Scanned",
+          //       "Items Added",
+          //       "Split Paid",
+          //       "Slip Printed",
+          //     ]}
+          //   />
+          // }
         >
           {/* Section 0: Sub-second Counter Performance Workflow Showcase */}
           <POSTabsSection />

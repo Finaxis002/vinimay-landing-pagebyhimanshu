@@ -225,18 +225,18 @@ export default function IndustryPageTemplate({ data }: { data: IndustryPageData 
           lead={hero.lead}
           trustChips={hero.trustChips}
           backgroundImage={heroImage}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle={hero.windowTitle || "Vinimay"}
-              windowSubtitle={hero.windowSubtitle}
-              badgeCode={hero.badgeCode}
-              customerName={hero.customerName}
-              customerGstin={hero.customerGstin}
-              chips={hero.chips}
-            >
-              <IndustryWorkingMockup industryId={data.id} />
-            </FeatureBannerScreen>
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle={hero.windowTitle || "Vinimay"}
+          //     windowSubtitle={hero.windowSubtitle}
+          //     badgeCode={hero.badgeCode}
+          //     customerName={hero.customerName}
+          //     customerGstin={hero.customerGstin}
+          //     chips={hero.chips}
+          //   >
+          //     <IndustryWorkingMockup industryId={data.id} />
+          //   </FeatureBannerScreen>
+          // }
         >
           {/* Section 1: Capabilities Grid (with ArcHeading) */}
           <section className="relative py-20 sm:py-28 md:py-36 bg-white text-slate-900 border-t border-slate-200/70 overflow-hidden">

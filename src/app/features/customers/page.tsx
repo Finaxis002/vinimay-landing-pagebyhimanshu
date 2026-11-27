@@ -43,21 +43,21 @@ export default function CustomersPage() {
             "💬 WhatsApp Payment Reminders",
             "📈 Credit Limit & Ledger Tracking",
           ]}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle="Vinimay"
-              windowSubtitle="/ Customer Directory & Ledgers"
-              badgeCode="CRM-CUST-01"
-              customerName="Sharma Enterprises"
-              customerGstin="✓ GSTIN 23ABCDE1234F1Z5"
-              chips={[
-                "Customer Found",
-                "History Pulled",
-                "Ledger Verified",
-                "WhatsApp Sent",
-              ]}
-            />
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle="Vinimay"
+          //     windowSubtitle="/ Customer Directory & Ledgers"
+          //     badgeCode="CRM-CUST-01"
+          //     customerName="Sharma Enterprises"
+          //     customerGstin="✓ GSTIN 23ABCDE1234F1Z5"
+          //     chips={[
+          //       "Customer Found",
+          //       "History Pulled",
+          //       "Ledger Verified",
+          //       "WhatsApp Sent",
+          //     ]}
+          //   />
+          // }
         >
           {/* Section 0: Centralized CRM & Khata Governance */}
           <CustomerTabsSection />

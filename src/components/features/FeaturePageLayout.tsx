@@ -182,8 +182,8 @@ export default function FeaturePageLayout({
                 className="object-cover object-center scale-105 filter brightness-90"
               />
               {/* Dual-layer dark vignette for pristine white text contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/75 to-slate-950/50" />
-              <div className="absolute inset-0 bg-[#302068]/30 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-slate-950/45 to-slate-950/50" />
+              {/* <div className="absolute inset-0 bg-[#302068]/30 mix-blend-multiply" /> */}
             </div>
           ) : (
             <HeroBackground />

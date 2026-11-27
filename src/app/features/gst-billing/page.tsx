@@ -43,15 +43,15 @@ export default function GstBillingPage() {
             "🖱 Easy to use",
             "✨ No accounting knowledge needed",
           ]}
-          screenComponent={
-            <FeatureBannerScreen
-              windowTitle="Vinimay"
-              windowSubtitle="/ New GST Invoice"
-              badgeCode="INV-2041"
-              customerName="Sharma Traders"
-              customerGstin="✓ GSTIN 23ABCDE1234F1Z5"
-            />
-          }
+          // screenComponent={
+          //   <FeatureBannerScreen
+          //     windowTitle="Vinimay"
+          //     windowSubtitle="/ New GST Invoice"
+          //     badgeCode="INV-2041"
+          //     customerName="Sharma Traders"
+          //     customerGstin="✓ GSTIN 23ABCDE1234F1Z5"
+          //   />
+          // }
         >
           {/* Section 0: Statutory GST Compliance & Automation */}
           <GSTComplianceTabsSection />
