@@ -36,6 +36,7 @@ export default function VendorsPage() {
         <FeaturePageLayout
           badge="Vendor & Supplier Management"
           title="Streamline Supplier Purchases & Payables On Time"
+          backgroundImage="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&auto=format&fit=crop&q=80"
           // lead="Manage vendor contacts, generate purchase orders (PO), log incoming bills, and keep track of supplier dues with automated payment reminders."
           trustChips={[
             "📋 1-Click Purchase Orders (PO)",

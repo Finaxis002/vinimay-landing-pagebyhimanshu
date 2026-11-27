@@ -180,10 +180,39 @@ function PreviewBox({
    REUSABLE INDUSTRY TEMPLATE
    ========================================================================= */
 
+const INDUSTRY_HERO_IMAGES: Record<string, string> = {
+  transportation:
+    "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&auto=format&fit=crop&q=80",
+  marbles:
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&auto=format&fit=crop&q=80",
+  courier:
+    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&auto=format&fit=crop&q=80",
+  travels:
+    "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&auto=format&fit=crop&q=80",
+  manufacturing:
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&auto=format&fit=crop&q=80",
+  properties:
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&auto=format&fit=crop&q=80",
+  restaurant:
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&auto=format&fit=crop&q=80",
+  gyms:
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&auto=format&fit=crop&q=80",
+  kirana:
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&auto=format&fit=crop&q=80",
+  trading:
+    "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&auto=format&fit=crop&q=80",
+  service:
+    "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&auto=format&fit=crop&q=80",
+  general:
+    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&auto=format&fit=crop&q=80",
+};
+
 export default function IndustryPageTemplate({ data }: { data: IndustryPageData }) {
   const { hero, capabilities, workflow } = data;
   const faqData = getIndustryFaq(data.id);
   const blogsData = getIndustryBlogs(data.id);
+  const heroImage =
+    INDUSTRY_HERO_IMAGES[data.id] || INDUSTRY_HERO_IMAGES.general;
 
   return (
     <>
@@ -195,6 +224,7 @@ export default function IndustryPageTemplate({ data }: { data: IndustryPageData 
           title={hero.title}
           lead={hero.lead}
           trustChips={hero.trustChips}
+          backgroundImage={heroImage}
           screenComponent={
             <FeatureBannerScreen
               windowTitle={hero.windowTitle || "Vinimay"}

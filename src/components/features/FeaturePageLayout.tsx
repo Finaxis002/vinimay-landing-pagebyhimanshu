@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroBackground from "@/components/common/HeroBackground";
@@ -12,6 +13,7 @@ export interface FeaturePageLayoutProps {
   trustChips?: string[];
   screenComponent?: React.ReactNode;
   children?: React.ReactNode;
+  backgroundImage?: string;
 }
 
 export default function FeaturePageLayout({
@@ -25,6 +27,7 @@ export default function FeaturePageLayout({
   ],
   screenComponent,
   children,
+  backgroundImage,
 }: FeaturePageLayoutProps) {
   const heroRef = useRef<HTMLElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
@@ -156,14 +159,35 @@ export default function FeaturePageLayout({
       <div className="relative z-20 w-full px-2 sm:px-4 md:px-6 lg:px-8 pt-2 pb-6 mx-auto">
         <header
           ref={heroRef}
-         className={`relative z-10 w-full rounded-[2.5rem] bg-[#8077EC] shadow-2xl border border-white/20 text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center md:min-h-[580px] ${
-  screenComponent
-    ? "pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-0 md:justify-start"
-    : "pt-28 sm:pt-32 pb-20 sm:pb-24 md:pb-28 justify-center"
-}`}
+          className={`relative z-10 w-full rounded-[2.5rem] overflow-hidden ${
+            backgroundImage ? "bg-slate-950" : "bg-[#8077EC]"
+          } shadow-2xl border border-white/20 text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center md:min-h-[580px] ${
+            screenComponent
+              ? "pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-0 md:justify-start"
+              : "pt-28 sm:pt-32 pb-20 sm:pb-24 md:pb-28 justify-center"
+          }`}
         >
-          {/* Reusable Living WebGL Wave Canvas */}
-          <HeroBackground />
+          {/* Hero Background: High-Res Feature/Industry Image or Living Canvas */}
+          {backgroundImage ? (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 rounded-[2.5rem] overflow-hidden pointer-events-none z-0"
+            >
+              <Image
+                src={backgroundImage}
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center scale-105 filter brightness-90"
+              />
+              {/* Dual-layer dark vignette for pristine white text contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/75 to-slate-950/50" />
+              <div className="absolute inset-0 bg-[#302068]/30 mix-blend-multiply" />
+            </div>
+          ) : (
+            <HeroBackground />
+          )}
           <div
             className={`relative z-10 w-full flex flex-col items-center ${
               screenComponent

@@ -36,6 +36,7 @@ export default function PosBillingPage() {
         <FeaturePageLayout
           badge="Point of Sale (POS)"
           title="Lightning-Fast Counter POS for High-Volume Stores"
+          backgroundImage="https://images.unsplash.com/photo-1556742049-0a67c5574f73?w=1600&auto=format&fit=crop&q=80"
           // lead="A fast, offline-friendly point-of-sale built for counters that can't afford to slow down. Barcode scanning, split payments, and instant thermal printing."
           trustChips={[
             "⚡ Sub-second Barcode Scan",

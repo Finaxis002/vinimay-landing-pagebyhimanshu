@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   ChevronRight,
 } from "lucide-react";
+import ArcHeading from "../common/ArcHeading";
 
 /* ------------------------------------------------------------------ */
 /* Types & Data                                                       */
@@ -342,52 +343,18 @@ export default function HowToCreateBill({
             <span>STEP-BY-STEP VIDEO TUTORIAL</span>
           </div>
 
-          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white drop-shadow-sm sm:text-4xl md:text-5xl lg:text-6xl">
+          <ArcHeading
+            as="h2"
+            className="mb-4 text-3xl font-extrabold tracking-tight text-white drop-shadow-sm sm:text-4xl md:text-5xl lg:text-6xl"
+          >
             How To Create GST &amp; Non-GST Bills
-          </h2>
+          </ArcHeading>
 
           <p className="mx-auto max-w-2xl text-sm font-normal leading-relaxed text-white/90 drop-shadow-xs sm:text-base md:text-lg">
             Watch how effortlessly you can generate 100% compliant GST tax invoices or quick retail non-GST cash bills in under 60 seconds with Vinimay.
           </p>
 
-          {/* Mode Switcher Toggle Tabs */}
-          <div className="mt-8 flex justify-center">
-            <div className="inline-flex rounded-2xl border border-white/30 bg-black/25 p-1.5 backdrop-blur-xl shadow-lg">
-              <button
-                type="button"
-                onClick={() => setActiveTab("gst")}
-                className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all sm:px-6 sm:text-sm cursor-pointer ${
-                  activeTab === "gst"
-                    ? "bg-white text-[#5550cf] shadow-md ring-2 ring-white/50"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
-                }`}
-                aria-pressed={activeTab === "gst"}
-              >
-                <FileText className="h-4 w-4" />
-                <span>GST Tax Invoice</span>
-                <span className="hidden rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-extrabold text-emerald-800 sm:inline-block">
-                  Compliant
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("nongst")}
-                className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all sm:px-6 sm:text-sm cursor-pointer ${
-                  activeTab === "nongst"
-                    ? "bg-white text-[#5550cf] shadow-md ring-2 ring-white/50"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
-                }`}
-                aria-pressed={activeTab === "nongst"}
-              >
-                <FileOutput className="h-4 w-4" />
-                <span>Non-GST / Cash Bill</span>
-                <span className="hidden rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-extrabold text-blue-800 sm:inline-block">
-                  Fast
-                </span>
-              </button>
-            </div>
-          </div>
+         
         </div>
 
         {/* Interactive Laptop & YouTube Video Showcase */}
@@ -426,13 +393,25 @@ export default function HowToCreateBill({
 
                 {/* Video Container (16:9 widescreen) */}
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-slate-700/50 bg-black shadow-inner">
-                  <iframe
+                  {/* <iframe
                     className="absolute inset-0 h-full w-full"
                     src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
                     title={`${currentMode.name} Tutorial - Vinimay`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     loading="lazy"
+                  /> */}
+
+                  <iframe
+                   
+                    height="315"
+                      className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/MgagE62UP0U?si=OpCDyw4uANbD_lFi" 
+                    title={`${currentMode.name} Tutorial - Vinimay`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
                   />
                 </div>
               </div>

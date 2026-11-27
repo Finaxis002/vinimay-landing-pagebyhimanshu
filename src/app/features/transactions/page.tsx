@@ -36,6 +36,7 @@ export default function TransactionsPage() {
         <FeaturePageLayout
           badge="Transaction Management & Books"
           title="Complete Accounting Ledger & Audit-Proof Transactions"
+          backgroundImage="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1600&auto=format&fit=crop&q=80"
           // lead="Manage sales, purchases, receipts, payments, and double-entry journal vouchers from one unified ledger. Real-time reconciliation and search."
           trustChips={[
             "⚖️ Double-Entry Compliant",

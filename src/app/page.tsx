@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Loader from "@/components/sections/Loader";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
+import Goal from "@/components/sections/Goal";
 
 // Dynamic imports for below-the-fold components to reduce initial mobile bundle and TBT
 const WhatIsVinimay = dynamic(() => import("@/components/sections/WhatIsVinimay"));
@@ -22,13 +23,14 @@ export default function Home() {
       <Navbar />
       <main className="min-h-screen">
         <Hero />
+        <Goal/>
         <WhatIsVinimay />
         <Industries />
         <HowItWorks />
-        <AccountingSolutions />
-        <SoftwareTour />
         <HowToCreateBill />
+        {/* <AccountingSolutions /> */}
         <FeaturesOrbital />
+        <SoftwareTour />
         <Testimonials />
         <Faq />
       </main>

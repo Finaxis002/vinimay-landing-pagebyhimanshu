@@ -35,6 +35,7 @@ export default function IndustriesIndexPage() {
         <FeaturePageLayout
           badge="12+ Dedicated Business Verticals"
           title="Tailored Solutions for Every Industry"
+          backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&auto=format&fit=crop&q=80"
           lead="Every business has its own operational rhythm. Vinimay replaces generic, one-size-fits-all accounting with dedicated forms, statutory tax codes, and hardware integrations built for your specific trade."
           trustChips={[
             "🛡 100% Free Forever",
