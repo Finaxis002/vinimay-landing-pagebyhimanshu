@@ -217,6 +217,24 @@ export default function Loader({
         aria-hidden
       />
 
+      {/* Modern Dot Matrix Pattern (subtle glowing dots fading toward edges) */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: isLight
+            ? "radial-gradient(rgba(128, 119, 236, 0.32) 1.25px, transparent 1.25px)"
+            : "radial-gradient(rgba(180, 170, 255, 0.28) 1.25px, transparent 1.25px)",
+          backgroundSize: "28px 28px",
+          backgroundPosition: "center center",
+          maskImage:
+            "radial-gradient(ellipse 75% 65% at 50% 50%, #000 35%, transparent 85%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 75% 65% at 50% 50%, #000 35%, transparent 85%)",
+          opacity: isLight ? 0.8 : 0.65,
+        }}
+        aria-hidden
+      />
+
       {/* Ambient background bloom */}
       <div
         ref={glow}
