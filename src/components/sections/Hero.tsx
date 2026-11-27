@@ -229,6 +229,76 @@ export default function Hero() {
           >
             <HeroWaveCanvas speed={1} />
           </div>
+
+          {/* Sweeping Ribbon Waves Pattern (matching screenshot) */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-20 rounded-[2.5rem] overflow-hidden pointer-events-none z-0"
+          >
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 1000 1600"
+              preserveAspectRatio="xMidYMid slice"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                {/* Ribbon 1 Gradient (Top Arc) */}
+                <linearGradient id="hero-ribbon-top-arc" x1="100%" y1="100%" x2="30%" y2="0%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.08" />
+                  <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.22" />
+                </linearGradient>
+
+                {/* Ribbon 2 Gradient (Bottom-Left Arc) */}
+                <linearGradient id="hero-ribbon-bottom-arc" x1="0%" y1="0%" x2="90%" y2="100%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.06" />
+                  <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.20" />
+                </linearGradient>
+
+                {/* Ribbon 3 Gradient (Main Serpentine S-Curve) */}
+                <linearGradient id="hero-ribbon-main-scurve" x1="20%" y1="0%" x2="80%" y2="100%">
+                  <stop offset="0%" stopColor="#c4b5fd" stopOpacity="0.28" />
+                  <stop offset="45%" stopColor="#ffffff" stopOpacity="0.16" />
+                  <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.26" />
+                </linearGradient>
+
+                {/* Ribbon Interlacing Depth Shadow */}
+                <filter id="hero-ribbon-depth" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow
+                    dx="-8"
+                    dy="14"
+                    stdDeviation="18"
+                    floodColor="rgba(30, 10, 80, 0.45)"
+                  />
+                </filter>
+              </defs>
+
+              {/* 1. Top Arc Loop (Background layer) */}
+              <path
+                d="M 1120 540 C 840 500 580 280 520 -50"
+                stroke="url(#hero-ribbon-top-arc)"
+                strokeWidth="175"
+                strokeLinecap="round"
+              />
+
+              {/* 2. Bottom-Left Arc Loop (Background layer) */}
+              <path
+                d="M -90 950 C 220 900 480 1060 620 1650"
+                stroke="url(#hero-ribbon-bottom-arc)"
+                strokeWidth="175"
+                strokeLinecap="round"
+              />
+
+              {/* 3. Main Central Serpentine S-Curve Ribbon (Foreground layer with depth shadow) */}
+              <path
+                d="M 520 -60 C 180 170 170 470 320 780 C 470 1090 790 1260 760 1660"
+                stroke="url(#hero-ribbon-main-scurve)"
+                strokeWidth="185"
+                strokeLinecap="round"
+                filter="url(#hero-ribbon-depth)"
+              />
+            </svg>
+          </div>
           {/* Content Group */}
           <div className="w-full flex flex-col items-center my-0 md:shrink-0 max-w-5xl mx-auto">
             {/* Top Pill Announcement Badge */}
