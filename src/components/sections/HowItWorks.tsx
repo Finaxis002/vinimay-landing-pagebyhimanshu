@@ -273,6 +273,8 @@ export default function HowItWorks() {
       id="how-it-works"
       className="relative py-20 lg:py-28 overflow-hidden bg-[#fafafa] w-full border-t border-slate-100"
     >
+
+      
       {/* Top Mini Neon Announcement Pill */}
       <div className="flex justify-center mb-6 px-4">
         <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-100/90 border border-purple-200 text-purple-700 text-xs font-bold tracking-wide uppercase">
