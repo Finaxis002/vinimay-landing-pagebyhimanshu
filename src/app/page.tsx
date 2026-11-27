@@ -9,6 +9,7 @@ const Industries = dynamic(() => import("@/components/sections/Industries"));
 const HowItWorks = dynamic(() => import("@/components/sections/HowItWorks"));
 const AccountingSolutions = dynamic(() => import("@/components/sections/AccountingSolutions"));
 const SoftwareTour = dynamic(() => import("@/components/sections/SoftwareTour"));
+const HowToCreateBill = dynamic(() => import("@/components/sections/HowToCreateBill"));
 const FeaturesOrbital = dynamic(() => import("@/components/sections/FeaturesOrbital"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const Faq = dynamic(() => import("@/components/sections/Faq"));
@@ -26,6 +27,7 @@ export default function Home() {
         <HowItWorks />
         <AccountingSolutions />
         <SoftwareTour />
+        <HowToCreateBill />
         <FeaturesOrbital />
         <Testimonials />
         <Faq />
