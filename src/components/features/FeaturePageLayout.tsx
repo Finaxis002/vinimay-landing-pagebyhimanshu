@@ -156,11 +156,11 @@ export default function FeaturePageLayout({
       <div className="relative z-20 w-full px-2 sm:px-4 md:px-6 lg:px-8 pt-2 pb-6 mx-auto">
         <header
           ref={heroRef}
-          className={`relative z-10 w-full rounded-[2.5rem] bg-[#8077EC] shadow-2xl border border-white/20 text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center ${
-            screenComponent
-              ? "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-0 md:justify-start md:pt-24 lg:pt-28"
-              : "pt-24 sm:pt-28 pb-14 sm:pb-18 md:pb-20 justify-center"
-          }`}
+         className={`relative z-10 w-full rounded-[2.5rem] bg-[#8077EC] shadow-2xl border border-white/20 text-white text-center px-4 sm:px-6 md:px-8 flex flex-col items-center md:min-h-[580px] ${
+  screenComponent
+    ? "pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-0 md:justify-start"
+    : "pt-28 sm:pt-32 pb-20 sm:pb-24 md:pb-28 justify-center"
+}`}
         >
           {/* Reusable Living WebGL Wave Canvas */}
           <HeroBackground />

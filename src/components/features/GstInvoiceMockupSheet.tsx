@@ -84,7 +84,7 @@ export default function GstInvoiceMockupSheet({
 }: GstInvoiceMockupSheetProps) {
   return (
     <div
-      className={`relative w-full rounded-2xl border border-white/[0.14] bg-[#0A0B10]/98 shadow-[0_25px_70px_rgba(0,0,0,0.85)] backdrop-blur-2xl overflow-hidden flex flex-col ${className}`}
+      className={`relative w-full  rounded-2xl border border-zinc-100 bg-[#0A0B10]/98 backdrop-blur-2xl overflow-hidden flex flex-col ${className}`}
     >
       {/* Window Chrome */}
       <div className="h-8 border-b border-white/[0.10] px-3.5 flex items-center justify-between bg-[#0F111A] shrink-0">
@@ -97,7 +97,7 @@ export default function GstInvoiceMockupSheet({
           </span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 border border-emerald-400/70 text-emerald-200 flex items-center gap-1 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 border border-emerald-400/70 text-emerald-200 flex items-center gap-1 ">
             <ShieldCheck className="size-3 text-emerald-300" />
             <span>Step 5: Print Ready</span>
           </span>
@@ -105,9 +105,9 @@ export default function GstInvoiceMockupSheet({
       </div>
 
       {/* Invoice Sheet Body */}
-      <div className="relative flex-1 p-3 sm:p-3.5 bg-white text-zinc-900 flex flex-col justify-between overflow-hidden text-[10px] leading-tight select-text shadow-inner">
+      <div className="relative flex-1 p-3 sm:p-3.5 border border-zinc-200 bg-white text-zinc-900 flex flex-col justify-between overflow-hidden text-[10px] leading-tight select-text ">
         {/* Step Badge */}
-        <div className="mb-1.5 p-1 px-2.5 rounded-md bg-emerald-50 border border-emerald-300 flex items-center justify-between text-[9px] text-emerald-900 shadow-sm">
+        <div className="mb-1.5 p-1 px-2.5 rounded-md bg-emerald-50 border border-emerald-300 flex items-center justify-between text-[9px] text-emerald-900 ">
           <div className="flex items-center gap-1.5 font-bold">
             <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Step 3: Print Ready · A4 Laser &amp; 2&quot;/3&quot; Thermal Format</span>
@@ -207,7 +207,7 @@ export default function GstInvoiceMockupSheet({
         {/* Item Table */}
         <div className="mt-1.5 rounded border overflow-hidden transition-all duration-300 border-[#0088CC]/60 relative">
           {showPaidStamp && (
-            <div className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 z-10 rotate-[-12deg] rounded-xl border-4 border-emerald-500 bg-white/90 px-4 py-1 text-2xl font-black tracking-widest text-emerald-600 shadow-xl opacity-85">
+            <div className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 z-10 rotate-[-12deg] rounded-xl border-4 border-emerald-500 bg-white/90 px-4 py-1 text-2xl font-black tracking-widest text-emerald-600  opacity-85">
               PAID
             </div>
           )}

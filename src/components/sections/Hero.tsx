@@ -47,9 +47,12 @@ export default function Hero() {
   const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const activeTab: DashboardTab = DASHBOARD_TABS[activeTabKey] || DASHBOARD_TABS.dashboard;
+  const activeTab: DashboardTab =
+    DASHBOARD_TABS[activeTabKey] || DASHBOARD_TABS.dashboard;
 
-  const currentTabIdx = TAB_KEYS.indexOf(activeTabKey as (typeof TAB_KEYS)[number]);
+  const currentTabIdx = TAB_KEYS.indexOf(
+    activeTabKey as (typeof TAB_KEYS)[number],
+  );
 
   // User click on sidebar navigation inside mockup
   const handleNavigate = useCallback(
@@ -70,7 +73,7 @@ export default function Hero() {
         setIsPaused(false);
       }, 8000);
     },
-    [activeTabKey]
+    [activeTabKey],
   );
 
   // Self-animation: Auto-play cycling through tabs every 4 seconds (Desktop Only)
@@ -114,7 +117,9 @@ export default function Hero() {
 
     // Hero entrance and alternating headline animation
     const ctx = gsap.context(() => {
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       if (hero.querySelector("#hero-badge")) {
@@ -162,7 +167,7 @@ export default function Hero() {
               stagger: 0.05,
               ease: "power4.out",
             },
-            "-=0.1"
+            "-=0.1",
           )
           // Step 3: Hold VINIMAY on screen
           .to({}, { duration: 3.5 })
@@ -187,7 +192,7 @@ export default function Hero() {
               duration: 0.75,
               ease: "power4.out",
             },
-            "-=0.1"
+            "-=0.1",
           )
           // Step 6: Hold State 1 before repeating
           .to({}, { duration: 3.5 });
@@ -249,13 +254,14 @@ export default function Hero() {
                 ref={state1Ref}
                 className="w-full text-center text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.12] sm:leading-[1.06] will-change-transform"
               >
-                <span className="block font-heading">All that your business need</span>
-                <span className="block font-handwritten text-white/95 mt-1 sm:mt-1.5">
+                <span className="block font-heading">
+                  All that your business need
+                </span>
+                <span className="block font- text-white/95 mt-1">
                   for 100%{" "}
-                  <span className="gradient-pill-border text-slate-900 not-italic font-sans text-xl sm:text-4xl lg:text-5xl font-black mx-1 sm:mx-2 align-middle inline-flex shadow-xl">
-                    <span>FREE</span>
+                  <span className=" group cursor-pointer free-text inline-block font-black -translate-y-1 sm:-translate-y-3" >
+                    <OsmoRoll>Free !</OsmoRoll>
                   </span>
-                  ?
                 </span>
               </div>
 
@@ -317,11 +323,11 @@ export default function Hero() {
               id="hero-trust"
               className="mt-5 sm:mt-6 text-xs text-white/95 font-medium z-10 max-w-sm sm:max-w-xl mx-auto"
               style={{
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: 8,
-  marginTop: 20,
-}}
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 8,
+                marginTop: 20,
+              }}
             >
               <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-xs">
                 <Check className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
@@ -435,7 +441,7 @@ export default function Hero() {
                         <div
                           key={key}
                           className={`absolute inset-0 w-full h-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform-style:preserve-3d] [backface-visibility:hidden] will-change-transform bg-[#f8fafc] flex flex-col ${getSlideClass(
-                            key
+                            key,
                           )}`}
                         >
                           <MobileMockupScreen activeTabKey={key} />
@@ -500,11 +506,7 @@ export default function Hero() {
           {/* Trusted By Brands Cloud */}
           <TrustedBrandsCloud />
         </div>
-
-
       </section>
-
-      
     </>
   );
 }
