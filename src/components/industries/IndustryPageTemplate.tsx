@@ -184,7 +184,7 @@ const INDUSTRY_HERO_IMAGES: Record<string, string> = {
   transportation:
     "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&auto=format&fit=crop&q=80",
   marbles:
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1758957530781-4ff54e09bee2?q=80&w=1326&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
   courier:
     "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&auto=format&fit=crop&q=80",
   travels:
