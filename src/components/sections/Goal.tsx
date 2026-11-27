@@ -57,7 +57,7 @@ export default function Goal() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-slate-100 py-16 sm:py-24 transition-colors duration-700">
+    <section className="relative w-full overflow-hidden border-t border-slate-100 bg-[#fafafa] py-16 sm:py-24 transition-colors duration-700">
       {/* Dynamic Full-Bleed Background Images with Smooth Crossfade */}
       <div
         aria-hidden="true"
@@ -89,8 +89,8 @@ export default function Goal() {
         })}
 
         {/* Sophisticated dual-tone frosted overlay for contrast & seamless transition */}
-        <div className="absolute inset-0 bg-zinc-900/90 backdrop-blur-[2px]" />
-       
+        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/82 to-white/30 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-purple-500/5 mix-blend-multiply pointer-events-none" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
@@ -107,11 +107,11 @@ export default function Goal() {
             Our Goal
           </ArcHeading>
 
-          <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          <ArcHeading className="mt-4 text-base leading-relaxed text-slate-900 sm:text-2xl">
             Supporting Every Business Owner — from retail counters to marble
             showrooms and transport yards, we want every owner to have the
             support to run and grow their business at zero software cost.
-          </p>
+          </ArcHeading>
         </div>
 
         {/* Business Type Cards */}
