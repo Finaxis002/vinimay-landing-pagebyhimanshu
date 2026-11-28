@@ -411,7 +411,7 @@ export default function GSTComplianceTabsSection() {
 
   return (
     <section className="w-full py-16 sm:py-24 bg-white relative overflow-hidden border-t border-slate-100">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="relative text-center max-w-4xl mx-auto mb-10 sm:mb-12">
           <div className="relative z-10">
@@ -466,13 +466,13 @@ export default function GSTComplianceTabsSection() {
             <div className="lg:col-span-6 space-y-5">
               {/* If on GST & Non-GST Invoices tab, display the Subtype Toggle */}
               {isGstTab && (
-                <div className="inline-flex items-center p-1 rounded-xl bg-slate-100 border border-slate-200">
+                <div className="inline-flex items-center p-1 rounded-xl bg-slate-100 border border-slate-200 shadow-2xs">
                   <button
                     type="button"
                     onClick={() => setGstSubtype("gst")}
                     className={`group feature-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer select-none overflow-hidden ${
                       gstSubtype === "gst"
-                        ? "bg-white text-emerald-700 border border-emerald-200/80"
+                        ? "bg-white text-emerald-700 shadow-xs border border-emerald-200/80"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
@@ -484,7 +484,7 @@ export default function GSTComplianceTabsSection() {
                     onClick={() => setGstSubtype("nongst")}
                     className={`group feature-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer select-none overflow-hidden ${
                       gstSubtype === "nongst"
-                        ? "bg-white text-blue-700 border border-blue-200/80"
+                        ? "bg-white text-blue-700 shadow-xs border border-blue-200/80"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
@@ -532,7 +532,7 @@ export default function GSTComplianceTabsSection() {
                     <div
                       className={`p-2.5 rounded-lg border transition-all cursor-pointer ${
                         gstSubtype === "gst"
-                          ? "bg-emerald-50/90 border-emerald-300 ring-1 ring-emerald-200"
+                          ? "bg-emerald-50/90 border-emerald-300 shadow-xs ring-1 ring-emerald-200"
                           : "bg-white border-slate-200/80 hover:bg-slate-50 opacity-70"
                       }`}
                       onClick={() => setGstSubtype("gst")}
@@ -553,7 +553,7 @@ export default function GSTComplianceTabsSection() {
                     <div
                       className={`p-2.5 rounded-lg border transition-all cursor-pointer ${
                         gstSubtype === "nongst"
-                          ? "bg-blue-50/90 border-blue-300 ring-1 ring-blue-200"
+                          ? "bg-blue-50/90 border-blue-300 shadow-xs ring-1 ring-blue-200"
                           : "bg-white border-slate-200/80 hover:bg-slate-50 opacity-70"
                       }`}
                       onClick={() => setGstSubtype("nongst")}
