@@ -30,11 +30,11 @@ export default function Industries() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           {/* Centered Header */}
-          <div className="relative max-w-3xl mx-auto text-center mb-14 sm:mb-20">
+          <div className="relative max-w-4xl mx-auto text-center mb-14 sm:mb-20">
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/80 text-purple-700 text-xs font-bold tracking-wider uppercase mb-5 shadow-xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse" />
-                <span>BUILT FOR YOUR BUSINESS</span>
+                <span>industries</span>
               </div>
 
               <div>
@@ -42,12 +42,13 @@ export default function Industries() {
                   as="h2"
                   className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4"
                 >
-                  Tools for your industry, in any country
+                  {/* Tools for your industry, in any country */}
+                  Why You should choose VINIMAY ?
                 </ArcHeading>
               </div>
 
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
-                Pick your business type and the matching tools are ready to use.
+              <p className="text-slate-600 text-sm sm:text-xl leading-relaxed max-w-2xl mx-auto font-normal">
+               Because we built this for every business in any country.
               </p>
             </div>
           </div>
