@@ -173,7 +173,7 @@ function FloatingPaper({
     tl.fromTo(
       el,
       { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }
+      { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
     );
 
     const floatTween = gsap.to(el, {
@@ -251,7 +251,7 @@ export default function HowToCreateBill({
           setInView(true);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     observer.observe(containerRef.current);
     return () => observer.disconnect();
@@ -263,7 +263,14 @@ export default function HowToCreateBill({
       gsap.fromTo(
         ".video-laptop-container",
         { opacity: 0, scale: 0.94, y: 25 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.85, ease: "power2.out" }
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.85,
+          ease: "power2.out",
+          clearProps: "transform",
+        },
       );
     }, containerRef);
     return () => ctx.revert();
@@ -288,15 +295,33 @@ export default function HowToCreateBill({
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <linearGradient id="htb-ribbon-top" x1="100%" y1="100%" x2="30%" y2="0%">
+            <linearGradient
+              id="htb-ribbon-top"
+              x1="100%"
+              y1="100%"
+              x2="30%"
+              y2="0%"
+            >
               <stop offset="0%" stopColor="#ffffff" stopOpacity="0.08" />
               <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.22" />
             </linearGradient>
-            <linearGradient id="htb-ribbon-bottom" x1="0%" y1="0%" x2="90%" y2="100%">
+            <linearGradient
+              id="htb-ribbon-bottom"
+              x1="0%"
+              y1="0%"
+              x2="90%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#ffffff" stopOpacity="0.06" />
               <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.20" />
             </linearGradient>
-            <linearGradient id="htb-ribbon-main" x1="20%" y1="0%" x2="80%" y2="100%">
+            <linearGradient
+              id="htb-ribbon-main"
+              x1="20%"
+              y1="0%"
+              x2="80%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#c4b5fd" stopOpacity="0.28" />
               <stop offset="45%" stopColor="#ffffff" stopOpacity="0.16" />
               <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.26" />
@@ -351,14 +376,17 @@ export default function HowToCreateBill({
           </ArcHeading>
 
           <p className="mx-auto max-w-2xl text-sm font-normal leading-relaxed text-white/90 drop-shadow-xs sm:text-base md:text-lg">
-            Watch how effortlessly you can generate 100% compliant GST tax invoices or quick retail non-GST cash bills in under 60 seconds with Vinimay.
+            Watch how effortlessly you can generate 100% compliant GST tax
+            invoices or quick retail non-GST cash bills in under 60 seconds with
+            Vinimay.
           </p>
-
-         
         </div>
 
         {/* Interactive Laptop & YouTube Video Showcase */}
-        <div ref={containerRef} className="relative mx-auto w-full max-w-[940px]">
+        <div
+          ref={containerRef}
+          className="relative mx-auto w-full max-w-[940px]"
+        >
           {/* Ambient radial glow behind the laptop */}
           <div className="pointer-events-none absolute -inset-6 rounded-[40px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.22),transparent_70%)] blur-2xl sm:-inset-10" />
 
@@ -393,20 +421,10 @@ export default function HowToCreateBill({
 
                 {/* Video Container (16:9 widescreen) */}
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-slate-700/50 bg-black shadow-inner">
-                  {/* <iframe
-                    className="absolute inset-0 h-full w-full"
-                    src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
-                    title={`${currentMode.name} Tutorial - Vinimay`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    loading="lazy"
-                  /> */}
-
                   <iframe
-                   
                     height="315"
-                      className="absolute inset-0 h-full w-full"
-                src="https://www.youtube.com/embed/MgagE62UP0U?si=OpCDyw4uANbD_lFi" 
+                    className="absolute inset-0 h-full w-full"
+                    src="https://www.youtube.com/embed/MgagE62UP0U?si=OpCDyw4uANbD_lFi"
                     title={`${currentMode.name} Tutorial - Vinimay`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -416,11 +434,31 @@ export default function HowToCreateBill({
                 </div>
               </div>
 
-              {/* Laptop Metallic Base / Hinge */}
-              <div className="relative overflow-hidden">
-                <div className="ml-[-3%] h-4 w-[106%] rounded-b-[20px] bg-gradient-to-b from-[#d9d9e3] to-[#b4b4c6] shadow-md">
-                  <div className="mx-auto h-1.5 w-1/5 rounded-b-md bg-[#9d9db2]" />
+              {/* Laptop base / hinge */}
+              <div className="relative -mx-[4%]">
+                {/* Main deck */}
+                <div
+                  className="relative h-3.5 rounded-b-[20px] rounded-t-[3px] bg-gradient-to-b from-[#f1f1f7] via-[#d3d3e0] to-[#a4a4ba] sm:h-[18px]
+               shadow-[inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(50,50,90,0.28),0_1px_0_rgba(255,255,255,0.15)]"
+                >
+                  {/* Thumb notch */}
+                  <div
+                    className="absolute left-1/2 top-0 h-1.5 w-[16%] -translate-x-1/2 rounded-b-xl bg-gradient-to-b from-[#aeaec4] to-[#cfcfdc]
+                 shadow-[inset_0_1px_2px_rgba(40,40,80,0.35)] sm:h-2"
+                  />
+                  {/* Side hinge shading */}
+                  <div className="absolute inset-y-0 left-0 w-[6%] rounded-bl-[20px] bg-gradient-to-r from-black/10 to-transparent" />
+                  <div className="absolute inset-y-0 right-0 w-[6%] rounded-br-[20px] bg-gradient-to-l from-black/10 to-transparent" />
                 </div>
+
+                {/* Rubber foot lip */}
+                <div className="mx-auto h-[3px] w-[88%] rounded-b-full bg-[#7f7f98]" />
+
+                {/* Contact shadow on the surface */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none mx-auto -mt-0.5 h-4 w-[82%] rounded-[50%] bg-[#1a0f4d]/40 blur-lg"
+                />
               </div>
             </div>
           </div>
